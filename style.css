@@ -17,11 +17,19 @@ body{
     background-color: #efeac5;
     color: #360745;
 }
+
 .cabecario span{
     font-size: 22px;
     cursor: pointer;
     color: #360745;
     font-weight: bold;
+}
+.cabecario i{
+  font-size: 30px;
+}
+.cabecario a{
+  text-decoration: none;
+  color: #360745;
 }
 .cabecario img{
     width: 80px;
