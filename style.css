@@ -2,10 +2,11 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: CircularXX !important;
 }
 body{
     background-color: whitesmoke;
+    font-family: "Poppins" sans-serif;
+    display: grid;
 }
 .cabecario{
     width: 100%;
