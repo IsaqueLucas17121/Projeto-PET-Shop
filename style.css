@@ -6,6 +6,7 @@
 body{
     background-color: whitesmoke;
     font-family: "Poppins" sans-serif;
+    display: grid;
 }
 .cabecario{
     width: 100%;
