@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja - Nome da loja</title>
+    <link rel="stylesheet" href="loja.css">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- FIM BOOTSTRAP ICONS -->
+
+    <link rel="shortcut icon" href="/img/Foto site.png" type="image/x-icon">
+
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+    <header class="cabecario">
+        <a href="index.html"><img src="/img/Foto site.png" alt="Imagem do site"></a>
+        <span><a href="loja.html"><i class="bi bi-cart"></i>  Loja</a></span>
+        <span><i class="bi bi-droplet"></i>  Banho/Tosa</span>
+        <span>Creche</span>
+        <span><i class="bi bi-person-circle"></i>  Entrar</span>
+    </header>
+
+    <div class="magin_loja">
+
+        <div class="background_loja">
+
+            <div class="background_filtro">
+
+                <div class="box_filtro">
+                    <h3>Tipos de Animais</h3>
+                    <i class="bi bi-filter" onclick="DesligarFiltro()"></i>
+                    <div class="filtro_iten">
+                        <span onclick="LigarFiltro()">Cachorro</span><span class="quantidade_filtro" id="filtro1">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>Gato</span><span class="quantidade_filtro" id="filtro2">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>Passarinho</span><span class="quantidade_filtro" id="filtro3">0</span>
+                    </div>  
+                    <div class="filtro_iten">
+                        <span>Peixe</span><span class="quantidade_filtro" id="filtro4">0</span>
+                    </div>        
+                    <div class="filtro_iten">
+                        <span>Outros</span><span class="quantidade_filtro" id="filtro5">0</span>
+                    </div>     
+
+                    <h3>Marca</h3>
+                    <div class="filtro_iten">
+                        <span>Golden</span><span class="quantidade_filtro" id="filtro6">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>Pedigree</span><span class="quantidade_filtro" id="filtro7">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>PremieR</span><span class="quantidade_filtro" id="filtro8">0</span>
+                    </div>
+
+                    <h3>Idade</h3>
+                    <div class="filtro_iten">
+                        <span>Adulto</span><span class="quantidade_filtro" id="filtro9">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>Filhote</span><span class="quantidade_filtro" id="filtro10">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>Idoso</span><span class="quantidade_filtro" id="filtro11">0</span>
+                    </div>
+
+                    <h3>Sabor da Ração</h3>
+                    <div class="filtro_iten">
+                        <span>Carne</span><span class="quantidade_filtro" id="filtro12">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>Frango</span><span class="quantidade_filtro" id="filtro13">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>Peixo</span><span class="quantidade_filtro" id="filtro14">0</span>
+                    </div>
+                    <div class="filtro_iten">
+                        <span>Legumes e Verduras</span><span class="quantidade_filtro" id="filtro15">0</span>
+                    </div>
+
+                </div>
+    
+            </div>
+    
+            <div class="background_cards">
+                <div class="box_cards">
+                    <div class="magin_imagemcard">
+                        <img src="/img/Foto site.png" alt="Foto do produto">
+                    </div>
+                    <ul>
+                        <li><span>Nome do produto adwsasdads asd as dads ads ads adsad s</span></li>
+                        <li><span>Preço do produto</span></li>
+                    </ul>
+                    
+                </div>
+                <div class="box_cards">
+                    <div class="magin_imagemcard">
+                        <img src="/img/Foto site.png" alt="Foto do produto">
+                    </div>
+                    <ul>
+                        <li><span>Nome do produto</span></li>
+                        <li><span>Preço do produto</span></li>
+                    </ul>
+                </div>
+                <div class="box_cards">
+                    <div class="magin_imagemcard">
+                        <img src="/img/Foto site.png" alt="Foto do produto">
+                    </div>
+                    <ul>
+                        <li><span>Nome do produto</span></li>
+                        <li><span>Preço do produto</span></li>
+                    </ul>
+                </div>
+                <div class="box_cards">
+                    <div class="magin_imagemcard">
+                        <img src="/img/Foto site.png" alt="Foto do produto">
+                    </div>
+                    <ul>
+                        <li><span>Nome do produto</span></li>
+                        <li><span>Preço do produto</span></li>
+                    </ul>
+                </div>
+                <div class="box_cards">
+                    <div class="magin_imagemcard">
+                        <img src="/img/Foto site.png" alt="Foto do produto">
+                    </div>
+                    <ul>
+                        <li><span>Nome do produto</span></li>
+                        <li><span>Preço do produto</span></li>
+                    </ul>
+                </div>
+                <div class="box_cards">
+                    <div class="magin_imagemcard">
+                        <img src="/img/Foto site.png" alt="Foto do produto">
+                    </div>
+                    <ul>
+                        <li><span>Nome do produto</span></li>
+                        <li><span>Preço do produto</span></li>
+                    </ul>
+                </div>  
+                <div class="box_cards">
+                    <div class="magin_imagemcard">
+                        <img src="/img/Foto site.png" alt="Foto do produto">
+                    </div>
+                    <ul>
+                        <li><span>Nome do produto</span></li>
+                        <li><span>Preço do produto</span></li>
+                    </ul>
+                </div>
+                <div class="box_cards">
+                    <div class="magin_imagemcard">
+                        <img src="/img/Foto site.png" alt="Foto do produto">
+                    </div>
+                    <ul>
+                        <li><span>Nome do produto</span></li>
+                        <li><span>Preço do produto</span></li>
+                    </ul>
+                </div> 
+                
+                <div class="proxima_pag">
+                    <i class="bi bi-arrow-left"></i>
+                    <span id="pagi1" onclick="MudarPagina(1)">1</span>
+                    <span id="pagi2" onclick="MudarPagina(2)">2</span>
+                    <span id="pagi3" onclick="MudarPagina(3)">3</span>
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+                
+            </div>
+
+        </div>
+        
+    </div>
+
+    <footer>
+        <div class="box_rodape">
+            <span></span>
+        </div>
+    </footer>
+
+</body>
+</html>
