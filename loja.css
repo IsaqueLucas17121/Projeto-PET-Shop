@@ -186,6 +186,12 @@ body{
     transition: 0.3s ease-out;
     background-color: #360745;
 }
+
+#pagi1{
+  background-color: #360745;
+  color: #fff7bd;
+}
+
 .desliado{
     display: none;
 }
