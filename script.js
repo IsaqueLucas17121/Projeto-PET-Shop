@@ -54,3 +54,26 @@ function mudarImg(index){
     }
     document.getElementById("img_principal" + index).classList.remove("desligado")
 }
+
+// setas do slide
+
+let count = 1;
+
+function slide_arrow(direction) {
+    let slide = document.getElementById("primeiro");
+
+    if (direction === 1) {
+        count = count - 1; 
+    }
+    else {
+        count = count + 1; 
+    }
+
+    if (count < 1) {
+        count = 3;
+    } else if (count > 3) {
+        count = 1;
+    }
+
+    document.getElementById("radio" + count).checked = true;
+}
