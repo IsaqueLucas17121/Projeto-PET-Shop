@@ -22,13 +22,53 @@
 
 </head>
 <body>
-    <header class="cabecario">
+    <header class="cabecario" id="cabecario">
         <a href="index.html"><img src="/img/Foto site.png" alt="Imagem do site"></a>
         <span><a href="loja.html"><i class="bi bi-cart"></i>  Loja</a></span>
         <span><i class="bi bi-droplet"></i>  Banho/Tosa</span>
         <span><i class="bi bi-house-heart"></i>  Creche</span>
         <span><i class="bi bi-person-circle"></i>  Entrar</span>
     </header>
+
+    <section class="slider">
+
+        <div class="slider-content">
+
+            <input type="radio" name="btn-radio" id="radio1">
+            <input type="radio" name="btn-radio" id="radio2">
+            <input type="radio" name="btn-radio" id="radio3">
+
+            <div class="slide-box primeiro" id="primeiro">
+                <img class="img-Pc" src="/img/promocao1.jpg" alt="Imagem da propaganda 1">
+                <img class="img-Mobile" src="/img/promocao1.jpg" alt="Imagem da propaganda 1">
+            </div>
+            <div class="slide-box">
+                <img class="img-Pc" src="/img/promocao2teste.jpg" alt="Imagem da propaganda 2">
+                <img class="img-Mobile" src="/img/promocao2teste.jpg" alt="Imagem da propaganda 2">
+            </div>
+            <div class="slide-box">
+                <img class="img-Pc" src="/img/promocao3.jpg" alt="Imagem da propaganda 3">
+                <img class="img-Mobile" src="/img/promocao3.jpg" alt="Imagem da propaganda 3">
+            </div>
+            
+            <button class="botaoS" id="botaoS" ><span>‹</span></button>
+            <button class="botaoS2" id="botaoS2" ><span>›</span></button>
+
+            <div class="nav-auto"> 
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+            </div>
+
+            <div class="nav-manual"> 
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+            </div>
+
+        </div>
+
+    </section>
 
     <div class="magin_loja">
 
@@ -186,7 +226,38 @@
 
     <footer>
         <div class="box_rodape">
-            <span></span>
+
+            <div class="card_rodape">
+                <h4>Políticas</h4>
+                <span>Política de Privacidade</span>
+                <span>Política de Cookies</span>
+                <span>Política de Compras</span>
+                <span>política de Entregas</span>
+            </div>
+            
+            <div class="card_rodape">
+                <h4>Suporte</h4>
+                <span>Central de Atendimento</span>
+                <span><i class="bi bi-whatsapp"></i>  WhatsApp</span>
+            </div>
+            
+            <div class="card_rodape">
+                <h4>Categorias</h4>
+                <span>Ração</span>
+                <span>Marcas</span>
+                <span>Utensílios</span>
+                <span>Planos de Sáude Pet</span>
+            </div>
+
+            <div class="card_rodape">
+                <h4>Ofertas em Destaque</h4>
+                <span>Antipulgas e Carrapatos</span>
+                <span>Medicamentos</span>
+                <span>Antibióticos</span>
+            </div>
+
+            <span class="voltar_footer"><a href="#cabecario"><i class="bi bi-arrow-bar-up"></i>  Voltar ao Início</a></span>
+            
         </div>
     </footer>
 
