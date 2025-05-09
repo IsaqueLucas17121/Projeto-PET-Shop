@@ -81,6 +81,14 @@ body::-webkit-scrollbar-thumb:hover {
     position: relative;
     z-index: 1;
 }
+#roll1 h3{
+    left: 19%;
+    top: 45%;
+}
+#roll2 h3{
+  left: 23%;
+  top: 45%;
+}
 .primeira_box h3{
     border-radius: 10px;
     border: 1px solid #360745;
@@ -90,8 +98,6 @@ body::-webkit-scrollbar-thumb:hover {
     font-size: 30px;
     z-index: 100;
     position: absolute;
-    left: 19%;
-    top: 45%;
     transform: translate(-50% -50%);
     cursor: pointer;
 }
@@ -109,28 +115,57 @@ body::-webkit-scrollbar-thumb:hover {
     width: 100%;
     height: 100%;
     position: absolute;
-    background-image: url("https://www.whiskas.com.br/sites/g/files/fnmzdf2156/files/2024-12/gato-cinza-quais-racas-possuem-essa-cor-05.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: rgb(26, 22, 22);
+    background-color: #efeac5;
+    cursor: default;
 }
-.magin_roll h2{
+#roll1{
+  background-image: url("https://www.whiskas.com.br/sites/g/files/fnmzdf2156/files/2024-12/gato-cinza-quais-racas-possuem-essa-cor-05.jpg");
+  display: flex;
+}
+#roll1 h2{
     margin-left: 60px;
     margin-bottom: 10px;
     font-size: 30px;   
     color: #f80455;
 }
-.magin_roll span{
+#roll1 span{
     margin-left: -20px;
     margin-bottom: 10px;
     font-size: 25px;
 }
-.magin_roll h1{
+#roll1 h1{
     margin-left: 20px;
     margin-bottom: 10px;
     font-size: 30px;
     background-color: #d61c59;
     width: 280px;
     color: #360745;
+}
+#roll2{
+  display: none;
+  background-image: url("https://uploads.metroimg.com/wp-content/uploads/2024/01/04142027/cachorro-tomando-banho-de-banheira.jpg");
+}
+#roll2 h2{
+  font-size: 35px;
+  color: #360745;
+  background-color: #d61c59;
+  width: 260px;
+  margin-left: 70px;
+  margin-bottom: 10px;
+}
+#roll2 span{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.destaque_roll{
+  color: #d61c59;
+  text-decoration: underline;
+}
+#roll2 h1{
+  font-size: 30px;
+  margin-left: 80px;
+  margin-bottom: 10px;
 }
