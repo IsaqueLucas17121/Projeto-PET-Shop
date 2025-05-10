@@ -259,7 +259,40 @@
             <span class="voltar_footer"><a href="#cabecario"><i class="bi bi-arrow-bar-up"></i>  Voltar ao Início</a></span>
             
         </div>
+        
     </footer>
+
+    <!-- VLibras Widget -->
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+<!-- Fim VLibras Widget -->
+
+<div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
+    <i class="bi bi-universal-access"></i>
+    <div class="botao_visualizacao">
+        <i class="bi bi-eye"></i>
+    </div>
+</div>
+
+<div class="botoes_acessibilidade" id="acessibilidade2" onclick="mudar_fonte(1)">
+    <i class="bi bi-plus-lg"></i>
+    <span>Aumentar Fonte</span>
+</div>
+
+<div class="botoes_acessibilidade" id="acessibilidade3" onclick="mudar_fonte(2)">
+    <i class="bi bi-dash-lg"></i>
+    <span>Diminuir Fonte</span>
+</div>
+
+
 
 </body>
 </html>

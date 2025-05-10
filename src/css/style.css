@@ -72,6 +72,8 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* Fim Cabeçario */
 
+/* Primeira box */
+
 .primeira_box{
     width: 100%;
     height: 500px;
@@ -170,21 +172,74 @@ body::-webkit-scrollbar-thumb:hover {
   margin-bottom: 10px;
 }
 
+/* Fim Primeira box*/
+
+/* Segunda box*/
+
 .segunda_box{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.card_segunda_box{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 400px;
+  height: 600px;
+
+  margin-top: 60px;
+  margin-bottom: 60px;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+#segunda_box1{
+  align-items: flex-end;
+  background-position: -300px;
+  background-image: url("https://purina.com.br/sites/default/files/2024-12/melhor-alimento-para-cachorro.jpg");
+}
+#segunda_box1:hover,#segunda_box2:hover,#segunda_box3:hover{
+  transition: 0.3s ease-in-out;
+  transform: translateY(-20px);
+}
+#segunda_box2{
+  background-image: url("https://blog.ferplast.com/wp-content/uploads/2020/10/pesce-rosso-diventa-bianco-cause-1024x683.jpg");
+}
+#segunda_box3{
+  background-image: url("https://jpimg.com.br/uploads/2022/09/descubra-como-melhorar-a-alimentacao-do-seu-gato.jpg");
+}
+.card_segunda_box img{
+  width: 300px;
+  height: 150px;
+}
+/* Fim Segunda box*/
+
+/* Terceira box*/
+
+.terceira_box{
   width: 100%;
   display: flex;
   background-color: #d61c59;
   justify-content: space-around;
 }
-.card_segunda_box{
-  width: 120px;
-  height: 120px;
+.card_terceira_box{
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 120px;
+  cursor: pointer;
 }
-.card_segunda_box i {
+.card_terceira_box:hover{
+  scale: 1.2;
+  transition: 0.2s ease-in-out;
+}
+.card_terceira_box i {
   width: 50px;
   height: 50px;
   display: flex;
@@ -192,12 +247,69 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
   padding: 10px;
   font-size: 25px;
-  border-radius: 100%;
-  border: 1px solid #360745;
+  border-radius: 30%;
+  background-color: #efeac5;
 }
-.card_segunda_box span{
+.card_terceira_box span{
   margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #efeac5;
 }
+
+/* Fim Terceira box*/
+
+/* Rodape*/
+
+footer{
+  width: 100%;
+  height: 100%;
+  background-color: #efeac5;
+  margin-top: 100px;
+  position: relative;
+}
+
+.box_rodape{
+  display: block;
+  margin-left: 20px;
+  background-color: #efeac5;
+}
+
+.voltar_footer{
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  right: 15%;
+  top: 5%;
+}
+.voltar_footer a{
+  text-decoration: none;
+  color: #d61c59;
+}
+
+.voltar_footer i{
+  font-size: 30px;
+}
+
+.box_rodape span{
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.box_rodape h4{
+  display: flex;
+  font-size: 20px;
+  color: #d61c59;
+  border-bottom: 2px solid #d61c59;
+  padding: 5px 0;
+}
+
+.card_rodape{
+  float: left;
+  padding: 10px 40px;
+}
+
+/* Fim Rodape*/
