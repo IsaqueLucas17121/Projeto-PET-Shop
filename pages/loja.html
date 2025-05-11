@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,7 +80,7 @@
                     <h3>Tipos de Animais</h3>
                     <i class="bi bi-filter" onclick="DesligarFiltro()"></i>
                     <div class="filtro_iten">
-                        <span onclick="LigarFiltro()">Cachorro</span><span class="quantidade_filtro" id="filtro1">0</span>
+                        <span>Cachorro</span><span class="quantidade_filtro" id="filtro1">0</span>
                     </div>
                     <div class="filtro_iten">
                         <span>Gato</span><span class="quantidade_filtro" id="filtro2">0</span>
@@ -277,22 +277,19 @@
 
 <div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
     <i class="bi bi-universal-access"></i>
-    <div class="botao_visualizacao">
-        <i class="bi bi-eye"></i>
-    </div>
 </div>
-
-<div class="botoes_acessibilidade" id="acessibilidade2" onclick="mudar_fonte(1)">
+<div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
+        <i class="bi bi-eye"></i>
+</div>
+<div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
     <i class="bi bi-plus-lg"></i>
     <span>Aumentar Fonte</span>
 </div>
 
-<div class="botoes_acessibilidade" id="acessibilidade3" onclick="mudar_fonte(2)">
+<div class="botoes_acessibilidade desligado" id="acessibilidade3" onclick="mudar_fonte(2)">
     <i class="bi bi-dash-lg"></i>
     <span>Diminuir Fonte</span>
 </div>
-
-
 
 </body>
 </html>

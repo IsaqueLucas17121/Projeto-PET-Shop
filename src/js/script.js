@@ -1,3 +1,5 @@
+let tamanhotxt = 16 
+
 /* Loja */
 
 function MudarPagina(index) {
@@ -78,26 +80,31 @@ function slide_arrow(direction) {
     document.getElementById("radio" + count).checked = true;
 }
 
-let contador = 16; // Tamanho base em px
+//Acecibilidade
 
 function mudar_fonte(index) {
+
     let body = document.body;
 
-    if(index === 1 && contador < 30) {
-        contador += 1;
+    if(index === 1 && tamanhotxt < 30) {
+        tamanhotxt += 1;
     }
-    if(index === 2 && contador > 10) {
-        contador -= 1;
+    if(index === 2 && tamanhotxt > 10) {
+        tamanhotxt -= 1;
     }
 
-    body.style.fontSize = contador + "px";
+    body.style.fontSize = tamanhotxt + "px";
 }
 
 function abrir_acessibilidade(index) {
+    const botaoAcesso = document.getElementById("botao_acesso")
     const botao2 = document.getElementById("acessibilidade2");
     const botao3 = document.getElementById("acessibilidade3");
 
-    if (index === 1) {
+    if(index === 1 && botao2.className.includes("desligado")){
+        botaoAcesso.classList.toggle("desligado");
+    }
+    else if(index === 2) {
         botao2.classList.toggle("desligado");
         botao3.classList.toggle("desligado");
     }

@@ -181,6 +181,7 @@ body::-webkit-scrollbar-thumb:hover {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 50px;
 }
 .card_segunda_box{
   display: flex;
@@ -188,7 +189,6 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: flex-end;
   width: 400px;
   height: 600px;
-
   margin-top: 60px;
   margin-bottom: 60px;
   border-radius: 10px;
@@ -258,7 +258,41 @@ body::-webkit-scrollbar-thumb:hover {
   color: #efeac5;
 }
 
-/* Fim Terceira box*/
+/* Fim Terceira box */
+
+/* Quarta box*/
+
+.quarta_box{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.quarta_box h1{
+  color: #d61c59;
+  border-bottom: 1px solid #d61c59;
+  display: block;
+}
+.margem_quarta_box{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  padding: 0px 20px;
+}
+.margem_quarta_box:hover{
+  background-color: rgb(200, 200, 200);
+  transition: 0.4s ease-in-out;
+}
+.margem_quarta_box img{
+  width: 90px;
+  height: 100px;
+  margin-left: 40px;
+}
+
+/* Fim Quarta box */
 
 /* Rodape*/
 
@@ -266,7 +300,6 @@ footer{
   width: 100%;
   height: 100%;
   background-color: #efeac5;
-  margin-top: 100px;
   position: relative;
 }
 
@@ -313,3 +346,180 @@ footer{
 }
 
 /* Fim Rodape*/
+
+
+.botao_acessibilidade, .botao_visualizacao{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transform: translate(-50% -50%);
+  background-color: rgb(207, 18, 18);
+  border-radius: 10px;
+  z-index: 100;
+  cursor: pointer;
+}
+.botao_acessibilidade{
+  right: 5px;
+  top: 55%;
+}
+.botao_visualizacao{
+  top: 63%;
+  right: 5px;
+}
+.botao_acessibilidade i{
+  font-size: 20px;
+  padding: 15px;
+  color: white;
+}
+.botao_visualizacao i{
+  color: #000000;
+}
+.botao_visualizacao{
+  border-top: 1px solid #360745;
+}
+.botao_visualizacao i{
+  padding: 15px;
+  font-size: 25px;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.botoes_acessibilidade{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transform: translate(-50% -50%);
+  background-color: rgb(207, 18, 18);
+  border-radius: 10px;
+  z-index: 100;
+  cursor: pointer;
+  color: white;
+  font-size: initial;
+}
+
+#acessibilidade2{
+  right: 5px;
+  top: 71%;
+}
+#acessibilidade3{
+  right: 8%;
+  top: 71%; 
+}
+.botoes_acessibilidade i {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.desligado{
+    display: none;
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 768px) {
+    .cabecario {
+      flex-direction: column;
+      height: auto;
+      padding: 20px;
+      text-align: center;
+      align-items: flex-start;
+    }
+    .cabecario span {
+      margin: 10px 0;
+    }
+    .primeira_box {
+      height: 400px;
+    }
+    .magin_roll{
+      padding: 20px;
+      background-position: left;
+    }
+    #roll1 h2, #roll2 h2{
+      font-size: 25px;
+      width: 190px;
+      margin-bottom: 20px;
+    }
+    #roll1 span, #roll2 span{
+      font-size: 17px;
+      margin-left: 0px;
+      margin-bottom: 20px;
+    }
+    #roll1 h1, #roll2 h1{
+      font-size: 25px;
+      width: 240px;
+      margin-bottom: 20px;
+    }
+    #roll1 h1{
+      margin-left: 40px;
+    }
+    #roll1 span{
+      margin-left: 40px;
+    }
+    #roll1 h2{
+      margin-left: 90px;
+    }
+    #roll2 h1{
+      margin-left: 70px;
+    }
+    #roll1 h3, #roll2 h3{
+      top: 45%;
+      left: 15%;
+    }
+    .primeira_box h3{
+      font-size: 25px;
+    }
+    .segunda_box{
+      display: block;
+    }
+    .card_segunda_box{
+      width: 400px;
+      height: 400px;
+    }
+    #segunda_box1{
+      background-position: -100px;
+    }
+    .quarta_box h1{
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      font-size: 23px;
+    }
+    .quarta_box{
+      display: block;
+    }
+    .margem_quarta_box h2{
+      font-size: 20px;
+    }
+    .margem_quarta_box img{
+      width: 60px;
+      height: auto;
+    }
+    .card_terceira_box{
+      padding: 10px;
+    }
+    .voltar_footer a{
+      position: absolute;
+    }
+    .botoes_acessibilidade i{
+      font-size: auto;
+    }
+    #acessibilidade3{
+      right: 40%;
+    }
+
+@media (max-width: 480px) {
+    .cabecario img {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .cabecario span {
+      font-size: 18px;
+    }  }
+}

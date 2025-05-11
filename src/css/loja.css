@@ -391,24 +391,33 @@ footer{
   padding: 10px 40px;
 }
 
-.botao_acessibilidade{
+.botao_acessibilidade, .botao_visualizacao{
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  right: 5px;
-  top: 55%;
   transform: translate(-50% -50%);
   background-color: rgb(207, 18, 18);
   border-radius: 10px;
   z-index: 0;
   cursor: pointer;
 }
+.botao_acessibilidade{
+  right: 5px;
+  top: 55%;
+}
+.botao_visualizacao{
+  top: 63%;
+  right: 5px;
+}
 .botao_acessibilidade i{
   font-size: 20px;
   padding: 15px;
   color: white;
+}
+.botao_visualizacao i{
+  color: #000000;
 }
 .botao_visualizacao{
   border-top: 1px solid #360745;
@@ -432,14 +441,16 @@ footer{
   z-index: 10;
   cursor: pointer;
   color: white;
+  font-size: initial;
 }
+
 #acessibilidade2{
   right: 5px;
-  top: 70%;
+  top: 71%;
 }
 #acessibilidade3{
   right: 8%;
-  top: 70%; 
+  top: 71%; 
 }
 .botoes_acessibilidade i {
   padding: 10px;
@@ -450,11 +461,35 @@ footer{
     display: none;
 }
 
-/* RESPONSIVIDADE: até 1024px (tablets) */
 @media (max-width: 1024px) {
     .background_loja {
       flex-direction: column;
       align-items: center;
+    }
+    .botaoS,.botaoS2{
+      top: 35%;
+    }
+    .voltar_footer a{
+      position: absolute;
+    }
+    .nav-manual .manual-btn, .nav-auto div{
+      padding: 4px 20px;
+      margin-top: 10px;
+    }
+    section.slider{
+      height: 200px;
+    }
+    .botaoS, .botaoS2{
+      font-size: 8px;
+      scale: 6;
+      padding: 2px 0px;
+      top: 58%;
+    }
+    .botoes_acessibilidade i{
+      font-size: auto;
+    }
+    #acessibilidade3{
+      right: 40%;
     }
   
     .background_filtro {
@@ -494,7 +529,6 @@ footer{
     }
   }
   
-  /* RESPONSIVIDADE: até 768px (celulares grandes) */
   @media (max-width: 768px) {
     .cabecario {
       flex-direction: column;
@@ -502,7 +536,6 @@ footer{
       padding: 20px;
       text-align: center;
     }
-  
     .cabecario span {
       margin: 10px 0;
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="br">
+<html lang="pr-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@
 
     <link rel="shortcut icon" href="/src/assets/Foto site.png" type="image/x-icon">
 
-    <script src="script.js" defer></script>
+    <script src="/src/js/script.js" defer></script>
 
 </head>
 <body>
@@ -56,6 +56,47 @@
         <img src="https://logodownload.org/wp-content/uploads/2017/04/whiskas-logo.png" alt="Logo da marca Whiskas">
       </div>
 
+    </div>
+
+    <div class="quarta_box">
+      <div class="card_quarta_box">
+        <h1>Destaques Para Gatos</h1>
+        <div class="margem_quarta_box">
+          <h2>Caixa de Areia e Limpeza</h2>
+          <img src="https://images.vexels.com/media/users/3/316989/isolated/preview/c9e082462f5eafbca1459251d7efa471-material-de-limpeza-icone-plano.png" alt="Areia Para Gatos">
+        </div>
+        <div class="margem_quarta_box">
+          <h2>Ração para Gato</h2>
+          <img src="/src/assets/comida gato.png" alt="Comida Para Gatos">
+        </div>
+        <div class="margem_quarta_box">
+          <h2>Medicina e Saúde</h2>
+          <img src="https://cdn-icons-png.flaticon.com/512/1546/1546155.png" alt="Medicamentos Para Gatos">
+        </div>
+        <div class="margem_quarta_box">
+          <h2>Acessórios de Alimentação</h2>
+          <img src="https://www.pngplay.com/wp-content/uploads/6/Dog-Food-Logo-Transparent-PNG.png" alt="Acessorios de alimentação Para Gatos">
+        </div>
+      </div>
+      <div class="card_quarta_box">
+        <h1>Destaques Para Cachorros</h1>
+        <div class="margem_quarta_box">
+          <h2>Higiene e Limpeza</h2>
+          <img src="https://images.vexels.com/media/users/3/316989/isolated/preview/c9e082462f5eafbca1459251d7efa471-material-de-limpeza-icone-plano.png" alt="Areia Para Gatos">
+        </div>
+        <div class="margem_quarta_box">
+          <h2>Ração para Cachorro</h2>
+          <img src="/src/assets/comida cachorro.png" alt="Comida Para Gatos">
+        </div>
+        <div class="margem_quarta_box">
+          <h2>Medicina e Saúde</h2>
+          <img src="https://cdn-icons-png.flaticon.com/512/1546/1546155.png" alt="Medicamentos Para Gatos">
+        </div>
+        <div class="margem_quarta_box">
+          <h2>Acessórios de Alimentação</h2>
+          <img src="https://www.pngplay.com/wp-content/uploads/6/Dog-Food-Logo-Transparent-PNG.png" alt="Acessorios de alimentação Para Gatos">
+        </div>
+      </div>
     </div>
 
     <div class="terceira_box">
@@ -118,18 +159,34 @@
         </div>
     </footer>
 
-    <!-- VLibras Widget -->
-<div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
-    </div>
-</div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
-<!-- Fim VLibras Widget -->
+      <!-- VLibras Widget -->
+  <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+      </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+  <!-- Fim VLibras Widget -->
+
+  <div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
+      <i class="bi bi-universal-access"></i>
+  </div>
+  <div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
+          <i class="bi bi-eye"></i>
+  </div>
+  <div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
+      <i class="bi bi-plus-lg"></i>
+      <span>Aumentar Fonte</span>
+  </div>
+
+  <div class="botoes_acessibilidade desligado" id="acessibilidade3" onclick="mudar_fonte(2)">
+      <i class="bi bi-dash-lg"></i>
+      <span>Diminuir Fonte</span>
+  </div>
 
     <script>
   document.addEventListener("DOMContentLoaded", () => {
