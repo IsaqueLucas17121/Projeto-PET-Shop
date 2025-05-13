@@ -274,6 +274,9 @@ section.slider{
     box-sizing: border-box;
     cursor: pointer;
 }
+.box_cards a{
+  color: #000000;
+}
 .box_cards:hover{
     scale: 1.1;
     transition: 0.3s ease-out;

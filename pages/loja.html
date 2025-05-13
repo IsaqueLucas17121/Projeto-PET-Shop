@@ -19,6 +19,7 @@
     <link rel="shortcut icon" href="/src/assets/Foto site.png" type="image/x-icon">
 
     <script src="/src/js/script.js" defer></script>
+    <script src="/src/js/cookiePro.js" defer></script>
 
 </head>
 <body>
@@ -27,7 +28,7 @@
         <span><a href="loja.html"><i class="bi bi-cart"></i>  Loja</a></span>
         <span><i class="bi bi-droplet"></i>  Banho/Tosa</span>
         <span><i class="bi bi-house-heart"></i>  Creche</span>
-        <span><i class="bi bi-person-circle"></i>  Entrar</span>
+        <span><a href="login.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
     </header>
 
     <section class="slider">
@@ -200,15 +201,17 @@
                         <li><span>Preço do produto</span></li>
                     </ul>
                 </div>
-                <div class="box_cards">
-                    <div class="magin_imagemcard">
-                        <img src="/src/assets/Foto site.png" alt="Foto do produto">
-                    </div>
-                    <ul>
-                        <li><span>Nome do produto</span></li>
-                        <li><span>Preço do produto</span></li>
-                    </ul>
-                </div> 
+                <div class="box_cards" id="adicionarPro">
+                    <a href="/src/php/cadastroPro.php">
+                        <div class="magin_imagemcard">
+                            <img src="https://icones.pro/wp-content/uploads/2021/06/icone-d-image-bleue.png" alt="Foto do produto">
+                        </div>
+                        <ul>
+                            <li><span>Adiciona Nome do produto</span></li>
+                            <li><span>Adicionar Preço do produto</span></li>
+                        </ul>
+                    </a>
+                </div>
                 
                 <div class="proxima_pag">
                     <i class="bi bi-arrow-left"></i>

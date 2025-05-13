@@ -345,8 +345,9 @@ footer{
   padding: 10px 40px;
 }
 
-/* Fim Rodape*/
+/* Fim Rodape */
 
+/* Acessibilidade */
 
 .botao_acessibilidade, .botao_visualizacao{
   position: fixed;
@@ -413,6 +414,8 @@ footer{
   padding: 10px;
   font-size: 20px;
 }
+
+/* Fim Acessibilidade */
 
 .desligado{
     display: none;
