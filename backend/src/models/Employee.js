@@ -1,17 +1,20 @@
 import { Sequelize, DataTypes } from "sequelize";
 import database from '../../database.js';
 
-const User = database.define('User', {
+const Employee = database.define('Employee', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
+    defaultValue: Sequelize.UUIDV4,
+    allowNull: false,
+    unique: true,
   },
   name: {
     type: DataTypes.STRING(50),
     allowNull: false
   },
 
-  Sobrenome: {
+  last_name: {
   type: DataTypes.STRING(50),
   allowNull: false
   },
@@ -23,7 +26,7 @@ const User = database.define('User', {
       isEmail: true
     }
   },
-  celular: {
+  cell_fone: {
     type: DataTypes.STRING(15),
     allowNull: false,
     unique: true,
@@ -49,8 +52,8 @@ const User = database.define('User', {
     defaultValue: Sequelize.NOW
   }
 }, {
-  tableName: 'users',  // Optional: explicit table name
-  timestamps: true    // Enable automatic timestamps
+  tableName: 'Employees',
+  timestamps: true    
 });
 
-export default User;
+export default Employee;

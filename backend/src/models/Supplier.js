@@ -1,19 +1,14 @@
 import { Sequelize, DataTypes } from "sequelize";
 import database from '../../database.js';
 
-const User = database.define('User', {
+const Supplier = database.define('Supplier', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
   },
-  name: {
+  supplier: {
     type: DataTypes.STRING(50),
     allowNull: false
-  },
-
-  Sobrenome: {
-  type: DataTypes.STRING(50),
-  allowNull: false
   },
   email: {
     type: DataTypes.STRING(100),
@@ -21,6 +16,14 @@ const User = database.define('User', {
     unique: true,
     validate: {
       isEmail: true
+    }
+  },
+  site: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+    unique: true,
+    validate: {
+      isUrl: true
     }
   },
   celular: {
@@ -31,14 +34,10 @@ const User = database.define('User', {
       isNumeric: true
     }
   },
-  cpf: {
-    type: DataTypes.STRING(11),
+  cnpj: {
+    type: DataTypes.STRING(14),
     allowNull: false,
     unique: true,
-  },
-  password: {
-    type: DataTypes.STRING(100),
-    allowNull: false
   },
   createdAt: {
     type: DataTypes.DATE,
@@ -49,8 +48,8 @@ const User = database.define('User', {
     defaultValue: Sequelize.NOW
   }
 }, {
-  tableName: 'users',  // Optional: explicit table name
+  tableName: 'Suppliers',  // Optional: explicit table name
   timestamps: true    // Enable automatic timestamps
 });
 
-export default User;
+export default Supplier;
