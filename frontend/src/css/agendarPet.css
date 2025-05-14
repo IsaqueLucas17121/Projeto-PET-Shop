@@ -1,133 +1,122 @@
 *{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
 }
 
 html {
-scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-background-color: whitesmoke;
-font-family: "Poppins", sans-serif;  
-font-size: 1rem;
-font-weight: 400;
-display: grid;
+  background-color: whitesmoke;
+  font-family: "Poppins", sans-serif;  
+  font-size: 1rem;
+  font-weight: 400;
+  display: grid;
 }
 
 body::-webkit-scrollbar {
-width: 10px;
-background-color: #efeac5;
+  width: 10px;
+  background-color: #efeac5;
 }
-
+  
 body::-webkit-scrollbar-thumb {
-background-color: #d61c59;
-border-radius: 10px;
+  background-color: #d61c59;
+  border-radius: 10px;
 }
 
 body::-webkit-scrollbar-track {
-background-color: #efeac5;
+  background-color: #efeac5;
 }
-
+  
 body::-webkit-scrollbar-thumb:hover {
-background-color: #d61c5aa8;
+  background-color: #d61c5aa8;
 }
 
 .cabecario{
-  width: 100%;
-  height: 130px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: #efeac5;
-  color: #360745;
+    width: 100%;
+    height: 130px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #efeac5;
+    color: #360745;
 }
 
 .cabecario span{
-  font-size: 22px;
-  cursor: pointer;
-  color: #360745;
-  font-weight: bold;
+    font-size: 22px;
+    cursor: pointer;
+    color: #360745;
+    font-weight: bold;
 }
 .cabecario i{
-font-size: 30px;
+  font-size: 30px;
 }
 .cabecario a{
-color: #360745;
+  color: #360745;
 }
 .cabecario img{
-  width: 80px;
-  height: 80px;
-  border-radius: 5px;
-  cursor: pointer;
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .cabecario span:hover{
-  scale: 1.2;
-  transition: 0.3s;
+    scale: 1.2;
+    transition: 0.3s;
 }
 
 /* Fim Cabeçario */
-.form-label{
-    font-size: 18px;
-    margin-bottom: 10px;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
 
-.margin_container {
-    padding: 40px 100px;
+/* Calendario */
+.background_calendario{
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
     max-width: auto;
     margin: 30px auto;
-    background: #ffffffd9;
-    border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
-    display: grid;
 }
-form {
+.cabecario_calendario{
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #360745;
+    color: #efeac5;
+    font-size: 20px;
+    padding: 20px 0;
+    cursor: default;
+}
+#dataAgora{
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    padding: 20px 0;
+}
+.numero_calendario{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+.numero_calendario span{
+    display: inline-block;
+    color: #333;
+    width: 14.2%;
+    padding: 15px 5px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+}
+.numero_calendario span:hover{
+    padding: 18px 5px;
+    background-color: #ccc;
+    transition: 0.3s ease-in-out;
 }
 
-form input {
-margin-bottom: 20px;
-padding: 12px 14px;
-font-size: 1em;
-border: 1px solid #808080;
-border-radius: 8px;
-transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+/* Fim Calendario */
 
-form input:focus {
-border-color: #9c27b0;
-box-shadow: 0 0 5px rgba(156, 39, 176, 0.4);
-outline: none;
-}
-
-input[type="submit"] {
-background-color: #6a1b9a;
-color: white;
-border: none;
-border-radius: 8px;
-padding: 14px;
-font-size: 1.1em;
-font-weight: bold;
-cursor: pointer;
-transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-background-color: #7b1fa2;
-}
-.container img{
-    width: 150px;
-    height: 150px;
-    margin-left: 30%;
-}
 
 /* Rodape*/
 
@@ -180,7 +169,9 @@ footer{
   padding: 10px 40px;
 }
 
-/* Fim Rodape*/
+/* Fim Rodape */
+
+/* Acessibilidade */
 
 .botao_acessibilidade, .botao_visualizacao{
   position: fixed;
@@ -247,8 +238,9 @@ footer{
   padding: 10px;
   font-size: 20px;
 }
-.desligado{
-    visibility: hidden;
-}
 
 /* Fim Acessibilidade */
+
+.desligado{
+    display: none;
+}
