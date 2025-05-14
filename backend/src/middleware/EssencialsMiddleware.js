@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors'; // Adicionando CORS
 import helmet from 'helmet'; // Segurança básica
-import config from '../../server/config.js';
+import config from '../../config.js'; // Configurações do projeto
 
 const origin = config.web.origin
 const methods = config.web.methods

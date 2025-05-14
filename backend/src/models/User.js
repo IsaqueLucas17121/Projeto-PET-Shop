@@ -49,8 +49,8 @@ const User = database.define('User', {
     defaultValue: Sequelize.NOW
   }
 }, {
-  tableName: 'users',  // Optional: explicit table name
-  timestamps: true    // Enable automatic timestamps
+  tableName: 'users', 
+  timestamps: true    
 });
 
 export default User;
