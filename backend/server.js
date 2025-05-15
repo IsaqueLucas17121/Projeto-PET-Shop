@@ -13,7 +13,8 @@ app.use(EssencialsMiddleware);
 app.use(ErrorGlobalMiddleware);
 
 // Rotas
-app.use('/api/v1/users', userRoutes); // Versionamento da API
+app.use('/api/v1/user', userRoutes); // Versionamento da API
+app.use('/api/v1/product', userRoutes); // Versionamento da API
 
 
 const startServer = async () => {

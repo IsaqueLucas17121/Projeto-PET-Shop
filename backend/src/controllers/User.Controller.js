@@ -3,14 +3,14 @@ import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 
-class BaseController {
+class Users {
   constructor() {
-    // You could initialize things here if needed
+    
   }
 
   async create(req, res) {
     try {
-      const { name, email, password } = req.body;
+      const { name, sobrenome, celular, cpf, email, password } = req.body;
       
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
@@ -18,6 +18,9 @@ class BaseController {
       const novoUser = await User.create({
         id_user: uuidv4(),
         name,
+        sobrenome,
+        celular,
+        cpf,
         email,
         password: hashedPassword,
       });
@@ -277,4 +280,4 @@ class BaseController {
 }
 
 // Export an instance of the class
-export default new BaseController();
+export default new Users();
