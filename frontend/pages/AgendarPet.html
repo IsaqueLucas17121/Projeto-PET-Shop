@@ -33,7 +33,7 @@
     <div class="background_calendario">
         
         <div class="cabecario_calendario">
-            <h1 id="dataAgora">asdasasdads</h1>
+            <h1 id="dataAgora"></h1>
             <span>Segunda</span>
             <span>Terça</span>
             <span>Quarta</span>
@@ -46,17 +46,77 @@
 
         </div>
 
+        <h2 class="botao_marcar">Marcar Banho/Tosa</h2>
     </div>
-
-    <h2>Marcar Banho/Tosa</h2>
 
     <script>
         let numeros = document.querySelector(".numero_calendario");
-        for(i=1; i<=31;i++){
-            numeros.innerHTML+='<span>'+i+'</span>';
+        let dia = document.getElementById("dataAgora");
+    for (let i = 1; i <= 31; i++) {
+        numeros.innerHTML += `<span id="dia${i}">${i}</span>`;
+    }
+
+    numeros.addEventListener('click', function(e) {
+        if (e.target.tagName === 'SPAN') {
+            e.target.classList.toggle('selecionado');
+
+            // Atualiza a lista de selecionados após o clique
+            let selecionados = document.getElementsByClassName("selecionado");
+
+            // Converte a coleção HTML em array e pega os textos (números dos dias)
+            let diasSelecionados = Array.from(selecionados).map(span => span.textContent);
+            if(diasSelecionados.length === 0){
+                dia.innerHTML = ""
+            }
+            else{
+                // Mostra os dias selecionados no elemento #dataAgora
+                dia.innerHTML = "Marcar Dia: " + diasSelecionados.join(', ');
+            }   
+            
         }
+    
+});
+
+
     </script>
 
+    <div class="background_pet">
+        <h1>Cadastre seu Pet</h1>
+        <section class="form_pet">
+            <label for="nomePet">Nome do Pet:</label>
+            <input type="text" id="nomePet" required>
+
+            <label for="tipoPet">Tipo do Pet:</label>
+            <form id="tipoPet">
+                <div class="radio_btn">
+                    <label for="cachorro">Cachorro</label>
+                    <input type="radio" name="tipoPet" id="cachorro">
+                </div>
+                <div class="radio_btn">
+                    <label for="gato">Gato</label>
+                    <input type="radio" name="tipoPet" id="gato">
+                </div>
+                <div class="radio_btn">
+                    <label for="ave">Passaro</label>
+                    <input type="radio" name="tipoPet" id="ave">
+                </div>
+                <div class="radio_btn">
+                    <label for="reptil">Reptil</label>
+                    <input type="radio" name="tipoPet" id="reptil">
+                </div>             
+             
+            </form>
+            
+
+            <label for="racaCachorro">Raça do Cachorro:</label>
+            <select id="racaCachorro" name="racaCachorro">
+                <option value=""></option>
+                
+            </select>
+                        
+        </section>
+
+    </div>
 
     <footer>
         <div class="box_rodape">

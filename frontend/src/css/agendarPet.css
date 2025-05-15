@@ -114,8 +114,50 @@ body::-webkit-scrollbar-thumb:hover {
     background-color: #ccc;
     transition: 0.3s ease-in-out;
 }
+.botao_marcar{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #360745;
+  color: #efeac5;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+}
+.selecionado{
+    padding: 18px 5px;
+    background-color: #ccc;
+}
 
 /* Fim Calendario */
+
+/* Formulario Pet*/
+
+.background_pet{
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.form_pet{
+  padding: 50px 50px;
+  box-shadow: 0 8px 24px #333;
+  border-radius: 15px;
+  font-size: 18px;
+  display: grid;
+  justify-content: center;
+}
+.form_pet *{
+  display: grid;
+  justify-content: center;
+}
+.form_pet label{
+  padding: 20px 0;
+}
+.radio_btn{
+  float: left;
+}
 
 
 /* Rodape*/
