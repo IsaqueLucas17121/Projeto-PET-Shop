@@ -6,7 +6,7 @@ const User = database.define('User', {
     type: DataTypes.UUID,
     primaryKey: true,
   },
-  name: {
+  nome: {
     type: DataTypes.STRING(50),
     allowNull: false
   },

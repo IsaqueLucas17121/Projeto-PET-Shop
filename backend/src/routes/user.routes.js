@@ -1,23 +1,25 @@
 import express from 'express';
-import userController from '../controllers/User.Controller.js';
+import BaseController from '../controllers/Base.Controller.js';
 import { validateUserCreation, validateUserUpdate } from '../validators/userValidators.js';
+import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
 // Rotas públicas
-router.post('/login', userController.Login);
-router.post('/register', validateUserCreation, userController.create);
+router.post('/login', BaseController.login);
+router.post('/register', validateUserCreation, BaseController.create);
 
-// Rotas protegidas por autenticação
-router.get('/', userController.readUser);
-router.get('/me', userController.getCurrentUser);
-router.get('/:id', userController.getUserId);
-router.put('/:id', validateUserUpdate, userController.update);
-router.delete('/:id', userController.delete);
+// Middleware de autenticação para rotas protegidas
+router.use(authenticateToken);
 
-// Rota de exemplo protegida
+// Rotas protegidas
+router.get('/', BaseController.read);
+router.get('/me', BaseController.getCurrentUser);
+router.get('/:id', BaseController.readById);
+router.put('/:id', validateUserUpdate, BaseController.update);
+router.delete('/:id', BaseController.delete);
 
-// Manipulador para rotas não encontradas
-router.use(userController.notFound);
+// Rota não encontrada
+router.use(BaseController.notFound);
 
 export default router;

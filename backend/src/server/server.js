@@ -1,8 +1,8 @@
 import sequelize from './database.js';
 import express from 'express';
-import userRoutes from './src/routes/user.routes.js';
+import userRoutes from '../routes/user.routes.js';
 import config from './config.js';
-import { ErrorGlobalMiddleware, EssencialsMiddleware } from './src/middleware/EssencialsMiddleware.js';
+import { ErrorGlobalMiddleware, EssencialsMiddleware } from '../middleware/EssencialsMiddleware.js';
 
 const port = config.web.port;
 
