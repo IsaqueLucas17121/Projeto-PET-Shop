@@ -86,7 +86,7 @@ function mudar_fonte(index) {
 
     let body = document.body;
 
-    if(index === 1 && tamanhotxt < 30) {
+    if(index === 1 && tamanhotxt < 30 ) {
         tamanhotxt += 1;
     }
     if(index === 2 && tamanhotxt > 10) {
