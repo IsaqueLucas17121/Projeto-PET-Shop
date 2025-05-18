@@ -1,6 +1,8 @@
 import sequelize from './database.js';
 import express from 'express';
 import userRoutes from '../routes/user.routes.js';
+import petRoutes from '../routes/pet.routes.js';
+import productRoutes from '../routes/product.routes.js';
 import config from './config.js';
 import { ErrorGlobalMiddleware, EssencialsMiddleware } from '../middleware/EssencialsMiddleware.js';
 
@@ -14,7 +16,8 @@ app.use(ErrorGlobalMiddleware);
 
 // Rotas
 app.use('/api/v1/user', userRoutes); // Versionamento da API
-app.use('/api/v1/product', userRoutes); // Versionamento da API
+app.use('/api/v1/pet', petRoutes); // Versionamento da API
+app.use('/api/v1/product', productRoutes); // Versionamento da API
 
 
 const startServer = async () => {

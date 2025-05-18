@@ -23,3 +23,9 @@ router.delete('/:id', BaseController.delete);
 router.use(BaseController.notFound);
 
 export default router;
+
+router.post('', (req, res) => Products.create(req, res));
+router.get('', (req, res) => Products.read(req, res));
+router.get('/:id', (req, res) => Products.readById(req, res));
+router.put('/:id', (req, res) => Products.update(req, res));
+router.delete('/:id', (req, res) => Products.delete(req, res));

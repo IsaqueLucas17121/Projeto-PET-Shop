@@ -49,7 +49,7 @@ const User = database.define('User', {
     defaultValue: Sequelize.NOW
   }
 }, {
-  tableName: 'users', 
+  tableName: 'Users', 
   timestamps: true    
 });
 
