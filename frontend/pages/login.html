@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Nome da Loja</title>
+    <script src="../src/js/script.js" defer></script>
+    <script src="../src/js/login.js" defer></script>
+
+    
     <link rel="stylesheet" href="../src/css/login.css">
     <link rel="stylesheet" href="../src/css/loja.css">
 
@@ -19,8 +23,7 @@
 
     <link rel="shortcut icon" href="../src/assets/Foto site.png" type="image/x-icon">
 
-    <script src="../src/js/script.js" defer></script>
-    <script src="../src/js/login.js" defer></script>
+
 </head>
 <body>
     <header class="cabecario" id="cabecario">
@@ -35,20 +38,38 @@
     <section class="content" id="cliente">
         <h2>Cadastro de Cliente</h2>
         <form id="form-cadastro" action="http://localhost:3333/user/login" method="POST">
-        <label for="nome">Nome completo:</label>
+        <label for="nome">Nome: </label>
         <input type="text" id="nome" required />
+
+        <label for="nome">Sobrenome:</label>
+        <input type="text" id="sobrenome" required />
 
         <label for="email">Email:</label>
         <input type="email" id="email" required />
 
-        <label for="telefone">Telefone (com DDD):</label>
-        <input type="text" id="telefone" placeholder="(11) 91234-5678" maxlength="14" minlength="14" required />
+        <label for="celular">Celular (com DDD):</label>
+        <input type="text" id="celular" placeholder="(11) 91234-5678" maxlength="15" minlength="15" required />
 
         <label for="cpf">CPF:</label>
         <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" minlength="14" required />
 
-        <label for="endereco">Endereço completo:</label>
-        <input type="text" id="endereco" required />
+        <label for="cep">Cep:</label>
+        <input type="text" id="cep" required />
+
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" required maxlength="100" />
+
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" required maxlength="100" />
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" required maxlength="50" />
+        
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" required maxlength="50" />
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" required maxlength="2" />
 
         <input type="submit" value="CadastrarUsuario" />
         </form>
