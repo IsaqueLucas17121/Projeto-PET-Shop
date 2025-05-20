@@ -36,6 +36,15 @@ const User = database.define('User', {
     allowNull: false,
     unique: true,
   },
+  cep: {
+    type: DataTypes.STRING(9)
+  },
+  numero: {
+    type: DataTypes.STRING(9)
+  },
+  complemento: {
+    type: DataTypes.STRING(100)
+  },
   password: {
     type: DataTypes.STRING(100),
     allowNull: false
