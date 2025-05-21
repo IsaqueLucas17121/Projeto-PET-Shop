@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
-import database from '../../database.js';
+import database from '../server/database.js';
 
 const Employee = database.define('Employee', {
   id: {

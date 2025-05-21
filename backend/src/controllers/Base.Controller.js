@@ -261,6 +261,54 @@ class BaseController {
         }
     }
 
+
+    async forgotPassword(req, res) {
+        try {
+            const { email } = req.body;
+
+            const user = await this.model.findOne({ where: { email } });
+
+            if (!user) {
+                return res.status(404).json({ 
+                    error: "Usuário não encontrado" 
+                });
+            }
+
+            // Implementar lógica de recuperação de senha, se necessário
+            return res.status(200).json({ 
+                message: "Email de recuperação enviado" 
+            });
+        } catch (error) {
+            return res.status(500).json({ 
+                error: error.message 
+            });
+        }
+    }
+    async resetPassword(req, res) {
+        try {
+            const { email, newPassword } = req.body;
+
+            const user = await this.model.findOne({ where: { email } });
+
+            if (!user) {
+                return res.status(404).json({ 
+                    error: "Usuário não encontrado" 
+                });
+            }
+
+            user.password = newPassword;
+            await user.save();
+
+            return res.status(200).json({ 
+                message: "Senha alterada com sucesso" 
+            });
+        } catch (error) {
+            return res.status(500).json({ 
+                error: error.message 
+            });
+        }
+    }
+
     // Rota não encontrada
     async notFound(req, res) {
         res.status(404).json({

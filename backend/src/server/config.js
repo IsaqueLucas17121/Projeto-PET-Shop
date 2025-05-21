@@ -3,7 +3,7 @@ export default {
       host: 'localhost',
       user: 'root',
       password: '', // sua senha do MySQL
-      database: 'PetShop',
+      database: 'ps',
       dialect: 'mysql',
     },
     web: {

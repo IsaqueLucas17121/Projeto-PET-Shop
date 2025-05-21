@@ -1,31 +1,26 @@
 import express from 'express';
-import BaseController from '../controllers/Base.Controller.js';
+import UserControler from '../controllers/Base.Controller.js';
+import User from '../models/User.js'; 
 import { validateUserCreation, validateUserUpdate } from '../validators/userValidators.js';
-import { authenticateToken } from '../middlewares/authMiddleware.js';
+import { authenticateToken } from '../middleware/EssencialsMiddleware.js';
 
 const router = express.Router();
+const userController = new UserControler(User); 
 
 // Rotas públicas
-router.post('/login', BaseController.login);
-router.post('/register', validateUserCreation, BaseController.create);
+router.post('/register', validateUserCreation, (req, res) => userController.create(req, res));
+router.post('/login', (req, res) => userController.login(req, res));
 
-// Middleware de autenticação para rotas protegidas
 router.use(authenticateToken);
 
 // Rotas protegidas
-router.get('/', BaseController.read);
-router.get('/me', BaseController.getCurrentUser);
-router.get('/:id', BaseController.readById);
-router.put('/:id', validateUserUpdate, BaseController.update);
-router.delete('/:id', BaseController.delete);
+router.get('/', (req, res) => userController.read(req, res));
+router.get('/me', (req, res) => userController.getCurrentUser(req, res));
+router.get('/:id', (req, res) => userController.readById(req, res));
+router.put('/:id', validateUserUpdate, (req, res) => userController.update(req, res));
+router.delete('/:id', (req, res) => userController.delete(req, res));
 
 // Rota não encontrada
-router.use(BaseController.notFound);
+router.use((req, res) => userController.notFound(req, res));
 
 export default router;
-
-router.post('', (req, res) => Products.create(req, res));
-router.get('', (req, res) => Products.read(req, res));
-router.get('/:id', (req, res) => Products.readById(req, res));
-router.put('/:id', (req, res) => Products.update(req, res));
-router.delete('/:id', (req, res) => Products.delete(req, res));

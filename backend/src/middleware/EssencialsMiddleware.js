@@ -77,4 +77,4 @@ export const authenticateToken = (req, res, next) => {
     });
 };
 
-export { EssencialsMiddleware, ErrorGlobalMiddleware, authenticateToken }
+export { EssencialsMiddleware, ErrorGlobalMiddleware }
