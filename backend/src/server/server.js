@@ -16,7 +16,6 @@ app.use(ErrorGlobalMiddleware);
 // Rotas
 app.use('/user', userRoutes); // Versionamento da API
 app.use('/pet', petRoutes); // Versionamento da API
-app.use('/product', productRoutes); // Versionamento da API
 
 
 const startServer = async () => {
