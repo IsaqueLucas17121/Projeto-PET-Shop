@@ -147,11 +147,11 @@ body::-webkit-scrollbar-thumb:hover {
 .form_pet{
   padding: 50px 50px;
   box-shadow: 0 8px 24px #333;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-radius: 15px;
   font-size: 18px;
   display: grid;
   justify-content: center;
+  margin-bottom: 30px;
 }
 .form_pet input{
   margin-bottom: 20px;
@@ -173,10 +173,17 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 20px;
 }
 #tipoPet{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
   width: 100%;
+}
+.magin_radio{
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.margin_nomePet{
+  width: 100%;
+  display: grid;
 }
 .radio_btn{
   display: grid;
