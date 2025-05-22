@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendar Pet - Nome do site</title>
+    <title>Página inicial - Nome da loja</title>
     <link rel="stylesheet" href="/frontend/src/css/agendarPet.css">
 
     <!-- Google Fonts -->
@@ -21,7 +21,6 @@
 
 </head>
 <body>
-
     <header class="cabecario" id="cabecario">
         <a href="index.html"><img src="../src/assets/Foto site.png" alt="Imagem do site"></a>
         <span><a href="loja.html"><i class="bi bi-cart"></i>  Loja</a></span>
@@ -29,7 +28,12 @@
         <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
         <span><a href="cadastro.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
     </header>
-
+    <div class="background_creche">
+        <div class="texto_creche">
+            <h1></h1>
+            <span></span>
+        </div>
+    </div>
     <div class="background_calendario">
         
         <div class="cabecario_calendario">
@@ -90,94 +94,7 @@
         : "";
     });
   });
-</script>
-
-    <div class="background_pet">
-        <h1>Cadastre seu Pet</h1>
-
-        <section class="form_pet">
-
-            <form id="tipoPet">
-                
-                <div class="margin_nomePet">
-                <!-- Se a identidade estiver cadastrada o o nome do pet aparece -->
-                    <label for="identidade" class="titulo_form">Indentidade do Pet:</label>
-                    <input type="text" id="identidade" required>
-                </div>
-
-                <div class="margin_nomePet">
-                    <label for="nomePet" class="titulo_form">Nome do Pet</label>
-                    <input type="text" id="nomePet" readonly required>
-                </div>
-                
-                <label for="tipoPet" class="titulo_form">Tipo do Pet:</label>
-                <div class="magin_radio">         
-                    <div class="radio_btn">
-                        <label for="cachorro">Cachorro</label>
-                        <input type="radio" name="tipoPet" id="cachorro">
-                        <label for="cachorro" class="radio_manual" id="radio1"></label>  
-                        <select id="racaCachorro" name="racaCachorro">
-                            <option value="Beagle">Beagle</option>
-                            <option value="PastorAlemao">Pastor Alemão</option>   
-                            <option value="Poodle">Poodle</option>
-                            <option value="ShihTzu">Shih Tzu</option>
-                            <option value="YorkshireTerrier">Yorkshire Terrier</option>
-                            <option value="Outro">Não Sei</option>     
-                        </select>
-                        
-                    </div>
-                    <div class="radio_btn">
-                        <label for="gato">Gato</label>
-                        <input type="radio" name="tipoPet" id="gato">
-                        <label for="gato" class="radio_manual" id="radio2"></label>
-                        <select id="racaGato" name="racaGato">
-                            <option value="Siames">Siames</option>
-                            <option value="Persa">Persa</option>   
-                            <option value="ScottishFold">Scottish Fold</option>
-                            <option value="Sphynx">Sphynx</option>
-                            <option value="MaineCoon">Maine Coon</option>
-                            <option value="Outro">Não Sei</option>
-                        </select>  
-
-                    </div>
-                    <div class="radio_btn">
-                        <label for="ave">Passaro</label>
-                        <input type="radio" name="tipoPet" id="ave">
-                        <label for="ave" class="radio_manual" id="radio3"></label>
-                        <select id="racaAve" name="racaAve">
-                            <option value="canario">Canário</option>
-                            <option value="calopsita">Calopsita</option>   
-                            <option value="Cacatua">Cacatua</option>
-                            <option value="Arara">Arara</option>
-                            <option value="PapagaioCinzento">Papagaio Cinzento</option>
-                            <option value="Outro">Não Sei</option>
-                        </select>          
-
-                    </div>
-                    <div class="radio_btn">
-                        <label for="reptil">Reptil</label>
-                        <input type="radio" name="tipoPet" id="reptil">
-                        <label for="reptil" class="radio_manual" id="radio4"></label>
-                        <select id="racaReptil" name="racaReptil">
-                            <option value="Iguana">Iguana Verde</option>
-                            <option value="Jabuti">Jabuti</option>   
-                            <option value="Teiú">Teiú</option>
-                            <option value="Sphynx">Sphynx</option>
-                            <option value="Jiboia">Jiboia Arco-íris</option>
-                            <option value="Outro">Não Sei</option>
-                        </select> 
-
-                    </div>
-                </div>
-                
-
-                <input type="submit" value="salvar">
-            </form>
-
-            
-        </section>
-        
-    </div>
+</script>  
 
     <footer>
         <div class="box_rodape">
@@ -244,6 +161,5 @@
       <i class="bi bi-dash-lg"></i>
       <span>Diminuir Fonte</span>
   </div>
-    
 </body>
 </html>

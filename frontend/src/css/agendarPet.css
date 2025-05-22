@@ -101,7 +101,7 @@ body::-webkit-scrollbar-thumb:hover {
     flex-wrap: wrap;
     cursor: pointer;
 }
-.numero_calendario span{
+.numero_calendario label{
     display: inline-block;
     color: #333;
     width: 14.2%;
@@ -109,7 +109,10 @@ body::-webkit-scrollbar-thumb:hover {
     border: 1px solid #ccc;
     font-size: 20px;
 }
-.numero_calendario span:hover{
+.numero_calendario input[type="checkbox"]{
+  display: none;
+}
+.numero_calendario label:hover{
     padding: 18px 5px;
     background-color: #ccc;
     transition: 0.3s ease-in-out;
@@ -124,6 +127,8 @@ body::-webkit-scrollbar-thumb:hover {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   cursor: pointer;
+  width: 100%;
+  font-size: 23px;
 }
 .selecionado{
     padding: 18px 5px;

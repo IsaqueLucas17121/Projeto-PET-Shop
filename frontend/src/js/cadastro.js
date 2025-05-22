@@ -5,7 +5,7 @@ function cadastrarCliente(event) {
     event.preventDefault();
 
     const cliente = {
-        nome: document.getElementById('nome').value,
+        nome: document.getElementById('cliente-nome').value,
         sobrenome: document.getElementById('cliente-sobrenome').value,
         email: document.getElementById('cliente-email').value,
         celular: document.getElementById('cliente-celular').value,

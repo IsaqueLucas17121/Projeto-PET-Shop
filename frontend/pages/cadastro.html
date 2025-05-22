@@ -29,13 +29,21 @@
         <a href="index.html"><img src="../src/assets/Foto site.png" alt="Logo PetShop"></a>
         <span><a href="loja.html"><i class="bi bi-cart"></i> Loja</a></span>
         <span><a href="AgendarPet.html"><i class="bi bi-droplet"></i> Banho/Tosa</a></span>
-        <span><i class="bi bi-house-heart"></i> Creche</span>
+        <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
         <span><a href="./cadastro.html"><i class="bi bi-person-circle"></i> Entrar</a></span>
     </header>
 
     <!-- Seção de Cadastro de Cliente -->
     <section class="content" id="cliente">
         <h2>Cadastro de Cliente</h2>
+        <div class="alternar-cadastro">
+            <button onclick="alternarCadastro('vendedor')" class="btn-alternar">
+                <i class="bi bi-person-gear"></i> Cadastrar Vendedor
+            </button>
+            <button onclick="alternarCadastro('pet')" class="btn-alternar">
+                <i class="bi bi-heart-pulse"></i> Cadastrar Pet
+            </button>
+        </div>
         <form id="form-cliente" onsubmit="cadastrarCliente(event)" method="POST">
             <label for="cliente-nome">Nome:</label>
             <input type="text" id="cliente-nome" required />
@@ -49,13 +57,36 @@
             <input type="hidden" id="cliente-tipo_user" value="comum" required />
 
             <label for="cliente-celular">Celular (com DDD):</label>
-            <input type="text" id="cliente-celular" placeholder="(11) 91234-5678" maxlength="15" minlength="15" required />
+            <input oninput="formatarCelular(this)" type="text" id="cliente-celular" placeholder="(11) 91234-5678" maxlength="15" minlength="15" required />
 
             <label for="cliente-cpf">CPF:</label>
-            <input type="text" id="cliente-cpf" placeholder="000.000.000-00" maxlength="14" minlength="14" required />
+            <input oninput="formatarCPF(this)" type="text" id="cliente-cpf" placeholder="000.000.000-00" maxlength="14" minlength="14" required />
+            <script>
+                function mascaraCPF(valor) {
+                    valor = valor.replace(/\D/g, ''); // Remove não dígitos
+                    valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                    valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                    valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                    return valor;
+                }
+                function formatarCPF(input) {
+                    input.value = mascaraCPF(input.value);
+                }
+            </script>
 
             <label for="cliente-cep">CEP:</label>
-            <input type="text" id="cliente-cep" required maxlength="9" />
+            <input oninput="formatarCEP(this)" type="text" id="cliente-cep" required maxlength="9" />
+             <script>
+                function mascaraCEP(valor) {
+                    valor = valor.replace(/\D/g, '');
+                    valor = valor.replace(/^(\d{5})(\d)/, '$1-$2');
+                    return valor;
+                }
+
+                function formatarCEP(input) {
+                    input.value = mascaraCEP(input.value);
+                }
+            </script>
 
             <label for="cliente-rua">Rua:</label>
             <input type="text" id="cliente-rua" required readonly maxlength="100" />
@@ -91,6 +122,14 @@
     <!-- Seção de Cadastro de Vendedor -->
     <section class="content" id="vendedor" style="display:none;">
         <h2>Cadastro de Vendedor</h2>
+        <div class="alternar-cadastro">
+            <button onclick="alternarCadastro('cliente')" class="btn-alternar">
+                <i class="bi bi-person"></i> Cadastrar Cliente
+            </button>
+            <button onclick="alternarCadastro('pet')" class="btn-alternar">
+                <i class="bi bi-heart-pulse"></i> Cadastrar Pet
+            </button>
+        </div>    
         <form id="form-vendedor" onsubmit="cadastrarVendedor(event)" method="POST">
             <label for="vendedor-nome">Nome completo:</label>
             <input type="text" id="vendedor-nome" required />
@@ -101,14 +140,28 @@
             <input type="hidden" id="vendedor-tipo_user" value="vendedor" required />
 
             <label for="vendedor-telefone">Telefone (com DDD):</label>
-            <input type="text" id="vendedor-telefone" placeholder="(11) 91234-5678" maxlength="14" minlength="14" required />
+            <input oninput="formatarCelular(this)" type="text" id="vendedor-telefone" placeholder="(11) 91234-5678" maxlength="14" minlength="14" required />
 
             <label for="vendedor-endereco">Endereço completo:</label>
             <input type="text" id="vendedor-endereco" required />
 
             <label for="vendedor-cnpj">CNPJ:</label>
-            <input type="text" id="vendedor-cnpj" placeholder="00.000.000/0000-00" maxlength="18" minlength="18" required />
+            <input oninput="formatarCNPJ(this)" type="text" id="vendedor-cnpj" placeholder="00.000.000/0000-00" maxlength="18" minlength="18" required />
 
+            <script>
+                function mascaraCNPJ(valor) {
+                    valor = valor.replace(/\D/g, '');
+                    valor = valor.replace(/^(\d{2})(\d)/, '$1.$2');
+                    valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                    valor = valor.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                    valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
+                    return valor;
+                }
+                function formatarCNPJ(input) {
+                    input.value = mascaraCNPJ(input.value);
+                }
+            </script>
+            
             <input type="submit" value="Cadastrar Vendedor" class="btn-submit" />
         </form>
         
@@ -125,6 +178,14 @@
     <!-- Seção de Cadastro de Pet -->
     <section class="content" id="pet" style="display:none;">
         <h2>Cadastrar Pet</h2>
+        <div class="alternar-cadastro">
+            <button onclick="alternarCadastro('cliente')" class="btn-alternar">
+                <i class="bi bi-person"></i> Cadastrar Cliente
+            </button>
+            <button onclick="alternarCadastro('vendedor')" class="btn-alternar">
+                <i class="bi bi-person-gear"></i> Cadastrar Vendedor
+            </button>
+        </div>
         <form id="form-pet" onsubmit="cadastrarPet(event)" method="POST">
             <div class="form-group">
                 <label for="pet-identidade">Identidade do Pet:</label>
@@ -157,14 +218,6 @@
             <input type="submit" value="Cadastrar Pet" class="btn-submit" />
         </form>
         
-        <div class="alternar-cadastro">
-            <button onclick="alternarCadastro('cliente')" class="btn-alternar">
-                <i class="bi bi-person"></i> Cadastrar Cliente
-            </button>
-            <button onclick="alternarCadastro('vendedor')" class="btn-alternar">
-                <i class="bi bi-person-gear"></i> Cadastrar Vendedor
-            </button>
-        </div>
     </section>
 
     <!-- Seção de Confirmação -->
@@ -175,6 +228,19 @@
             <i class="bi bi-house"></i> Voltar ao Início
         </button>
     </section>
+
+    <script>
+        function mascaraCelular(valor) {
+            valor = valor.replace(/\D/g, '');
+            valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2');
+            valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
+            return valor;
+        }
+
+        function formatarCelular(input) {
+            input.value = mascaraCelular(input.value);
+        }
+    </script>
 
     <footer>
         <div class="box_rodape">
