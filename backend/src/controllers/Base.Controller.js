@@ -2,64 +2,79 @@ import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'seuSegredoSuperSeguroAqui';
 
 class BaseController {
     constructor(model) {
         this.model = model;
     }
 
-    // Criar usuário
+    // Helper method for error responses
+    errorResponse(res, status, message, error = null) {
+        return res.status(status).json({
+            success: false,
+            message: `❌ ${message}`,
+            error: error?.message || null
+        });
+    }
+
+    // Helper method for success responses
+    successResponse(res, status, message, data = null) {
+        return res.status(status).json({
+            success: true,
+            message: `✅ ${message}`,
+            ...(data && { data })
+        });
+    }
+
+    // Create user
     async create(req, res) {
         try {
-            let { password, ...otherData } = req.body;
-            let data = { ...otherData, id: uuidv4() };
+            const { password, confirmPassword, ...otherData } = req.body;
 
-            if (password) {
-                const hashPassword = await bcrypt.hash(password, 10);
-                data.password = hashPassword;
+            if (password !== confirmPassword) {
+                return this.errorResponse(res, 400, 'Password and confirmation do not match');
             }
 
-            const newItem = await this.model.create(data);
+            const existingUser = await this.model.findOne({ 
+                where: { email: otherData.email } 
+            });
 
-            res.status(201).json({
-                success: true,
-                message: '✅ Registro criado com sucesso!',
-                item: newItem
+            if (existingUser) {
+                return this.errorResponse(res, 409, 'User already exists');
+            }
+
+            const hashPassword = await bcrypt.hash(password, 10);
+            const newItem = await this.model.create({
+                ...otherData,
+                id: uuidv4(),
+                password: hashPassword
             });
+
+            // Remove password from response
+            const { password: _, ...userWithoutPassword } = newItem.dataValues;
+
+            this.successResponse(res, 201, 'User created successfully', userWithoutPassword);
         } catch (error) {
-            console.error('❌ Erro ao criar registro:', error);
-            res.status(500).json({
-                success: false,
-                message: '❌ Erro ao criar registro.',
-                error: error.message
-            });
+            console.error('Error creating user:', error);
+            this.errorResponse(res, 500, 'Error creating user', error);
         }
     }
 
-    // Listar todos (protegido)
+    // List all users (protected)
     async read(req, res) {
         try {
             const items = await this.model.findAll({
-                attributes: { exclude: ['password'] } // Não retorna senhas
+                attributes: { exclude: ['password'] }
             });
             
-            res.status(200).json({
-                success: true,
-                message: '✅ Registros encontrados com sucesso!',
-                items
-            });
+            this.successResponse(res, 200, 'Records found successfully', items);
         } catch (error) {
-            console.error('❌ Erro ao listar registros:', error);
-            res.status(500).json({
-                success: false,
-                message: '❌ Erro ao listar registros.',
-                error: error.message
-            });
+            console.error('Error listing records:', error);
+            this.errorResponse(res, 500, 'Error listing records', error);
         }
     }
 
-    // Buscar por ID (protegido)
+    // Get user by ID (protected)
     async readById(req, res) {
         try {
             const { id } = req.params;
@@ -69,144 +84,96 @@ class BaseController {
             });
 
             if (!item) {
-                return res.status(404).json({
-                    success: false,
-                    message: '❌ Registro não encontrado.'
-                });
+                return this.errorResponse(res, 404, 'Record not found');
             }
 
-            res.status(200).json({
-                success: true,
-                message: '✅ Registro encontrado com sucesso!',
-                item
-            });
+            this.successResponse(res, 200, 'Record found successfully', item);
         } catch (error) {
-            console.error('❌ Erro ao buscar registro:', error);
-            res.status(500).json({
-                success: false,
-                message: '❌ Erro ao buscar registro.',
-                error: error.message
-            });
+            console.error('Error fetching record:', error);
+            this.errorResponse(res, 500, 'Error fetching record', error);
         }
     }
 
-    // Usuário atual (protegido)
+    // Get current user (protected)
     async getCurrentUser(req, res) {
         try {
-            // Usuário é anexado pelo middleware de autenticação
             const user = req.user;
             
             if (!user) {
-                return res.status(404).json({
-                    success: false,
-                    message: '❌ Usuário não encontrado.'
-                });
+                return this.errorResponse(res, 404, 'User not found');
             }
 
-            // Busca dados atualizados do usuário
             const currentUser = await this.model.findOne({
                 where: { id: user.id },
                 attributes: { exclude: ['password'] }
             });
 
-            res.status(200).json({
-                success: true,
-                message: '✅ Usuário atual encontrado!',
-                user: currentUser
-            });
+            this.successResponse(res, 200, 'Current user found', currentUser);
         } catch (error) {
-            console.error('❌ Erro ao buscar usuário atual:', error);
-            res.status(500).json({
-                success: false,
-                message: '❌ Erro ao buscar usuário atual.',
-                error: error.message
-            });
+            console.error('Error fetching current user:', error);
+            this.errorResponse(res, 500, 'Error fetching current user', error);
         }
     }
 
-    // Atualizar (protegido)
+    // Update user (protected)
     async update(req, res) {
         try {
             const { id } = req.params;
-            let { password, ...otherData } = req.body;
-            let data = { ...otherData };
+            let { password, confirmPassword, ...otherData } = req.body;
 
             const item = await this.model.findOne({ where: { id } });
 
             if (!item) {
-                return res.status(404).json({
-                    success: false,
-                    message: '❌ Registro não encontrado.'
-                });
+                return this.errorResponse(res, 404, 'Record not found');
             }
 
-            // Verifica se o usuário tem permissão
+            // Check permission
             if (req.user.id !== item.id && !req.user.isAdmin) {
-                return res.status(403).json({
-                    success: false,
-                    message: '❌ Você não tem permissão para atualizar este usuário.'
-                });
+                return this.errorResponse(res, 403, 'Unauthorized to update this user');
             }
 
+            // Handle password update
             if (password) {
+                if (password !== confirmPassword) {
+                    return this.errorResponse(res, 400, 'Password and confirmation do not match');
+                }
                 const hashPassword = await bcrypt.hash(password, 10);
-                data.password = hashPassword;
+                otherData.password = hashPassword;
             }
 
-            await item.update(data);
+            await item.update(otherData);
 
-            // Remove a senha da resposta
+            // Remove password from response
             const { password: _, ...updatedItem } = item.dataValues;
 
-            res.status(200).json({
-                success: true,
-                message: '✅ Registro atualizado com sucesso!',
-                item: updatedItem
-            });
+            this.successResponse(res, 200, 'Record updated successfully', updatedItem);
         } catch (error) {
-            console.error('❌ Erro ao atualizar registro:', error);
-            res.status(500).json({
-                success: false,
-                message: '❌ Erro ao atualizar registro.',
-                error: error.message
-            });
+            console.error('Error updating record:', error);
+            this.errorResponse(res, 500, 'Error updating record', error);
         }
     }
 
-    // Deletar (protegido)
+    // Delete user (protected)
     async delete(req, res) {
         try {
             const { id } = req.params;
             const item = await this.model.findOne({ where: { id } });
 
             if (!item) {
-                return res.status(404).json({
-                    success: false,
-                    message: '❌ Registro não encontrado.'
-                });
+                return this.errorResponse(res, 404, 'Record not found');
             }
 
-            // Verifica se o usuário tem permissão
+            // Check permission
             if (req.user.id !== item.id && !req.user.isAdmin) {
-                return res.status(403).json({
-                    success: false,
-                    message: '❌ Você não tem permissão para deletar este usuário.'
-                });
+                return this.errorResponse(res, 403, 'Unauthorized to delete this user');
             }
 
             await item.destroy();
 
-            res.status(200).json({
-                success: true,
-                message: '✅ Registro deletado com sucesso!'
-            });
+            this.successResponse(res, 200, 'Record deleted successfully');
         } catch (error) {
-            console.error('❌ Erro ao deletar registro:', error);
-            res.status(500).json({
-                success: false,
-                message: '❌ Erro ao deletar registro.',
-                error: error.message
-            });
+            console.error('Error deleting record:', error);
+            this.errorResponse(res, 500, 'Error deleting record', error);
         }
     }
 
@@ -216,21 +183,13 @@ class BaseController {
             const { email, password } = req.body;
 
             const user = await this.model.findOne({ where: { email } });
-
             if (!user) {
-                return res.status(404).json({
-                    success: false,
-                    message: '❌ Usuário não encontrado.'
-                });
+                return this.errorResponse(res, 404, 'User not found');
             }
 
             const isMatch = await bcrypt.compare(password, user.password);
-
             if (!isMatch) {
-                return res.status(401).json({
-                    success: false,
-                    message: '❌ Credenciais inválidas.'
-                });
+                return this.errorResponse(res, 401, 'Invalid credentials');
             }
 
             const { password: _, ...userWithoutPassword } = user.dataValues;
@@ -245,76 +204,73 @@ class BaseController {
                 { expiresIn: '1d' }
             );
 
-            res.status(200).json({
-                success: true,
-                message: '✅ Login realizado com sucesso!',
+            this.successResponse(res, 200, 'Login successful', {
                 user: userWithoutPassword,
                 token
             });
         } catch (error) {
-            console.error('❌ Erro ao realizar login:', error);
-            res.status(500).json({
-                success: false,
-                message: '❌ Erro ao realizar login.',
-                error: error.message
-            });
+            console.error('Login error:', error);
+            this.errorResponse(res, 500, 'Login failed', error);
         }
     }
 
-
+    // Forgot password
     async forgotPassword(req, res) {
         try {
             const { email } = req.body;
-
             const user = await this.model.findOne({ where: { email } });
 
             if (!user) {
-                return res.status(404).json({ 
-                    error: "Usuário não encontrado" 
-                });
+                return this.errorResponse(res, 404, 'User not found');
             }
 
-            // Implementar lógica de recuperação de senha, se necessário
-            return res.status(200).json({ 
-                message: "Email de recuperação enviado" 
-            });
+            // Create reset token (expires in 1 hour)
+            const resetToken = jwt.sign(
+                { email: user.email, id: user.id },
+                JWT_SECRET,
+                { expiresIn: '1h' }
+            );
+
+            // In a real app, you would send an email with this token
+            this.successResponse(res, 200, 'Password reset email sent', { resetToken });
         } catch (error) {
-            return res.status(500).json({ 
-                error: error.message 
-            });
+            console.error('Forgot password error:', error);
+            this.errorResponse(res, 500, 'Error processing password reset', error);
         }
     }
+
+    // Reset password
     async resetPassword(req, res) {
         try {
-            const { email, newPassword } = req.body;
+            const { token, newPassword, confirmPassword } = req.body;
 
-            const user = await this.model.findOne({ where: { email } });
-
-            if (!user) {
-                return res.status(404).json({ 
-                    error: "Usuário não encontrado" 
-                });
+            if (newPassword !== confirmPassword) {
+                return this.errorResponse(res, 400, 'Passwords do not match');
             }
 
-            user.password = newPassword;
-            await user.save();
+            const decoded = jwt.verify(token, JWT_SECRET);
+            const user = await this.model.findOne({ where: { email: decoded.email } });
 
-            return res.status(200).json({ 
-                message: "Senha alterada com sucesso" 
-            });
+            if (!user) {
+                return this.errorResponse(res, 404, 'User not found');
+            }
+
+            const hashPassword = await bcrypt.hash(newPassword, 10);
+            await user.update({ password: hashPassword });
+
+            this.successResponse(res, 200, 'Password updated successfully');
         } catch (error) {
-            return res.status(500).json({ 
-                error: error.message 
-            });
+            console.error('Password reset error:', error);
+            if (error.name === 'TokenExpiredError') {
+                return this.errorResponse(res, 401, 'Token expired');
+            }
+            this.errorResponse(res, 500, 'Password reset failed', error);
         }
     }
 
-    // Rota não encontrada
+    // Not found handler
     async notFound(req, res) {
-        res.status(404).json({
-            success: false,
-            message: '❌ Rota não encontrada.'
-        });
+        this.errorResponse(res, 404, 'Route not found');
     }
 }
 
