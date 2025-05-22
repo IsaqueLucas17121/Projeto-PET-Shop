@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
-import database from '../server/database.js';
+import database from '../../database.js';
 
 const Address = database.define('Address', {
     zip_code: {

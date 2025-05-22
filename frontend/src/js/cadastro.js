@@ -1,271 +1,119 @@
-// Funções de validação
-function validarEmail(email) {
-  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regexEmail.test(email);
-}
+// cadastro.js
 
-function validarTelefone(telefone) {
-  const regexTelefone = /^\(\d{2}\)\s9\d{4}-\d{4}$/;
-  return regexTelefone.test(telefone);
-}
+// ========== CADASTRO DE CLIENTE ==========
+function cadastrarCliente(event) {
+    event.preventDefault();
 
-function validarCPF(cpf) {
-  const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-  return regexCPF.test(cpf);
-}
+    const cliente = {
+        nome: document.getElementById('nome').value,
+        sobrenome: document.getElementById('cliente-sobrenome').value,
+        email: document.getElementById('cliente-email').value,
+        celular: document.getElementById('cliente-celular').value,
+        cpf: document.getElementById('cliente-cpf').value,
+        tipo_user: document.getElementById('cliente-tipo_user').value,
+        endereco: {
+            cep: document.getElementById('cliente-cep').value,
+            rua: document.getElementById('cliente-rua').value,
+            bairro: document.getElementById('cliente-bairro').value,
+            cidade: document.getElementById('cliente-cidade').value,
+            estado: document.getElementById('cliente-estado').value,
+            numero: document.getElementById('cliente-numero').value,
+            complemento: document.getElementById('cliente-complemento').value
+        }
+    };
 
-// Máscaras para campos
-function aplicarMascaraTelefone(input) {
-  let v = input.value.replace(/\D/g, "");
-  v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
-  v = v.replace(/(\d{5})(\d{4})$/, "$1-$2");
-  input.value = v;
-}
-
-function aplicarMascaraCPF(input) {
-  let v = input.value.replace(/\D/g, "");
-  v = v.replace(/(\d{3})(\d)/, "$1.$2");
-  v = v.replace(/(\d{3})(\d)/, "$1.$2");
-  v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-  input.value = v;
-}
-
-function mascararCNPJ(campo) {
-  let cnpj = campo.value.replace(/\D/g, "");
-  if (cnpj.length > 14) cnpj = cnpj.slice(0, 14);
-  
-  cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
-  cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
-  cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
-  cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
-  
-  campo.value = cnpj;
-}
-
-// Consulta CEP
-async function consultarCEP(cep) {
-  try {
-    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-    return await response.json();
-  } catch (error) {
-    console.error("Erro ao consultar CEP:", error);
-    return null;
-  }
-}
-
-// Objeto com as raças organizadas por tipo
-const racasPorTipo = {
-  cachorro: ["Beagle", "Pastor Alemão", "Poodle", "Shih Tzu", "Yorkshire Terrier", "Outro"],
-  gato: ["Siames", "Persa", "Scottish Fold", "Sphynx", "Maine Coon", "Outro"],
-  ave: ["Canário", "Calopsita", "Cacatua", "Arara", "Papagaio Cinzento", "Outro"],
-  reptil: ["Iguana Verde", "Jabuti", "Teiú", "Jiboia Arco-íris", "Outro"]
-};
-
-// Funções para manipulação de formulários
-function alternarCadastro(tipo) {
-  const secoes = ['cliente', 'vendedor', 'pet', 'confirmacao'];
-  secoes.forEach(sec => {
-    document.getElementById(sec).style.display = sec === tipo ? 'block' : 'none';
-  });
-}
-
-function verificarIdentidade() {
-  const identidade = document.getElementById('pet-identidade').value;
-  const nomePet = document.getElementById('pet-nome');
-  
-  nomePet.disabled = identidade.length === 0;
-  
-  // Simulação: buscar nome do pet se identidade já existir
-  if (identidade === "123") { // Exemplo apenas
-    nomePet.value = "Rex";
-  } else {
-    nomePet.value = "";
-  }
-}
-
-function atualizarRacas() {
-  const tipoSelect = document.getElementById('pet-tipo');
-  const racaSelect = document.getElementById('pet-raca');
-  const tipoSelecionado = tipoSelect.value;
-
-  racaSelect.innerHTML = '';
-  
-  if (tipoSelecionado) {
-    racaSelect.disabled = false;
-    racaSelect.appendChild(new Option("Selecione uma raça", ""));
-    
-    racasPorTipo[tipoSelecionado].forEach(raca => {
-      racaSelect.appendChild(new Option(raca, raca.replace(/\s+/g, '')));
+    fetch('http://localhost:3001/clientes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cliente)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao cadastrar cliente');
+        return response.json();
+    })
+    .then(() => {
+        alternarCadastro('confirmacao');
+    })
+    .catch(error => {
+        alert("Erro no cadastro de cliente: " + error.message);
     });
-  } else {
-    racaSelect.disabled = true;
-    racaSelect.appendChild(new Option("Selecione primeiro o tipo", ""));
-  }
 }
 
-// Funções de cadastro
-async function cadastrarCliente(event) {
-  event.preventDefault();
-  
-  const form = event.target;
-  const formData = new FormData(form);
-  const userData = Object.fromEntries(formData.entries());
+// ========== CADASTRO DE VENDEDOR ==========
+function cadastrarVendedor(event) {
+    event.preventDefault();
 
-  // Validações
-  if (!validarEmail(userData.email)) {
-    alert("Email inválido!");
-    return;
-  }
+    const vendedor = {
+        nome: document.getElementById('vendedor-nome').value,
+        email: document.getElementById('vendedor-email').value,
+        telefone: document.getElementById('vendedor-telefone').value,
+        endereco: document.getElementById('vendedor-endereco').value,
+        cnpj: document.getElementById('vendedor-cnpj').value,
+        tipo_user: document.getElementById('vendedor-tipo_user').value
+    };
 
-  if (!validarTelefone(userData.celular)) {
-    alert("Celular deve estar no formato (11) 91234-5678");
-    return;
-  }
-
-  if (!validarCPF(userData.cpf)) {
-    alert("CPF deve estar no formato 000.000.000-00");
-    return;
-  }
-
-  try {
-    const response = await fetch('http://localhost:3333/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ...userData,
-        password: "senhaPadrao123",
-        confirmPassword: "senhaPadrao123"
-      })
+    fetch('http://localhost:3001/vendedores', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(vendedor)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao cadastrar vendedor');
+        return response.json();
+    })
+    .then(() => {
+        alternarCadastro('confirmacao');
+    })
+    .catch(error => {
+        alert("Erro no cadastro de vendedor: " + error.message);
     });
-
-    const data = await response.json();
-    
-    if (response.ok) {
-      alternarCadastro('confirmacao');
-    } else {
-      alert(`Erro no cadastro: ${data.message}`);
-    }
-  } catch (error) {
-    console.error('Erro:', error);
-    alert('Erro ao conectar com o servidor');
-  }
 }
 
-async function cadastrarVendedor(event) {
-  event.preventDefault();
-  
-  const form = event.target;
-  const formData = new FormData(form);
-  const vendedorData = Object.fromEntries(formData.entries());
+// ========== CADASTRO DE PET ==========
+function cadastrarPet(event) {
+    event.preventDefault();
 
-  try {
-    const response = await fetch('http://localhost:3333/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ...vendedorData,
-        password: "senhaPadrao123",
-        confirmPassword: "senhaPadrao123"
-      })
+    const pet = {
+        identidade: document.getElementById('pet-identidade').value,
+        nome: document.getElementById('pet-nome').value,
+        tipo: document.getElementById('pet-tipo').value,
+        raca: document.getElementById('pet-raca').value
+    };
+
+    fetch('http://localhost:3001/pets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pet)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao cadastrar pet');
+        return response.json();
+    })
+    .then(() => {
+        alternarCadastro('confirmacao');
+    })
+    .catch(error => {
+        alert("Erro no cadastro de pet: " + error.message);
     });
-
-    const data = await response.json();
-    
-    if (response.ok) {
-      alternarCadastro('confirmacao');
-    } else {
-      alert(`Erro no cadastro: ${data.message}`);
-    }
-  } catch (error) {
-    console.error('Erro:', error);
-    alert('Erro ao conectar com o servidor');
-  }
 }
 
-async function cadastrarPet(event) {
-  event.preventDefault();
-  
-  const form = event.target;
-  const formData = new FormData(form);
-  const petData = Object.fromEntries(formData.entries());
-
-  try {
-    const response = await fetch('http://localhost:3333/pet/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(petData)
-    });
-
-    const data = await response.json();
-    
-    if (response.ok) {
-      alert("Pet cadastrado com sucesso!");
-      alternarCadastro('confirmacao');
-    } else {
-      alert(`Erro no cadastro do pet: ${data.message}`);
-    }
-  } catch (error) {
-    console.error('Erro:', error);
-    alert('Erro ao conectar com o servidor');
-  }
-}
-
-function voltarParaInicio() {
-  window.location.href = "index.html";
-}
-
-// Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-  // Máscaras de entrada
-  document.getElementById("cliente-celular")?.addEventListener("input", function(e) {
-    aplicarMascaraTelefone(e.target);
-  });
-  
-  document.getElementById("cliente-cpf")?.addEventListener("input", function(e) {
-    aplicarMascaraCPF(e.target);
-  });
-  
-  document.getElementById("vendedor-telefone")?.addEventListener("input", function(e) {
-    aplicarMascaraTelefone(e.target);
-  });
-  
-  document.getElementById("vendedor-cnpj")?.addEventListener("input", function(e) {
-    mascararCNPJ(e.target);
-  });
-
-  // Consulta CEP
-  document.getElementById("cliente-cep")?.addEventListener("input", async function() {
-    const cep = this.value.trim();
+// ========== CEP AUTOMÁTICO ==========
+document.getElementById('cliente-cep').addEventListener('blur', () => {
+    const cep = document.getElementById('cliente-cep').value.replace(/\D/g, '');
     if (cep.length === 8) {
-      const endereco = await consultarCEP(cep);
-      if (endereco) {
-        document.getElementById("cliente-rua").value = endereco.logradouro || "";
-        document.getElementById("cliente-bairro").value = endereco.bairro || "";
-        document.getElementById("cliente-cidade").value = endereco.localidade || "";
-        document.getElementById("cliente-estado").value = endereco.uf || "";
-      }
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => {
+                if (!response.ok) throw new Error("CEP inválido");
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('cliente-rua').value = data.logradouro || '';
+                document.getElementById('cliente-bairro').value = data.bairro || '';
+                document.getElementById('cliente-cidade').value = data.localidade || '';
+                document.getElementById('cliente-estado').value = data.uf || '';
+            })
+            .catch(() => {
+                alert('Não foi possível buscar o endereço para o CEP informado.');
+            });
     }
-  });
-
-  // Formulários
-  document.getElementById("form-cliente")?.addEventListener("submit", cadastrarCliente);
-  document.getElementById("form-vendedor")?.addEventListener("submit", cadastrarVendedor);
-  document.getElementById("form-pet")?.addEventListener("submit", cadastrarPet);
-  
-  // Botões de alternância
-  document.querySelectorAll(".btn-alternar").forEach(btn => {
-    btn.addEventListener("click", function() {
-      const tipo = this.getAttribute("onclick").match(/'([^']+)'/)[1];
-      alternarCadastro(tipo);
-    });
-  });
-  
-  // Botão voltar
-  document.querySelector("button[onclick='voltarParaInicio()']")?.addEventListener("click", voltarParaInicio);
 });

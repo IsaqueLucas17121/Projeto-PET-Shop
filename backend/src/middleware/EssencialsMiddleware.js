@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors'; // Adicionando CORS
 import helmet from 'helmet'; // Segurança básica
-import config from '../server/config.js'; // Configurações do projeto
+import config from '../../config.js'; // Configurações do projeto
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'seuSegredoSuperSeguroAqui';

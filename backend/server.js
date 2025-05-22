@@ -1,9 +1,9 @@
 import sequelize from './database.js';
 import express from 'express';
-import userRoutes from '../routes/user.routes.js';
-import petRoutes from '../routes/pet.routes.js';
+import userRoutes from './src/routes/user.routes.js';
+import petRoutes from './src/routes/pet.routes.js';
 import config from './config.js';
-import { ErrorGlobalMiddleware, EssencialsMiddleware } from '../middleware/EssencialsMiddleware.js';
+import { ErrorGlobalMiddleware, EssencialsMiddleware } from './src/middleware/EssencialsMiddleware.js';
 
 const port = config.web.port;
 
@@ -18,27 +18,26 @@ app.use('/user', userRoutes); // Versionamento da API
 app.use('/pet', petRoutes); // Versionamento da API
 
 
-const startServer = async () => {
+const startServer = async (retries = 5) => {
     try {
-        // Testar conexão com o banco
         await sequelize.authenticate();
         console.log('✅ Banco de dados conectado com sucesso.');
-
-        // Sincronizar modelos
         await sequelize.sync({ alter: true });
         console.log('✅ Modelos sincronizados com o banco.');
-
-        // Iniciar servidor
         app.listen(port, () => {
             console.log(`🚀 Servidor rodando em http://localhost:${port}`);
-            console.log(`📚 Documentação da API disponível em http://localhost:${port}/api-docs`);
         });
-
     } catch (error) {
         console.error('❌ Falha ao iniciar o servidor:', error);
-        process.exit(1); // Encerra o processo com erro
+        if (retries > 0) {
+            console.log(`🔄 Tentando novamente em 5 segundos... (${retries} tentativas restantes)`);
+            setTimeout(() => startServer(retries - 1), 5000);
+        } else {
+            console.log('❌ Não foi possível conectar após várias tentativas. Encerrando.');
+            process.exit(1);
+        }
     }
-}
+};
 
 // Inicialização controlada
 startServer();
