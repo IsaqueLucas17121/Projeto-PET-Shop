@@ -86,7 +86,7 @@ body::before {
 
   body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Popins', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgba(255, 255, 255, 0.8); /* fallback para contraste */
     color: #333;
   }
@@ -138,7 +138,7 @@ body::before {
     flex-direction: column;
   }
 
-  form input {
+  form input, select {
     margin-bottom: 20px;
     padding: 12px 14px;
     font-size: 1em;

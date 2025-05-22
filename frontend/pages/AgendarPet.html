@@ -88,8 +88,14 @@
             <form id="tipoPet">
                 
                 <div class="margin_nomePet">
-                    <label for="nomePet" class="titulo_form">Nome do Pet:</label>
-                    <input type="text" id="nomePet" required>
+                <!-- Se a identidade estiver cadastrada o o nome do pet aparece -->
+                    <label for="identidade" class="titulo_form">Indentidade do Pet:</label>
+                    <input type="text" id="identidade" required>
+                </div>
+
+                <div class="margin_nomePet">
+                    <label for="nomePet" class="titulo_form">Nome do Pet</label>
+                    <input type="text" id="nomePet" readonly required>
                 </div>
                 
                 <label for="tipoPet" class="titulo_form">Tipo do Pet:</label>

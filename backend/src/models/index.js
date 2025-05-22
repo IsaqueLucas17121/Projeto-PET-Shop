@@ -6,7 +6,7 @@ import Product from './Products.js';
 import Supplier from './Supplier.js';
 import Employee from './Employee.js';
 
-export {
+export default {
   Address,
   Pet,
   TypePet,

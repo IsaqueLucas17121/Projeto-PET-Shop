@@ -15,13 +15,13 @@ const Pet = database.define('Pet', {
     type: DataTypes.STRING(50),
     allowNull: false
   },
-  type_pet_id: {  // Referência ao TypePet
-    type: DataTypes.UUID,
-    allowNull: false,
-    references: {
-      model: 'TypePets', 
-      key: 'id' 
-    }
+  tipo: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  raca: {
+    type: DataTypes.STRING(50),
+    allowNull: false
   },
 }, {
   tableName: 'Pets', 
