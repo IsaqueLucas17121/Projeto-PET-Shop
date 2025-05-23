@@ -22,7 +22,7 @@ function cadastrarCliente(event) {
         }
     };
 
-    fetch('http://localhost:3001/clientes', {
+    fetch('http://localhost:3333/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cliente)
@@ -52,7 +52,7 @@ function cadastrarVendedor(event) {
         tipo_user: document.getElementById('vendedor-tipo_user').value
     };
 
-    fetch('http://localhost:3001/vendedores', {
+    fetch('http://localhost:3333/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(vendedor)
@@ -80,7 +80,7 @@ function cadastrarPet(event) {
         raca: document.getElementById('pet-raca').value
     };
 
-    fetch('http://localhost:3001/pets', {
+    fetch('http://localhost:3333/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pet)
@@ -117,3 +117,5 @@ document.getElementById('cliente-cep').addEventListener('blur', () => {
             });
     }
 });
+
+
