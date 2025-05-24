@@ -1,85 +1,72 @@
-create database PetShop;
-use PetShop;
+DROP DATABASE IF EXISTS ppp;
 
-create table enderecos(
-cep varchar(255) not null primary key,
-rua varchar(255),
-bairro varchar(255),
-cidade varchar(255),
-estado varchar(255)
+CREATE DATABASE ppp;
+
+USE ppp;
+
+CREATE TABLE enderecos(
+    cep VARCHAR(255) NOT NULL PRIMARY KEY,
+    rua VARCHAR(255),
+    bairro VARCHAR(255),
+    cidade VARCHAR(255),
+    estado VARCHAR(255)
 );
 
-create table usuarios(
-cpf varchar(255) not null primary key,
-logado varchar(255),
-nome varchar(255),
-sobrenome varchar(255),
-email varchar(255),
-senha varchar(255),
-img varchar(255),
-celular varchar(255),
-cep varchar(255),
-numero varchar(255),
-complemento varchar(255),
-
-constraint fk_cep_usu foreign key (cep) references enderecos(cep)
+CREATE TABLE usuarios(
+    cpf VARCHAR(255) NOT NULL PRIMARY KEY,
+    logado VARCHAR(255),
+    nome VARCHAR(255),
+    sobrenome VARCHAR(255),
+    email VARCHAR(255),
+    senha VARCHAR(255),
+    img VARCHAR(255),
+    celular VARCHAR(255),
+    cep VARCHAR(255),
+    numero VARCHAR(255),
+    complemento VARCHAR(255),
+    CONSTRAINT fk_cep_usu FOREIGN KEY (cep) REFERENCES enderecos(cep)
 );
 
-create table pets(
-identidade varchar(255) not null primary key,
-nome varchar(255),
-tipo varchar(255),
-raca varchar(255),
-idUsuario varchar(255) not null,
-constraint fk_pet_usu foreign key (idUsuario) references usuarios(cpf)
+CREATE TABLE pets(
+    identidade VARCHAR(255) NOT NULL PRIMARY KEY,
+    nome VARCHAR(255),
+    tipo VARCHAR(255),
+    raca VARCHAR(255),
+    idUsuario VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_pet_usu FOREIGN KEY (idUsuario) REFERENCES usuarios(cpf)
 );
 
-create table funcionarios(
-idFuncionario varchar(255) not null primary key,
-nome varchar(255),
-sobrenome varchar(255),
-funcao enum("Caixa", "Veterinário", "Gerente", "Master"),
-email varchar(255),
-senha varchar(255),
-cep varchar(255),
-numero varchar(255),
-complemento varchar(255),
-
-constraint fk_cep_funcionario foreign key (cep) references endereco(cep)
+CREATE TABLE funcionarios(
+    idFuncionario VARCHAR(255) NOT NULL PRIMARY KEY,
+    nome VARCHAR(255),
+    sobrenome VARCHAR(255),
+    funcao ENUM("Caixa", "Veterinário", "Gerente", "Master"),
+    email VARCHAR(255),
+    senha VARCHAR(255),
+    cep VARCHAR(255),
+    numero VARCHAR(255),
+    complemento VARCHAR(255),
+    CONSTRAINT fk_cep_funcionario FOREIGN KEY (cep) REFERENCES enderecos(cep)
 );
 
-create table lojas(
-idLoja int not null auto_increment primary key,
-nome varchar(255),
-img varchar(255),
-cep varchar(255),
-numero varchar(255),
-complemento varchar(255),
-
-constraint fk_cep_loja foreign key (cep) references endereco(cep)
+CREATE TABLE lojas(
+    idLoja INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    img VARCHAR(255),
+    cep VARCHAR(255),
+    numero VARCHAR(255),
+    complemento VARCHAR(255),
+    CONSTRAINT fk_cep_loja FOREIGN KEY (cep) REFERENCES enderecos(cep)
 );
 
-create table produtos(
-idPro int not null auto_increment primary key,
-nome varchar(255),
-descricao varchar(255),
-preco varchar(255),
-img varchar(255),
-idLoja int,
-idFuncionario varchar(255),
-constraint fk_id_loja foreign key (idLoja) references loja(idLoja),
-constraint fk_pro_funcionario foreign key (idFuncionario) references funcionario(idFuncionario)
+CREATE TABLE produtos(
+    idPro INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    descricao VARCHAR(255),
+    preco VARCHAR(255),
+    img VARCHAR(255),
+    idLoja INT,
+    idFuncionario VARCHAR(255),
+    CONSTRAINT fk_id_loja FOREIGN KEY (idLoja) REFERENCES lojas(idLoja),
+    CONSTRAINT fk_pro_funcionario FOREIGN KEY (idFuncionario) REFERENCES funcionarios(idFuncionario)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
