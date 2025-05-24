@@ -33,8 +33,41 @@
         <span><a href="./cadastro.html"><i class="bi bi-person-circle"></i> Entrar</a></span>
     </header>
 
+    <section id="login" class="content">
+        <form action="../../backend/php/usuario/confirmLogin.php" method="post">
+            <h2>Login</h2>
+            <input type="text" name="confirm_email" id="confirm_email" placeholder="Digite seu email">
+            <input type="password" name="confirm_senha" id="confirm_senha" placeholder="Digite sua senha" >
+            <span>Você não tem conta?</span>
+            <h4 onclick="mudarCadastro(1)">Cadastre-se</h4>
+        </form>
+    </section>
+
+    <script>
+        function mudarCadastro(i){
+            let login = document.getElementById('login')
+            let cliente = document.getElementById('cliente')
+            let pet = document.getElementById('pet')
+            let vendedor = document.getElementById('vendedor')
+
+            if (i === 1){
+                login.classList.add('desligado')
+                cliente.classList.remove('desligado')
+            }
+            else{
+                login.classList.remove('desligado')
+                cliente.classList.add('desligado')
+                pet.classList.add('desligado')
+                vendedor.classList.add('desligado') 
+            }
+            console.log(i)
+        
+        }
+    </script>
+
     <!-- Seção de Cadastro de Cliente -->
-    <section class="content" id="cliente">
+    <section class="content desligado" id="cliente">
+        <h5 id="voltar" onclick="mudarCadastro(2)">Voltar</h5>
         <h2>Cadastro de Cliente</h2>
         <div class="alternar-cadastro">
             <button onclick="alternarCadastro('vendedor')" class="btn-alternar">
@@ -44,23 +77,28 @@
                 <i class="bi bi-heart-pulse"></i> Cadastrar Pet
             </button>
         </div>
-        <form id="form-cliente" onsubmit="cadastrarCliente(event)" method="POST">
+        <form id="form-cliente" action="../../backend/php/usuario/cadastarUsu.php" method="POST">
             <label for="cliente-nome">Nome:</label>
-            <input type="text" id="cliente-nome" required />
+            <input type="text" name="cliente-nome" id="cliente-nome" required />
 
             <label for="cliente-sobrenome">Sobrenome:</label>
-            <input type="text" id="cliente-sobrenome" required />
+            <input type="text" name="cliente-sobrenome" id="cliente-sobrenome" required />
 
             <label for="cliente-email">Email:</label>
-            <input type="email" id="cliente-email" required />
-            
+            <input type="email" name="cliente-email" id="cliente-email" required />
+
+            <label for="cliente-senha">Senha:</label>
+            <input type="password" name="cliente-senha" id='cliente-senha' required />
+            <i class="bi bi-eye" id="olho1" onclick="trocarSenha(1)"></i>
+            <i class="bi bi-eye-slash" id="olho2" onclick="trocarSenha(2)"></i>
+
             <input type="hidden" id="cliente-tipo_user" value="comum" required />
 
             <label for="cliente-celular">Celular (com DDD):</label>
-            <input oninput="formatarCelular(this)" type="text" id="cliente-celular" placeholder="(11) 91234-5678" maxlength="15" minlength="15" required />
+            <input oninput="formatarCelular(this)" type="text" name="cliente-celular" id="cliente-celular" placeholder="(11) 91234-5678" maxlength="15" minlength="15" required />
 
             <label for="cliente-cpf">CPF:</label>
-            <input oninput="formatarCPF(this)" type="text" id="cliente-cpf" placeholder="000.000.000-00" maxlength="14" minlength="14" required />
+            <input oninput="formatarCPF(this)" type="text" name="cliente-cpf" id="cliente-cpf" placeholder="000.000.000-00" maxlength="14" minlength="14" required />
             <script>
                 function mascaraCPF(valor) {
                     valor = valor.replace(/\D/g, ''); // Remove não dígitos
@@ -75,36 +113,25 @@
             </script>
 
             <label for="cliente-cep">CEP:</label>
-            <input oninput="formatarCEP(this)" type="text" id="cliente-cep" required maxlength="9" />
-             <script>
-                function mascaraCEP(valor) {
-                    valor = valor.replace(/\D/g, '');
-                    valor = valor.replace(/^(\d{5})(\d)/, '$1-$2');
-                    return valor;
-                }
-
-                function formatarCEP(input) {
-                    input.value = mascaraCEP(input.value);
-                }
-            </script>
+            <input oninput="formatarCEP(this)" type="text" name="cliente-cep" id="cliente-cep" required maxlength="9" />
 
             <label for="cliente-rua">Rua:</label>
-            <input type="text" id="cliente-rua" required readonly maxlength="100" />
+            <input type="text" name="cliente-rua" id="cliente-rua" required readonly maxlength="100" />
 
             <label for="cliente-bairro">Bairro:</label>
-            <input type="text" id="cliente-bairro" required readonly maxlength="50" />
+            <input type="text" name="cliente-bairro" id="cliente-bairro" required readonly maxlength="50" />
             
             <label for="cliente-cidade">Cidade:</label>
-            <input type="text" id="cliente-cidade" required readonly maxlength="50" />
+            <input type="text" name="cliente-cidade" id="cliente-cidade" required readonly maxlength="50" />
 
             <label for="cliente-estado">Estado:</label>
-            <input type="text" id="cliente-estado" required readonly maxlength="2" />
+            <input type="text" name="cliente-estado" id="cliente-estado" required readonly maxlength="2" />
 
             <label for="cliente-numero">Número:</label>
-            <input type="text" id="cliente-numero" required maxlength="100" />
+            <input type="text" name="cliente-numero" id="cliente-numero" required maxlength="100" />
             
             <label for="cliente-complemento">Complemento:</label>
-            <input type="text" id="cliente-complemento" required maxlength="100" />
+            <input type="text" name="cliente-complemento" id="cliente-complemento" required maxlength="100" />
 
             <input type="submit" value="Cadastrar Cliente" class="btn-submit" />
         </form>
@@ -120,7 +147,8 @@
     </section>
 
     <!-- Seção de Cadastro de Vendedor -->
-    <section class="content" id="vendedor" style="display:none;">
+    <section class="content desligado" id="vendedor">
+        <h5 id="voltar" onclick="mudarCadastro(2)">Voltar</h5>
         <h2>Cadastro de Vendedor</h2>
         <div class="alternar-cadastro">
             <button onclick="alternarCadastro('cliente')" class="btn-alternar">
@@ -131,19 +159,57 @@
             </button>
         </div>    
         <form id="form-vendedor" onsubmit="cadastrarVendedor(event)" method="POST">
-            <label for="vendedor-nome">Nome completo:</label>
-            <input type="text" id="vendedor-nome" required />
+            <label for="vendedor-nome">Nome:</label>
+            <input type="text" name="vendedor-nome" id="vendedor-nome" required />
+
+            <label for="vendedor-sobrenome">Sobrenome:</label>
+            <input type="text" name="vendedor-sobrenome" id="vendedor-sobrenome" required />
 
             <label for="vendedor-email">Email:</label>
             <input type="email" id="vendedor-email" required />
+
+            
+            <label for="vendedor-senha">Senha:</label>
+            <input type="password" name="vendedor-senha" id='vendedor-senha' required />
+            <i class="bi bi-eye" id="olho3" onclick="trocarSenha(3)"></i>
+            <i class="bi bi-eye-slash" id="olho4" onclick="trocarSenha(4)"></i>
+            
+            <script>
+                function trocarSenha(index){
+                    let olho1 = document.getElementById('olho1')
+                    let olho2 = document.getElementById('olho2')
+                    let input = document.getElementById('cliente-senha')
+                    if(index === 1 ){
+                        olho1.style.display = "none"
+                        olho2.style.display = "flex"
+                    }
+                    else if(index === 2){
+                        olho1.style.display = "flex"
+                        olho2.style.display = "none"
+                    }
+                    input.type = input.type === 'text' ? 'password' : 'text';
+
+                    let olho3 = document.getElementById('olho3')
+                    let olho4 = document.getElementById('olho4')
+                    let input2 = document.getElementById('vendedor-senha')
+                    if(index === 3 ){
+                        olho3.style.display = "none"
+                        olho4.style.display = "flex"
+                    }
+                    else if(index === 4){
+                        olho3.style.display = "flex"
+                        olho4.style.display = "none"
+                    }
+                    input2.type = input.type === 'text' ? 'password' : 'text';
+
+                }
+
+            </script>
 
             <input type="hidden" id="vendedor-tipo_user" value="vendedor" required />
 
             <label for="vendedor-telefone">Telefone (com DDD):</label>
             <input oninput="formatarCelular(this)" type="text" id="vendedor-telefone" placeholder="(11) 91234-5678" maxlength="14" minlength="14" required />
-
-            <label for="vendedor-endereco">Endereço completo:</label>
-            <input type="text" id="vendedor-endereco" required />
 
             <label for="vendedor-cnpj">CNPJ:</label>
             <input oninput="formatarCNPJ(this)" type="text" id="vendedor-cnpj" placeholder="00.000.000/0000-00" maxlength="18" minlength="18" required />
@@ -161,6 +227,39 @@
                     input.value = mascaraCNPJ(input.value);
                 }
             </script>
+
+            <label for="vendedor-cep">CEP:</label>
+            <input oninput="formatarCEP(this)" type="text" name="vendedor-cep" id="vendedor-cep" required maxlength="9" />
+             <script>
+                function mascaraCEP(valor) {
+                    valor = valor.replace(/\D/g, '');
+                    valor = valor.replace(/^(\d{5})(\d)/, '$1-$2');
+                    return valor;
+                }
+
+                function formatarCEP(input) {
+                    input.value = mascaraCEP(input.value);
+                }
+            </script>
+
+            <label for="vendedor-rua">Rua:</label>
+            <input type="text" name="vendedor-rua" id="vendedor-rua" required readonly maxlength="100" />
+
+            <label for="vendedor-bairro">Bairro:</label>
+            <input type="text" name="vendedor-bairro" id="vendedor-bairro" required readonly maxlength="50" />
+            
+            <label for="vendedor-cidade">Cidade:</label>
+            <input type="text" name="vendedor-cidade" id="vendedor-cidade" required readonly maxlength="50" />
+
+            <label for="vendedor-estado">Estado:</label>
+            <input type="text" name="vendedor-estado" id="vendedor-estado" required readonly maxlength="2" />
+
+            <label for="vendedor-numero">Número:</label>
+            <input type="text" name="vendedor-numero" id="vendedor-numero" required maxlength="100" />
+            
+            <label for="vendedor-complemento">Complemento:</label>
+            <input type="text" name="vendedor-complemento" id="vendedor-complemento" required maxlength="100" />
+
             
             <input type="submit" value="Cadastrar Vendedor" class="btn-submit" />
         </form>
@@ -176,7 +275,8 @@
     </section>
 
     <!-- Seção de Cadastro de Pet -->
-    <section class="content" id="pet" style="display:none;">
+    <section class="content desligado" id="pet">
+        <h5 id="voltar" onclick="mudarCadastro(2)">Voltar</h5>
         <h2>Cadastrar Pet</h2>
         <div class="alternar-cadastro">
             <button onclick="alternarCadastro('cliente')" class="btn-alternar">
@@ -226,7 +326,7 @@
     </section>
 
     <!-- Seção de Confirmação -->
-    <section class="content" id="confirmacao" style="display:none;">
+    <section class="content desligado" id="confirmacao">
         <h2>CADASTRO REALIZADO COM SUCESSO!</h2>
         <i class="bi bi-cloud-check"></i>
         <button onclick="voltarParaInicio()" class="btn-submit">
@@ -364,13 +464,13 @@
         // Função para alternar entre os formulários
         function alternarCadastro(tipo) {
             // Esconde todas as seções
-            document.getElementById('cliente').style.display = 'none';
-            document.getElementById('vendedor').style.display = 'none';
-            document.getElementById('pet').style.display = 'none';
-            document.getElementById('confirmacao').style.display = 'none';
+            document.getElementById('cliente').classList.add('desligado');
+            document.getElementById('vendedor').classList.add('desligado');
+            document.getElementById('pet').classList.add('desligado');
+            document.getElementById('confirmacao').classList.add('desligado');
             
             // Mostra apenas a seção selecionada
-            document.getElementById(tipo).style.display = 'block';
+            document.getElementById(tipo).classList.remove('desligado');
         }
 
         // Funções de cadastro
