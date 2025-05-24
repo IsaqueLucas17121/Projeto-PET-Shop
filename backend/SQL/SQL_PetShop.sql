@@ -1,15 +1,12 @@
 create database PetShop;
-
 use PetShop;
-
-select * from usuarios;
 
 create table enderecos(
 cep varchar(255) not null primary key,
 rua varchar(255),
 bairro varchar(255),
 cidade varchar(255),
-estado varchar(255),
+estado varchar(255)
 );
 
 create table usuarios(
@@ -43,7 +40,7 @@ nome varchar(255),
 sobrenome varchar(255),
 funcao enum("Caixa", "Veterinário", "Gerente", "Master"),
 email varchar(255),
-senha varchar(255)
+senha varchar(255),
 cep varchar(255),
 numero varchar(255),
 complemento varchar(255),
@@ -54,7 +51,7 @@ constraint fk_cep_funcionario foreign key (cep) references endereco(cep)
 create table lojas(
 idLoja int not null auto_increment primary key,
 nome varchar(255),
-img varchar(255)
+img varchar(255),
 cep varchar(255),
 numero varchar(255),
 complemento varchar(255),
@@ -73,6 +70,9 @@ idFuncionario varchar(255),
 constraint fk_id_loja foreign key (idLoja) references loja(idLoja),
 constraint fk_pro_funcionario foreign key (idFuncionario) references funcionario(idFuncionario)
 );
+
+
+
 
 
 
