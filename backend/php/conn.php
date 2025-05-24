@@ -3,7 +3,7 @@
 $DbHost = "localhost";
 $DbUsername = "root";
 $DbPassword = "";
-$DbName = "PetShop";
+$DbName = "ppp";
 
 $conn = new mysqli($DbHost,$DbUsername,$DbPassword,$DbName);
 
