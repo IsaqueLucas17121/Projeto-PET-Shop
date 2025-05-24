@@ -29,13 +29,13 @@ class UsuarioCadastro {
         $cpf = str_replace(['.','-'],'',$cpfSujo);
 
         // Verifica se usuário já existe
-        $sql_check = $this->conn->prepare("SELECT * FROM usuario WHERE cpf = ?");
+        $sql_check = $this->conn->prepare("SELECT * FROM usuarios WHERE cpf = ?");
         $sql_check->bind_param('s', $cpf);
         $sql_check->execute();
         $result = $sql_check->get_result();
 
         // Verifica se endereço já existe
-        $sql_check2 = $this->conn->prepare("SELECT * FROM endereco WHERE cep = ?");
+        $sql_check2 = $this->conn->prepare("SELECT * FROM enderecos WHERE cep = ?");
         $sql_check2->bind_param('s', $cep);
         $sql_check2->execute();
         $result2 = $sql_check2->get_result();
@@ -43,7 +43,7 @@ class UsuarioCadastro {
         if ($result->num_rows > 0) {
             $this->alertAndRedirect('Usuário já existe com o CPF fornecido.', '../index.php');
         } else if ($result2->num_rows > 0) {
-            $sql = "INSERT INTO usuario (logado,cpf,nome,sobrenome,email,senha,celular,cep,img) 
+            $sql = "INSERT INTO usuario (logado,cpf,nome,sobrenome,email,senha,celular,cep,numero,complemento,img) 
                     VALUES ('$logado','$cpf','$nome','$sobrenome','$email','$senha','$celular','$cep','$img')";
             if ($this->conn->query($sql)) {
                 $this->alertAndRedirect('Usuario Cadastrado', '../index.php');
@@ -51,10 +51,10 @@ class UsuarioCadastro {
                 $this->alertAndRedirect('Falha ao cadastrar usuário: ' . $this->conn->error, '../../frontend/pages/cadastro.html');
             }
         } else {
-            $sql2 = "INSERT INTO endereco (cep,numero,rua,bairro,cidade,estado,complemento) 
-                     VALUES ('$cep','$numero','$rua','$bairro','$cidade','$estado','$complemento')";
-            $sql = "INSERT INTO usuario (logado,cpf,nome,sobrenome,email,senha,celular,cep,img) 
-                    VALUES ('$logado','$cpf','$nome','$sobrenome','$email','$senha','$celular','$cep','$img')";
+            $sql2 = "INSERT INTO enderecos (cep,rua,bairro,cidade,estado) 
+                     VALUES ('$cep',,'$rua','$bairro','$cidade','$estado')";
+            $sql = "INSERT INTO usuarios (logado,cpf,nome,sobrenome,email,senha,celular,cep,img) 
+                    VALUES ('$logado','$cpf','$nome','$sobrenome','$email','$senha','$celular','$cep','$numero','$complemento',$img')";
             if ($this->conn->query($sql2) === TRUE && $this->conn->query($sql) === TRUE) {
                 $this->alertAndRedirect('Usuario Cadastrado', '../index.php');
             } else {
