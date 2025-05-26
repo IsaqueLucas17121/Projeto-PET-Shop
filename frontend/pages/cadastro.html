@@ -38,33 +38,10 @@
             <h2>Login</h2>
             <input type="text" name="confirm_email" id="confirm_email" placeholder="Digite seu email">
             <input type="password" name="confirm_senha" id="confirm_senha" placeholder="Digite sua senha" >
-            <input type="submit" value="Logar" class="btn-submit" />
             <span>Você não tem conta?</span>
             <h4 onclick="mudarCadastro(1)">Cadastre-se</h4>
         </form>
     </section>
-
-    <script>
-        function mudarCadastro(i){
-            let login = document.getElementById('login')
-            let cliente = document.getElementById('cliente')
-            let pet = document.getElementById('pet')
-            let vendedor = document.getElementById('vendedor')
-
-            if (i === 1){
-                login.classList.add('desligado')
-                cliente.classList.remove('desligado')
-            }
-            else{
-                login.classList.remove('desligado')
-                cliente.classList.add('desligado')
-                pet.classList.add('desligado')
-                vendedor.classList.add('desligado') 
-            }
-            console.log(i)
-        
-        }
-    </script>
 
     <!-- Seção de Cadastro de Cliente -->
     <section class="content desligado" id="cliente">
@@ -100,18 +77,6 @@
 
             <label for="cliente-cpf">CPF:</label>
             <input oninput="formatarCPF(this)" type="text" name="cliente-cpf" id="cliente-cpf" placeholder="000.000.000-00" maxlength="14" minlength="14" required />
-            <script>
-                function mascaraCPF(valor) {
-                    valor = valor.replace(/\D/g, ''); // Remove não dígitos
-                    valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
-                    valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
-                    valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                    return valor;
-                }
-                function formatarCPF(input) {
-                    input.value = mascaraCPF(input.value);
-                }
-            </script>
 
             <label for="cliente-cep">CEP:</label>
             <input oninput="formatarCEP(this)" type="text" name="cliente-cep" id="cliente-cep" required maxlength="9" />
@@ -174,38 +139,6 @@
             <input type="password" name="vendedor-senha" id='vendedor-senha' required />
             <i class="bi bi-eye" id="olho3" onclick="trocarSenha(3)"></i>
             <i class="bi bi-eye-slash" id="olho4" onclick="trocarSenha(4)"></i>
-            
-            <script>
-                function trocarSenha(index){
-                    let olho1 = document.getElementById('olho1')
-                    let olho2 = document.getElementById('olho2')
-                    let input = document.getElementById('cliente-senha')
-                    if(index === 1 ){
-                        olho1.style.display = "none"
-                        olho2.style.display = "flex"
-                    }
-                    else if(index === 2){
-                        olho1.style.display = "flex"
-                        olho2.style.display = "none"
-                    }
-                    input.type = input.type === 'text' ? 'password' : 'text';
-
-                    let olho3 = document.getElementById('olho3')
-                    let olho4 = document.getElementById('olho4')
-                    let input2 = document.getElementById('vendedor-senha')
-                    if(index === 3 ){
-                        olho3.style.display = "none"
-                        olho4.style.display = "flex"
-                    }
-                    else if(index === 4){
-                        olho3.style.display = "flex"
-                        olho4.style.display = "none"
-                    }
-                    input2.type = input.type === 'text' ? 'password' : 'text';
-
-                }
-
-            </script>
 
             <input type="hidden" id="vendedor-tipo_user" value="vendedor" required />
 
@@ -215,33 +148,8 @@
             <label for="vendedor-cnpj">CNPJ:</label>
             <input oninput="formatarCNPJ(this)" type="text" id="vendedor-cnpj" placeholder="00.000.000/0000-00" maxlength="18" minlength="18" required />
 
-            <script>
-                function mascaraCNPJ(valor) {
-                    valor = valor.replace(/\D/g, '');
-                    valor = valor.replace(/^(\d{2})(\d)/, '$1.$2');
-                    valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
-                    valor = valor.replace(/\.(\d{3})(\d)/, '.$1/$2');
-                    valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
-                    return valor;
-                }
-                function formatarCNPJ(input) {
-                    input.value = mascaraCNPJ(input.value);
-                }
-            </script>
-
             <label for="vendedor-cep">CEP:</label>
             <input oninput="formatarCEP(this)" type="text" name="vendedor-cep" id="vendedor-cep" required maxlength="9" />
-             <script>
-                function mascaraCEP(valor) {
-                    valor = valor.replace(/\D/g, '');
-                    valor = valor.replace(/^(\d{5})(\d)/, '$1-$2');
-                    return valor;
-                }
-
-                function formatarCEP(input) {
-                    input.value = mascaraCEP(input.value);
-                }
-            </script>
 
             <label for="vendedor-rua">Rua:</label>
             <input type="text" name="vendedor-rua" id="vendedor-rua" required readonly maxlength="100" />
@@ -335,19 +243,6 @@
         </button>
     </section>
 
-    <script>
-        function mascaraCelular(valor) {
-            valor = valor.replace(/\D/g, '');
-            valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2');
-            valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
-            return valor;
-        }
-
-        function formatarCelular(input) {
-            input.value = mascaraCelular(input.value);
-        }
-    </script>
-
     <footer>
         <div class="box_rodape">
             <div class="card_rodape">
@@ -410,106 +305,5 @@
         <i class="bi bi-dash-lg"></i>
         <span>Diminuir Fonte</span>
     </div>
-
-    <script>
-        // Objeto com as raças organizadas por tipo
-        const racasPorTipo = {
-            cachorro: ["Beagle", "Pastor Alemão", "Poodle", "Shih Tzu", "Yorkshire Terrier", "Outro"],
-            gato: ["Siames", "Persa", "Scottish Fold", "Sphynx", "Maine Coon", "Outro"],
-            ave: ["Canário", "Calopsita", "Cacatua", "Arara", "Papagaio Cinzento", "Outro"],
-            reptil: ["Iguana Verde", "Jabuti", "Teiú", "Jiboia Arco-íris", "Outro"]
-        };
-
-        // Função para verificar identidade e habilitar nome do pet
-        function verificarIdentidade() {
-            const identidade = document.getElementById('pet-identidade').value;
-            const nomePet = document.getElementById('pet-nome');
-            
-            if(identidade.length > 0) {
-                nomePet.disabled = false;
-                
-                // Simulação: buscar nome do pet se identidade já existir
-                // Aqui você faria uma requisição ao backend
-                if(identidade === "123") { // Exemplo apenas
-                    nomePet.value = "Rex";
-                } else {
-                    nomePet.value = "";
-                }
-            } else {
-                nomePet.disabled = true;
-                nomePet.value = "";
-            }
-        }
-
-        // Função para atualizar as raças conforme o tipo selecionado
-        function atualizarRacas() {
-            const tipoSelect = document.getElementById('pet-tipo');
-            const racaSelect = document.getElementById('pet-raca');
-            const tipoSelecionado = tipoSelect.value;
-
-            racaSelect.innerHTML = '';
-            
-            if (tipoSelecionado) {
-                racaSelect.disabled = false;
-                racaSelect.appendChild(new Option("Selecione uma raça", ""));
-                
-                racasPorTipo[tipoSelecionado].forEach(raca => {
-                    racaSelect.appendChild(new Option(raca, raca.replace(/\s+/g, '')));
-                });
-            } else {
-                racaSelect.disabled = true;
-                racaSelect.appendChild(new Option("Selecione primeiro o tipo", ""));
-            }
-        }
-
-        // Função para alternar entre os formulários
-        function alternarCadastro(tipo) {
-            // Esconde todas as seções
-            document.getElementById('cliente').classList.add('desligado');
-            document.getElementById('vendedor').classList.add('desligado');
-            document.getElementById('pet').classList.add('desligado');
-            document.getElementById('confirmacao').classList.add('desligado');
-            
-            // Mostra apenas a seção selecionada
-            document.getElementById(tipo).classList.remove('desligado');
-        }
-
-        // Funções de cadastro
-        function cadastrarCliente(event) {
-            event.preventDefault();
-            // Lógica para cadastrar cliente
-            console.log("Cadastrando cliente...");
-            mostrarConfirmacao();
-        }
-
-        function cadastrarVendedor(event) {
-            event.preventDefault();
-            // Lógica para cadastrar vendedor
-            console.log("Cadastrando vendedor...");
-            mostrarConfirmacao();
-        }
-
-        function cadastrarPet(event) {
-            event.preventDefault();
-            // Lógica para cadastrar pet
-            console.log("Cadastrando pet...");
-            mostrarConfirmacao();
-        }
-
-        // Mostrar tela de confirmação
-        function mostrarConfirmacao() {
-            alternarCadastro('confirmacao');
-        }
-
-        // Voltar para a página inicial
-        function voltarParaInicio() {
-            window.location.href = "index.html";
-        }
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', function() {
-            // Configurações iniciais
-        });
-    </script>
 </body>
 </html>

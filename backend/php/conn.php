@@ -1,11 +1,9 @@
 <?php
 
-include_once '../config.php';
-
-$DbHost = $DbHost;
-$DbUsername = $DbUsername;
-$DbPassword = $DbPassword;
-$DbName = $DbName;
+$DbHost = "localhost";
+$DbUsername = "root";
+$DbPassword = "";
+$DbName = "PetShop";
 
 $conn = new mysqli($DbHost,$DbUsername,$DbPassword,$DbName);
 
