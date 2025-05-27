@@ -3,9 +3,9 @@
 include '../conn.php';
 session_start();
 
-$chave = $_SESSION['usuario']->cpf;
+$chave = $_SESSION['usuarios']->cpf;
 
-$busca = "SELECT * FROM usuario WHERE cpf = '$chave'";
+$busca = "SELECT * FROM usuarios WHERE cpf = '$chave'";
 $res = $conn->query($busca);
 $row = $res->fetch_object();
 
@@ -24,13 +24,13 @@ $estado = $_POST['cliente-estado'];
 $numero = $_POST['cliente-numero'];
 $complemento = $_POST['cliente-complemento'];
 
-$sql = "UPDATE usuario SET nome='{$nome}',sobrenome='{$sobrenome}',email='{$email}',
-senha='{$senha}',celular='{$celular}' 
+$sql = "UPDATE usuarios SET nome='{$nome}',sobrenome='{$sobrenome}',email='{$email}',
+senha='{$senha}',celular='{$celular}',numero='{$numero}',complemento='{$complemento}'
 
 WHERE cpf='$chave'";
 
-$sql2 = "UPDATE endereco SET rua='{$rua}',bairro='{$bairro}',
-cidade='{$cidade}',estado='{$estado}',numero='{$numero}',complemento='{$complemento}'
+$sql2 = "UPDATE enderecos SET rua='{$rua}',bairro='{$bairro}',
+cidade='{$cidade}',estado='{$estado}'
 
 WHERE cep = '$chave2'";
 
@@ -44,10 +44,4 @@ else{
     echo "<script>alert('falaha ao editar usuario: {$conn->error}');</script>";
     print "<script>location.href='configUsu.php'</script>";
 };
-
-<<<<<<< HEAD
-?>
-=======
-?>
->>>>>>> c706b11d115b3a09321d0e62d2383ccf3c045bfb
 

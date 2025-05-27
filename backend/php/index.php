@@ -1,3 +1,20 @@
+<?php
+
+include 'conn.php';
+
+session_start();
+
+$chave = $_SESSION['usuarios']->cpf;
+
+$sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
+
+$local = 'usuario/';
+
+$res = $conn->query($sql);
+$row = $res->fetch_object();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pr-br">
 <head>
@@ -26,7 +43,12 @@
         <span><a href="loja.php"><i class="bi bi-cart"></i>  Loja</a></span>
         <span><a href="AgendarPet.php"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
         <span><a href="cadastroCre.php"><i class="bi bi-house-heart"></i>  Creche</a></span>
-        <span><a href="cadastro.php"><i class="bi bi-person-circle"></i>  Entrar</a></span>
+        <a href="../php/usuario/atualizarUsu.php"><div class="icone">
+          <img src=<?php echo $local, $row->img?> alt="Imagem do usuario">
+          <span>  Configurações</span>
+
+        </div></a>
+        
     </header>
 
     <div class="primeira_box">

@@ -4,13 +4,13 @@ include '../conn.php';
 
 session_start();
 
-$chave = $_SESSION['usuario']->cpf;
+$chave = $_SESSION['usuarios']->cpf;
 
-$sql1 = "SELECT * FROM usuario WHERE cpf = '$chave'";
+$sql1 = "SELECT * FROM usuarios WHERE cpf = '$chave'";
 $res = $conn->query($sql1);
 $row = $res->fetch_object();
 
-$sql2 = "SELECT * FROM endereco WHERE cep = '$row->cep'";
+$sql2 = "SELECT * FROM enderecos WHERE cep = '$row->cep'";
 $res2 = $conn->query($sql2);
 $row2 = $res2->fetch_object();
 
@@ -109,10 +109,10 @@ $row2 = $res2->fetch_object();
             <input value=<?php echo $row2->estado?> type="text" name="cliente-estado" id="cliente-estado" required readonly maxlength="2" />
 
             <label for="cliente-numero">Número:</label>
-            <input value=<?php echo $row2->numero?> type="text" name="cliente-numero" id="cliente-numero" required maxlength="100" />
+            <input value=<?php echo $row->numero?> type="text" name="cliente-numero" id="cliente-numero" required maxlength="100" />
             
             <label for="cliente-complemento">Complemento:</label>
-            <input value=<?php echo $row2->complemento?> type="text" name="cliente-complemento" id="cliente-complemento" required maxlength="100" />
+            <input value=<?php echo $row->complemento?> type="text" name="cliente-complemento" id="cliente-complemento" required maxlength="100" />
 
             <input type="submit" value="Atualizar Cliente" class="btn-submit" />
         </form>
