@@ -1,6 +1,6 @@
-DROP DATABASE PetShop;
-
 CREATE DATABASE PetShop;
+
+select * from enderecos;
 
 USE PetShop;
 

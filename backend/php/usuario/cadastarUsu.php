@@ -37,17 +37,21 @@ $sql_check2->bind_param('s', $cep);
 $sql_check2->execute();
 $result2 = $sql_check2->get_result();
 
-if ($result->num_rows > 0 && $result2->num_rows > 0) {
+if ($result->num_rows > 0) {
         echo "<script>alert('Usuário já existe com o CPF fornecido.');</script>";
-        print "<script>location.href='../index.php';</script>";
+        print "<script>location.href='../../../frontend/pages/cadastro.html';</script>";
+    }
+else if($result2->num_rows > 0 && $conn->query($sql) === TRUE){
+        echo "<script>alert('Usuario Cadatrado');</script>";
+        print "<script>location.href='../../../frontend/pages/cadastro.html';</script>";
     }
 else if($conn->query($sql2) === TRUE &&  $conn->query($sql) === TRUE ){
         echo "<script>alert('Usuario Cadatrado');</script>";
-        print "<script>location.href='../../frontend/pages/cadastro.html';</script>";
+        print "<script>location.href='../../../frontend/pages/cadastro.html';</script>";
     }
 else{
         echo "<script>alert('Falha ao cadastrar usuário: {$conn->error}');</script>";
-        print "<script>location.href='../../frontend/pages/cadastro.html'</script>";
+        print "<script>location.href='../../../frontend/pages/cadastro.html'</script>";
     }
 
 ?>

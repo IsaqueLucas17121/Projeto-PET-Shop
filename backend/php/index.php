@@ -4,14 +4,21 @@ include 'conn.php';
 
 session_start();
 
-$chave = $_SESSION['usuarios']->cpf;
+if( !isset($_SESSION['usuarios'])){
+  print "<script>location.href='../../../frontend/pages/index.html';</script>";
+}
 
-$sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
+if(isset($_SESSION['usuarios'])){
+  $chave = $_SESSION['usuarios']->cpf;
 
-$local = 'usuario/';
+  $sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
 
-$res = $conn->query($sql);
-$row = $res->fetch_object();
+  $local = 'usuario/';
+
+  $res = $conn->query($sql);
+  $row = $res->fetch_object();
+}
+
 
 ?>
 
@@ -39,15 +46,16 @@ $row = $res->fetch_object();
 </head>
 <body>
     <header class="cabecario" id="cabecario">
-        <a href="index.html"><img src="../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
+        <a href="index.php"><img src="../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
         <span><a href="loja.php"><i class="bi bi-cart"></i>  Loja</a></span>
         <span><a href="AgendarPet.php"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
         <span><a href="cadastroCre.php"><i class="bi bi-house-heart"></i>  Creche</a></span>
-        <a href="../php/usuario/atualizarUsu.php"><div class="icone">
-          <img src=<?php echo $local, $row->img?> alt="Imagem do usuario">
-          <span>  Configurações</span>
-
-        </div></a>
+        <a href="config.php">
+          <div class="icone" style="cursor: pointer; display:grid; justify-content:center; justify-items:center;">
+            <img style="width: 60px; height: 60px; border-radius: 50%;" src=<?php echo $local, $row->img?> alt="Imagem do usuario">
+            <h4 style="font-size: 20px;">  Configurações</h4>
+          </div>
+        </a>
         
     </header>
 
@@ -72,7 +80,7 @@ $row = $res->fetch_object();
         <img src="https://premierpet.com.br/wp-content/uploads/2022/07/Golded-Gourmet-logo-cor-01-e1657028143101-1024x411.png" alt="Logo da marca Gloden">
       </div>
       <div class="card_segunda_box" id="segunda_box2">
-        <img src="../src/assets/raçao de peixe.jpg" alt="Logo da marca Pedigree">
+        <img src="../../frontend/src/assets/raçao de peixe.jpg" alt="Logo da marca Pedigree">
       </div>
       <div class="card_segunda_box" id="segunda_box3">
         <img src="https://logodownload.org/wp-content/uploads/2017/04/whiskas-logo.png" alt="Logo da marca Whiskas">
