@@ -4,12 +4,17 @@
 
         session_start();
 
-        if(!isset($_SESSION['usuario'])){
-            print "<script>location.href='../../../frontend/pages/index.html';</script>";
+        if(!isset($_SESSION['usuarios']) && !isset($_SESSION['vendedores'])){
+            print "<script>location.href='../../frontend/pages/index.html';</script>";
         }
-        else if(isset($_SESSION['usuario'])){
+        
+        if(isset($_SESSION['usuarios'])){
             $trocarImg = "usuario/attImagem.php";
             $nomePagi = "Usuario";
+        }
+        else if(isset($_SESSION['vendedores'])){
+            $trocarImg = "vendedor/attImagem.php";
+            $nomePagi = "Vendedores";
         }
 
     ?>
@@ -220,15 +225,18 @@
         <div class="modal-content">
             <span class="close" onclick="closeLoginModal()">&times;</span>
             <h2>Login do Perfil Master</h2>
-            <div class="form-group">
-                <label for="masterUsername">Usuário</label>
-                <input type="text" id="masterUsername" placeholder="Digite o nome de usuário">
-            </div>
-            <div class="form-group">
-                <label for="masterPassword">Senha</label>
-                <input type="password" id="masterPassword" placeholder="Digite a senha">
-            </div>
-            <button onclick="validateMasterLogin()">Entrar</button>
+            <form action="confirmMaster.php" method="post">
+                <div class="form-group">
+                    <label for="masterUsername">Email</label>
+                    <input required name="masterUsername" type="text" id="masterUsername" placeholder="Digite o email">
+                </div>
+                <div class="form-group">
+                    <label for="masterPassword">Senha</label>
+                    <input required name="masterPassword" type="password" id="masterPassword" placeholder="Digite a senha">
+                </div>
+                <button>Entrar</button>
+            </form>
+            
         </div>
     </div>
 
@@ -324,23 +332,6 @@
         // Função para fechar o modal de login
         function closeLoginModal() {
             document.getElementById('loginModal').style.display = 'none';
-        }
-
-        // Função para validar o login do Perfil Master
-        function validateMasterLogin() {
-            const username = document.getElementById('masterUsername').value;
-            const password = document.getElementById('masterPassword').value;
-
-            // Usuário e senha fictícios
-            const masterUsername = "admin";
-            const masterPassword = "123456";
-
-            if (username === masterUsername && password === masterPassword) {
-                alert("Login bem-sucedido! Redirecionando para o Perfil Master...");
-                window.location.href = 'index.php';
-            } else {
-                alert("Usuário ou senha incorretos.");
-            }
         }
 
         // Adicionar evento de clique às abas

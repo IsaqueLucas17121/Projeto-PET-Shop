@@ -4,8 +4,8 @@ include 'conn.php';
 
 session_start();
 
-if( !isset($_SESSION['usuarios'])){
-  print "<script>location.href='../../../frontend/pages/index.html';</script>";
+if( !isset($_SESSION['usuarios']) && !isset($_SESSION['vendedores'])){
+  print "<script>location.href='../../frontend/pages/index.html';</script>";
 }
 
 if(isset($_SESSION['usuarios'])){
@@ -14,6 +14,17 @@ if(isset($_SESSION['usuarios'])){
   $sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
 
   $local = 'usuario/';
+
+  $res = $conn->query($sql);
+  $row = $res->fetch_object();
+}
+else if(isset($_SESSION['vendedores'])){
+
+  $chave = $_SESSION['vendedores']->idFuncionario;
+
+  $sql = "SELECT * FROM funcionarios WHERE idFuncionario = '$chave'";
+
+  $local = 'vendedor/';
 
   $res = $conn->query($sql);
   $row = $res->fetch_object();

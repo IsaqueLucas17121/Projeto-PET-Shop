@@ -3,12 +3,12 @@
 include '../conn.php';
 
 $logado = '0';
-$cnpjSujo = $_POST['vendedor-npj'];
+$cnpjSujo = $_POST['vendedor-cnpj'];
 $nome = $_POST['vendedor-nome'];
 $sobrenome = $_POST['vendedor-sobrenome'];
 $email = $_POST['vendedor-email'];
 $senha = $_POST['vendedor-senha'];
-$celular = $_POST['vendedor-celular'];
+$telefoneSujo = $_POST['vendedor-telefone'];
 $cep = $_POST['vendedor-cep'];
 $rua = $_POST['vendedor-rua'];
 $bairro = $_POST['vendedor-bairro'];
@@ -16,11 +16,13 @@ $cidade = $_POST['vendedor-cidade'];
 $estado = $_POST['vendedor-estado'];
 $numero = $_POST['vendedor-numero'];
 $complemento = $_POST['vendedor-complemento'];
+$img = './img/UsuarioOFF.png';
 
 $cnpj = str_replace(['.','-','/'],'',$cnpjSujo);
+$telefone = str_replace(['(',')',' ','-'],'',$telefoneSujo);
 
-$sql = "INSERT INTO funcionarios (idFuncionario,logado,nome,sobrenome,email,senha,cep,numero,complemento) 
-VALUES ('$cnpj','$logado','$nome','$sobrenome','$email','$senha','$cep','$numero','$complemento')";
+$sql = "INSERT INTO funcionarios (idFuncionario,logado,nome,sobrenome,email,senha,telefone,cep,numero,complemento,img) 
+VALUES ('$cnpj','$logado','$nome','$sobrenome','$email','$senha','$telefone','$cep','$numero','$complemento','$img')";
 
 $sql2 = "INSERT INTO enderecos (cep,rua,bairro,cidade,estado) 
 VALUES ('$cep','$rua','$bairro','$cidade','$estado')";

@@ -34,7 +34,7 @@
     </header>
 
     <section id="login" class="content">
-        <form action="../../backend/php/usuario/confirmLogin.php" method="post">
+        <form action="../../backend/php/confirmLogin.php" method="post">
             <h2>Login</h2>
             <input type="text" name="confirm_email" id="confirm_email" placeholder="Digite seu email">
             <input type="password" name="confirm_senha" id="confirm_senha" placeholder="Digite sua senha" >
@@ -142,7 +142,7 @@
             <i class="bi bi-eye-slash" id="olho4" onclick="trocarSenha(4)"></i>
 
             <label for="vendedor-telefone">Telefone (com DDD):</label>
-            <input oninput="formatarCelular(this)" type="text" id="vendedor-telefone" placeholder="(11) 91234-5678" maxlength="14" minlength="14" required />
+            <input oninput="formatarCelular(this)" name="vendedor-telefone" type="text" id="vendedor-telefone" placeholder="(11) 91234-5678" maxlength="15" minlength="15" required />
 
             <label for="vendedor-cnpj">CNPJ:</label>
             <input oninput="formatarCNPJ(this)" type="text" name="vendedor-cnpj" id="vendedor-cnpj" placeholder="00.000.000/0000-00" maxlength="18" minlength="18" required />

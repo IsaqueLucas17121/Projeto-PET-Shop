@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
     }
 else if($result2->num_rows > 0 && $conn->query($sql) === TRUE){
         echo "<script>alert('Usuario Cadatrado');</script>";
-        print "<script>location.href='../../../frontend/pages/cadastro.html';</script>";
+        print "<script>location.href='../../../frontend/pages/cadastro.html';</script>";       
     }
 else if($conn->query($sql2) === TRUE &&  $conn->query($sql) === TRUE ){
         echo "<script>alert('Usuario Cadatrado');</script>";
