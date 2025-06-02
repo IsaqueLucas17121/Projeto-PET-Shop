@@ -41,6 +41,7 @@ CREATE TABLE funcionarios(
     nome VARCHAR(255),
     sobrenome VARCHAR(255),
     funcao ENUM("Caixa", "Veterinário", "Gerente", "Master"),
+    telefone varchar(255),
     email VARCHAR(255),
     senha VARCHAR(255),
     cep VARCHAR(255),
@@ -56,7 +57,9 @@ CREATE TABLE lojas(
     cep VARCHAR(255),
     numero VARCHAR(255),
     complemento VARCHAR(255),
-    CONSTRAINT fk_cep_loja FOREIGN KEY (cep) REFERENCES enderecos(cep)
+    idFuncionario varchar(255),
+    CONSTRAINT fk_cep_loja FOREIGN KEY (cep) REFERENCES enderecos(cep),
+    constraint fk_fun_loja foreign key (idFuncinario) references funcionarios(idFuncionario)
 );
 
 CREATE TABLE produtos(
@@ -70,8 +73,6 @@ CREATE TABLE produtos(
     CONSTRAINT fk_id_loja FOREIGN KEY (idLoja) REFERENCES lojas(idLoja),
     CONSTRAINT fk_pro_funcionario FOREIGN KEY (idFuncionario) REFERENCES funcionarios(idFuncionario)
 );
-
-select * from usuarios;
 
 insert into enderecos (cep,rua,bairro,cidade,estado) values ('23092-620','salve','Campo Grande','Rio de Janeiro','RJ');
 

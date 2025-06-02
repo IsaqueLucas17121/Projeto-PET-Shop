@@ -8,7 +8,7 @@ $nome = $_POST['vendedor-nome'];
 $sobrenome = $_POST['vendedor-sobrenome'];
 $email = $_POST['vendedor-email'];
 $senha = $_POST['vendedor-senha'];
-$telefoneSujo = $_POST['vendedor-telefone'];
+$telefone = $_POST['vendedor-telefone'];
 $cep = $_POST['vendedor-cep'];
 $rua = $_POST['vendedor-rua'];
 $bairro = $_POST['vendedor-bairro'];
@@ -19,7 +19,6 @@ $complemento = $_POST['vendedor-complemento'];
 $img = './img/UsuarioOFF.png';
 
 $cnpj = str_replace(['.','-','/'],'',$cnpjSujo);
-$telefone = str_replace(['(',')',' ','-'],'',$telefoneSujo);
 
 $sql = "INSERT INTO funcionarios (idFuncionario,logado,nome,sobrenome,email,senha,telefone,cep,numero,complemento,img) 
 VALUES ('$cnpj','$logado','$nome','$sobrenome','$email','$senha','$telefone','$cep','$numero','$complemento','$img')";
