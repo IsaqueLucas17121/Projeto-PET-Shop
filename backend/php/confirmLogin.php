@@ -39,8 +39,8 @@ else if ($resFuncionario && $resFuncionario->num_rows > 0) {
     echo "<script>location.href='index.php';</script>";
 }
 else {
-    echo "<script>alert('Erro ao logar');</script>";
-    echo "<script>location.href='../../../frontend/pages/index.html';</script>";
+    echo "<script>alert('Email ou Senha Errrados');</script>";
+    echo "<script>location.href='../../frontend/pages/index.html';</script>";
 }
 
 ?>

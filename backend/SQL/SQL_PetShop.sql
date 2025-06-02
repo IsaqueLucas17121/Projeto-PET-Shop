@@ -36,12 +36,11 @@ CREATE TABLE pets(
 
 CREATE TABLE funcionarios(
     idFuncionario VARCHAR(255) NOT NULL PRIMARY KEY,
-    logado varchar(255),
+    logado VARCHAR(255),
+    img VARCHAR(255),
     nome VARCHAR(255),
     sobrenome VARCHAR(255),
-    telefone varchar(255),
     funcao ENUM("Caixa", "Veterinário", "Gerente", "Master"),
-    img varchar(255),
     email VARCHAR(255),
     senha VARCHAR(255),
     cep VARCHAR(255),
@@ -72,7 +71,9 @@ CREATE TABLE produtos(
     CONSTRAINT fk_pro_funcionario FOREIGN KEY (idFuncionario) REFERENCES funcionarios(idFuncionario)
 );
 
-INSERT INTO enderecos(cep,rua,bairro,cidade,estado) VALUES('23092-650','que isso','chefe','tmjt','tlgd');
+select * from usuarios;
 
-INSERT INTO funcionarios(idFuncionario,logado,nome,sobrenome,telefone,funcao,img,
-email,senha,cep,numero,complemento) VALUES ('1','0','Isaque','Lucas',21900000000,'Master','./img/usuarioOFF.png','master1@gmail.com','123456','23092-650','salve','meu mano');
+insert into enderecos (cep,rua,bairro,cidade,estado) values ('23092-620','salve','Campo Grande','Rio de Janeiro','RJ');
+
+insert into funcionarios (idFuncionario,logado,nome,sobrenome,telefone,funcao,img,email,senha,cep,numero,complemento) values 
+('1','0','master','isaque','21900000000','Master','./img/UsuarioOFF.png','master@gmail.com','123456','23092-620','150','salve');
