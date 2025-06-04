@@ -15,6 +15,8 @@ if(isset($_SESSION['usuarios'])){
 
   $local = 'usuario/';
 
+  $loja = "index.php";
+
   $res = $conn->query($sql);
   $row = $res->fetch_object();
 }
@@ -25,6 +27,8 @@ else if(isset($_SESSION['vendedores'])){
   $sql = "SELECT * FROM funcionarios WHERE idFuncionario = '$chave'";
 
   $local = 'vendedor/';
+
+  $loja = "loja.php";
 
   $res = $conn->query($sql);
   $row = $res->fetch_object();
@@ -58,7 +62,7 @@ else if(isset($_SESSION['vendedores'])){
 <body>
     <header class="cabecario" id="cabecario">
         <a href="index.php"><img src="../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
-        <span><a href="loja.php"><i class="bi bi-cart"></i>  Loja</a></span>
+        <span><a href="<?php echo $loja?>"><i class="bi bi-cart"></i>  Loja</a></span>
         <span><a href="AgendarPet.php"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
         <span><a href="cadastroCre.php"><i class="bi bi-house-heart"></i>  Creche</a></span>
         <a href="config.php">

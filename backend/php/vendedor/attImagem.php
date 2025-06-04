@@ -12,7 +12,7 @@ if(isset($_FILES['icone']) && !empty($_FILES['icone']['name'])){
     move_uploaded_file($_FILES['icone']['tmp_name'] ,$img);
 }
 else{
-    $img ="./img/UsuarioOFF.png";
+    $img ="/img/UsuarioOFF.png";
 }
 
 $sql = "UPDATE funcionarios SET img='{$img}'

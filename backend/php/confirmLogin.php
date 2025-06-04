@@ -15,8 +15,6 @@ $resUsuario = $conn->query($sqlUsuario);
 $sqlFuncionario = "SELECT idFuncionario FROM funcionarios WHERE email = '$email' AND senha = '$senha'";
 $resFuncionario = $conn->query($sqlFuncionario);
 
-session_start();
-
 if ($resUsuario && $resUsuario->num_rows > 0) {
 
     $cpf = $resUsuario->fetch_object();
@@ -32,6 +30,13 @@ else if ($resFuncionario && $resFuncionario->num_rows > 0) {
 
     $idFuncionario = $resFuncionario->fetch_object();
     $_SESSION['vendedores'] = $idFuncionario;
+
+    $idFuncionarioObj = $idFuncionario->idFuncionario;
+
+    $sqlLoja = "SELECT idLoja FROM lojas WHERE idFuncionario = $idFuncionarioObj";
+    $idLoja = $conn->query($sqlLoja);
+
+    $_SESSION['idLoja'] = $idLoja;
 
     $conn->query("UPDATE funcionarios SET logado = '1' WHERE email = '$email' AND senha = '$senha'");
 
