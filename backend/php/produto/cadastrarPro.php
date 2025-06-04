@@ -15,7 +15,7 @@ if(isset($_FILES['imagem']) && !empty($_FILES['imagem']['name'])){
     move_uploaded_file($_FILES['imagem']['tmp_name'] ,$img);
 }
 else{
-    $img ="https://cdn-icons-png.flaticon.com/512/1695/1695213.png";
+    $img ="/img/imagemProdutoOFF.png";
 }
 
 $sql = "INSERT INTO produtos (nome,descricao,preco,img,idLoja,idFuncionario) VALUES 
@@ -23,7 +23,7 @@ $sql = "INSERT INTO produtos (nome,descricao,preco,img,idLoja,idFuncionario) VAL
 
 if($conn->query($sql)){
     echo "<script>alert('Produto Cadatrado');</script>";
-    header("Location: cadastroPro.html");
+    echo "<script>location.href='cadastroPro.html';</script>";
 }
 else{
     echo "<script>alert('Falha ao cadastrar o produto');</script>";

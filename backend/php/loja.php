@@ -13,6 +13,11 @@ if(isset($_SESSION['vendedores'])){
     $row = $res->fetch_object();
     $idloja = $row->idLoja;
 
+    $sql2 = "SELECT img FROM funcionarios WHERE idFuncionario = $chave";
+
+    $res2 = $conn->query($sql2);
+    $row2 = $res2->fetch_object();
+
 }
 else{
     header("Location: ../../frontend/pages/index.html");
@@ -43,6 +48,11 @@ else{
     <script src="../../frontend/src/js/script.js" defer></script>
     <script src="../../frontend/src/js/cookiePro.js" defer></script>
 
+    <style>
+        .box_cards{
+            width: auto;
+        }
+    </style>
 </head>
 <body>
     <header class="cabecario" id="cabecario">
@@ -50,7 +60,12 @@ else{
         <span><a href="loja.php"><i class="bi bi-cart"></i>  Loja</a></span>
         <span><a href="AgendarPet.html"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
         <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
-        <span><a href="cadastro.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
+        <a href="config.php">
+          <div class="icone" style="cursor: pointer; display:grid; justify-content:center; justify-items:center;">
+            <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo 'vendedor' . $row2->img?>" alt="Imagem do usuario">
+            <h4 style="font-size: 20px;">  Configurações</h4>
+          </div>
+        </a>
     </header>
 
 
@@ -128,7 +143,7 @@ else{
 
                         echo"<div class='box_cards'>
                                 <div class='magin_imagemcard'>
-                                    <img src= 'produto/$row->img' alt='Foto do produto'>
+                                    <img src= 'produto$row->img' alt='Foto do produto'>
                                 </div>
                                 <ul>
                                     <li><span>$row->nome</span></li>
