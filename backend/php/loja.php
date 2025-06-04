@@ -136,23 +136,25 @@ else{
 
             <div class="background_cards">
                 <?php
-                    $sql2 = "SELECT * FROM produtos WHERE idFuncionario = $chave";
-                    $res = $conn->query($sql2);             
+                    $sql3 = "SELECT * FROM produtos WHERE idFuncionario = $chave";
+                    $res3 = $conn->query($sql3);             
 
-                    while($row = $res->fetch_object()){
+                    while($row3 = $res3->fetch_object()){
 
-                        echo"<div class='box_cards'>
+                        echo"<div class='box_cards' onclick=\"location.href='produto/atualizarPro.php?idPro=".$row3->idPro."';\">
                                 <div class='magin_imagemcard'>
-                                    <img src= 'produto$row->img' alt='Foto do produto'>
+                                    <img src= 'produto$row3->img' alt='Foto do produto'>
                                 </div>
                                 <ul>
-                                    <li><span>$row->nome</span></li>
-                                    <li><span>R$: $row->preco,00</span></li>
+                                    <li><span>$row3->nome</span></li>
+                                    <li><span>R$: $row3->preco,00</span></li>
                                 </ul>
                             
                             </div>";
+
+
                     }
-                
+                    
                 ?>
     
                 

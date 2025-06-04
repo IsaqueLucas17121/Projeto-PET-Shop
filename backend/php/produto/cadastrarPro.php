@@ -15,7 +15,7 @@ if(isset($_FILES['imagem']) && !empty($_FILES['imagem']['name'])){
     move_uploaded_file($_FILES['imagem']['tmp_name'] ,$img);
 }
 else{
-    $img ="/img/imagemProdutoOFF.png";
+    $img ="./img/imagemProdutoOFF.png";
 }
 
 $sql = "INSERT INTO produtos (nome,descricao,preco,img,idLoja,idFuncionario) VALUES 
