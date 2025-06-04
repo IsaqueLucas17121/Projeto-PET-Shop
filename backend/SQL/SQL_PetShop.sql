@@ -40,7 +40,7 @@ CREATE TABLE funcionarios(
     img VARCHAR(255),
     nome VARCHAR(255),
     sobrenome VARCHAR(255),
-    funcao ENUM("Caixa", "Veterinário", "Gerente", "Master"),
+    funcao ENUM("Default", "Veterinário", "Gerente", "Master"),
     telefone varchar(255),
     email VARCHAR(255),
     senha VARCHAR(255),
@@ -59,7 +59,7 @@ CREATE TABLE lojas(
     complemento VARCHAR(255),
     idFuncionario varchar(255),
     CONSTRAINT fk_cep_loja FOREIGN KEY (cep) REFERENCES enderecos(cep),
-    constraint fk_fun_loja foreign key (idFuncinario) references funcionarios(idFuncionario)
+    constraint fk_fun_loja foreign key (idFuncionario) references funcionarios(idFuncionario)
 );
 
 CREATE TABLE produtos(
@@ -75,6 +75,8 @@ CREATE TABLE produtos(
 );
 
 insert into enderecos (cep,rua,bairro,cidade,estado) values ('23092-620','salve','Campo Grande','Rio de Janeiro','RJ');
+
+insert into enderecos (cep,rua,bairro,cidade,estado) values ('Nenhum','Vazio','Vazio','Vazio','Vazio');
 
 insert into funcionarios (idFuncionario,logado,nome,sobrenome,telefone,funcao,img,email,senha,cep,numero,complemento) values 
 ('1','0','master','isaque','21900000000','Master','./img/UsuarioOFF.png','master@gmail.com','123456','23092-620','150','salve');
