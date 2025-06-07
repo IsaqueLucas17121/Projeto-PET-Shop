@@ -20,6 +20,20 @@
 
     <script src="../../../frontend/src/js/script.js" defer></script>
 
+    <style>
+        #voltar{
+            position: absolute;
+            top: 2%;
+            right: 5%;
+            padding: 13px;
+            font-size: 17px;
+            border: none;
+            background-color: #6a1b9a;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+    </style>
 </head>
 <body>
   <header class="cabecario" id="cabecario">
@@ -30,7 +44,7 @@
         <span><a href="cadastro.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
   </header>
 
-    <section class="margin_container">
+    <section class="margin_container" style="position: relative;">
         <div class="container">
             <form enctype="multipart/form-data" id="formularioPro" action="cadastrarPro.php" method="POST">
                 <label for="produto" class="form-label">Nome do Produto</label>
@@ -51,6 +65,8 @@
                 <input type="submit" value="Cadastrar Produto">
             </form>
         </div>
+
+        <button id="voltar" onclick="location='../loja.php'">Voltar</button>
 
     </section>
 

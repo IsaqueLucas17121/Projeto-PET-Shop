@@ -69,7 +69,10 @@ else{
     </header>
 
 
-    <div class="magin_loja">
+    <div class="magin_loja" style="width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;">
 
         <div class="background_loja">
 
@@ -170,7 +173,7 @@ else{
                     </a>
                 </div>
                 
-                <div class="proxima_pag">
+                <div class="proxima_pag" style="display: flex;width: 100%; justify-content: center;position: initial;">
                     <i class="bi bi-arrow-left"></i>
                     <span id="pagi1" onclick="MudarPagina(1)">1</span>
                     <span id="pagi2" onclick="MudarPagina(2)">2</span>

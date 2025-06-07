@@ -170,8 +170,8 @@ if ($result->num_rows === 1) {
                     echo "<td>{$row->cep}</td>";
                     echo "<td>{$row->numero}</td>";
                     echo "<td>{$row->complemento}</td>";
-                    echo "<td><img src=/usuario{$img} alt='icone do usuario'></td>";
-                    echo "<td>" . ($row->logado ? 'Logado' : 'Deslogado') . "</td>";
+                    echo "<td><img style='height: 50px;width: 50px;' src=usuario{$img} alt='icone do usuario'></td>";
+                    echo "<td>" . ($row->logado ? 'Logado ✅' : 'Deslogado') . "</td>";
                     echo "<td><button>Editar</button> <button>Apagar</button></td>";
                     echo "</tr>";
                 }
@@ -212,7 +212,7 @@ if ($result->num_rows === 1) {
                     echo "<td>{$row3->cep}</td>";
                     echo "<td>{$row3->numero}</td>";
                     echo "<td>{$row3->complemento}</td>";
-                    echo "<td><img src=/usuario{$img} alt='icone do funcionario {$row3->nome}'></td>";
+                    echo "<td><img style='height: 50px;width: 50px;' src=vendedor{$img} alt='icone do funcionario {$row3->nome}'></td>";
                     echo "<td>" . ($row3->logado ? 'Logado' : 'Deslogado') . "</td>";
                     echo "<td><button>Editar</button> <button>Apagar</button></td>";
                     echo "</tr>";

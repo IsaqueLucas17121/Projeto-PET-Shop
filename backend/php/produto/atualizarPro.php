@@ -2,9 +2,13 @@
 
 include "../conn.php";
 
+session_start();
+
 $sql = "SELECT * FROM produtos WHERE idPro=".$_REQUEST['idPro'];
 $res = $conn->query($sql);
 $row = $res->fetch_object();
+
+$_SESSION['idPro'] = $_REQUEST['idPro'];
 
 ?>
 
@@ -42,7 +46,7 @@ $row = $res->fetch_object();
 
     <section class="margin_container">
         <div class="container">
-            <form enctype="multipart/form-data" id="formularioPro" action="cadastrarPro.php" method="POST">
+            <form enctype="multipart/form-data" id="formularioPro" action="AttPro.php" method="POST">
                 <label for="produto" class="form-label">Nome do Produto</label>
                 <input value="<?php echo $row->nome?>" type="text" name="produto" class="form-control" id="produto" required>
 
@@ -60,7 +64,7 @@ $row = $res->fetch_object();
 
                 <input style="background-color: green" type="submit" value="Editar Produto">
             </form>
-            <button style="background-color: red; color: #efeac5; width: 100%; border: none; border-radius: 8px; padding: 14px; font-weight: bold; font-size: 1.1em; cursor: pointer;">Excluir</button>
+            <button onclick="location.href='deletarPro.php'" style="background-color: red; color: #efeac5; width: 100%; border: none; border-radius: 8px; padding: 14px; font-weight: bold; font-size: 1.1em; cursor: pointer;">Excluir</button>
         </div>
 
     </section>

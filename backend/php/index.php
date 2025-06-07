@@ -13,7 +13,7 @@ if(isset($_SESSION['usuarios'])){
 
   $sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
 
-  $local = 'usuario/';
+  $local = 'usuario';
 
   $loja = "index.php";
 
@@ -26,7 +26,7 @@ else if(isset($_SESSION['vendedores'])){
 
   $sql = "SELECT * FROM funcionarios WHERE idFuncionario = '$chave'";
 
-  $local = 'vendedor/';
+  $local = 'vendedor';
 
   $loja = "loja.php";
 
@@ -67,7 +67,7 @@ else if(isset($_SESSION['vendedores'])){
         <span><a href="cadastroCre.php"><i class="bi bi-house-heart"></i>  Creche</a></span>
         <a href="config.php">
           <div class="icone" style="cursor: pointer; display:grid; justify-content:center; justify-items:center;">
-            <img style="width: 60px; height: 60px; border-radius: 50%;" src=<?php echo $local, $row->img?> alt="Imagem do usuario">
+            <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo $local, $row->img?>" alt="Imagem do usuario">
             <h4 style="font-size: 20px;">  Configurações</h4>
           </div>
         </a>
