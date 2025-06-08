@@ -172,7 +172,8 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
-        }
+        }      
+        
     </style>
 </head>
 
@@ -184,7 +185,8 @@
         <div class="tabs">
             <div id="tabName" class="active">Atualizar Dados</div>
             <div id="tabProfilePicture">Mudar Foto de Perfil</div>
-            <div id="tabMasterProfile">Perfil Master</div>
+            <div id="tabMasterProfile" style="<?php if(isset($_SESSION['usuarios'])) echo 'display: none;'; ?>">Perfil Master</div>
+            <div id="tabCadastroPet" style="<?php if(isset($_SESSION['vendedores'])) echo 'display: none;'; ?>" >Cadastrar Pet</div>
             <div id="logout">Sair da Conta</div>
             <div onclick="voltar()" id="tabVoltar">Voltar</div>
         </div>
@@ -206,6 +208,11 @@
                 <button onclick="changeProfilePicture()">Salvar</button>
             </div>
         </form>
+
+        <div id="contentCadastrarPet" class="content">
+            <h3>Cadastre seu Pet</h3>
+            <button onclick="location.href='../../frontend/pages/cadastrarPet.php'">Entrar</button>
+        </div>
 
         <div id="contentMasterProfile" class="content">
             <h3>Entrar com Perfil Master</h3>
@@ -280,6 +287,7 @@
             tabName: 'contentName',
             tabProfilePicture: 'contentProfilePicture',
             tabMasterProfile: 'contentMasterProfile',
+            tabCadastroPet: 'contentCadastrarPet',
             logout: 'contentLogout'
         };
 
@@ -338,6 +346,7 @@
         document.getElementById('tabName').addEventListener('click', function () { switchTab('tabName'); });
         document.getElementById('tabProfilePicture').addEventListener('click', function () { switchTab('tabProfilePicture'); });
         document.getElementById('tabMasterProfile').addEventListener('click', function () { switchTab('tabMasterProfile'); });
+        document.getElementById('tabCadastroPet').addEventListener('click', function () { switchTab('tabCadastroPet'); });
         document.getElementById('logout').addEventListener('click', function () { switchTab('logout'); });
     </script>
 </body>

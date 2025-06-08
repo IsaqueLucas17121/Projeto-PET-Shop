@@ -63,7 +63,7 @@ else if(isset($_SESSION['vendedores'])){
     <header class="cabecario" id="cabecario">
         <a href="index.php"><img src="../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
         <span><a href="<?php echo $loja?>"><i class="bi bi-cart"></i>  Loja</a></span>
-        <span><a href="AgendarPet.php"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
+        <span><a href="../../frontend/pages/AgendarPet.php"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
         <span><a href="cadastroCre.php"><i class="bi bi-house-heart"></i>  Creche</a></span>
         <a href="config.php">
           <div class="icone" style="cursor: pointer; display:grid; justify-content:center; justify-items:center;">

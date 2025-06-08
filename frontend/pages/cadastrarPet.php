@@ -1,3 +1,22 @@
+<?php
+
+include "../../backend/php/conn.php";
+
+session_start();
+
+if(isset($_SESSION['usuarios'])){
+    $chave = $_SESSION['usuarios']->cpf;
+    $sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
+    $res = $conn->query($sql);
+    $row = $res->fetch_object();
+
+}
+else{
+ exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,95 +37,51 @@
     <link rel="shortcut icon" href="../src/assets/Foto site.png" type="image/x-icon">
 
     <script src="../src/js/script.js" defer></script>
+
+    <style>
+        #enviar{
+        cursor: pointer;
+        transition: 0.3s ease-out;
+        }
+        #enviar:hover{
+        background-color: #360745;
+        color: #efeac5;
+
+        }
+    </style>
 </head>
 <body>
 
     <header class="cabecario" id="cabecario">
-        <a href="index.html"><img src="../src/assets/Foto site.png" alt="Imagem do site"></a>
-        <span><a href="loja.html"><i class="bi bi-cart"></i>  Loja</a></span>
-        <span><a href="AgendarPet.html"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
-        <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
-        <span><a href="cadastro.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
-    </header>
-
-    <div class="background_calendario">
+        <a href="../../backend/php/index.php"><img src="../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
+        <span><a href="#"><i class="bi bi-cart"></i>  Loja</a></span>
+        <span><a href="AgendarPet.php"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
+        <span><a href="cadastroCre.php"><i class="bi bi-house-heart"></i>  Creche</a></span>
+        <a href="../../backend/php/config.php">
+          <div class="icone" style="cursor: pointer; display:grid; justify-content:center; justify-items:center;">
+            <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo '../../backend/php/usuario' . $row->img?>" alt="Imagem do usuario">
+            <h4 style="font-size: 20px;">  Configurações</h4>
+          </div>
+        </a>
         
-        <div class="cabecario_calendario">
-            <h1 id="dataAgora"></h1>
-            <span>Segunda</span>
-            <span>Terça</span>
-            <span>Quarta</span>
-            <span>Quinta</span>
-            <span>Sexta</span>
-            <span>Sabado</span>
-            <span>Domingo</span>
-        </div>
-        <form action="#" method="post" id="dia_cre">
-            <div class="numero_calendario">
-
-            </div>
-            <input type="submit" class="botao_marcar" value="Marcar dia"></h2>
-        </form>
-              
-    </div>
-
-    <div class="numero_calendario"></div>
-<div id="dataAgora"></div>
-
-<script>
-  let numeros = document.querySelector(".numero_calendario");
-  let dia = document.getElementById("dataAgora");
-
-  for (let i = 1; i <= 31; i++) {
-    numeros.innerHTML += `
-      <input type="checkbox" id="dia${i}" class="dia-checkbox">
-      <label for="dia${i}">${i}</label>
-    `;
-  }
-
-  // Seleciona todos os inputs tipo checkbox criados
-  let checkboxes = document.querySelectorAll(".dia-checkbox");
-
-  checkboxes.forEach(input => {
-    input.addEventListener('change', () => {
-      // Atualiza os labels com classe "selecionado"
-      checkboxes.forEach(cb => {
-        let label = document.querySelector(`label[for="${cb.id}"]`);
-        if (cb.checked) {
-          label.classList.add("selecionado");
-        } else {
-          label.classList.remove("selecionado");
-        }
-      });
-
-      // Pega os dias selecionados com base nos labels
-      let selecionados = Array.from(document.querySelectorAll("label.selecionado"))
-        .map(label => label.textContent);
-
-      // Atualiza o conteúdo do elemento com id "dataAgora"
-      dia.innerHTML = selecionados.length
-        ? "Marcar Dia: " + selecionados.join(', ')
-        : "";
-    });
-  });
-</script>
-
+    </header>
+    
+  
     <div class="background_pet">
         <h1>Cadastre seu Pet</h1>
 
         <section class="form_pet">
 
-            <form id="tipoPet">
-                
-                <div class="margin_nomePet">
-                <!-- Se a identidade estiver cadastrada o o nome do pet aparece -->
-                    <label for="identidade" class="titulo_form">Indentidade do Pet:</label>
-                    <input type="text" id="identidade" required>
-                </div>
+            <form id="tipoPet" action="../../backend/php/usuario/cadastrarPet.php" method="post">
 
                 <div class="margin_nomePet">
                     <label for="nomePet" class="titulo_form">Nome do Pet</label>
-                    <input type="text" id="nomePet" readonly required>
+                    <input type="text" name="nomePet" id="nomePet" minlength='3' required>
+                </div>
+
+                <div class="margin_nomePet">
+                    <label for="idade_pet" class="titulo_form">Idade do Pet</label>
+                    <input type="number" name="idadePet" id="idadePet" required>
                 </div>
                 
                 <label for="tipoPet" class="titulo_form">Tipo do Pet:</label>
@@ -170,7 +145,7 @@
                 </div>
                 
 
-                <input type="submit" value="salvar">
+                <input id="enviar" type="submit" value="Cadastrar Pet">
             </form>
 
             
