@@ -1,0 +1,277 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+background-color: whitesmoke;
+font-family: "Poppins", sans-serif;  
+font-size: 1rem;
+font-weight: 400;
+display: grid;
+}
+
+body::-webkit-scrollbar {
+width: 10px;
+background-color: #efeac5;
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: #d61c59;
+border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+background-color: #efeac5;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+background-color: #d61c5aa8;
+}
+
+.cabecario{
+  width: 100%;
+  height: 130px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #efeac5;
+  color: #360745;
+}
+
+.cabecario span{
+  font-size: 22px;
+  cursor: pointer;
+  color: #360745;
+  font-weight: bold;
+}
+.cabecario i{
+font-size: 30px;
+}
+.cabecario a{
+color: #360745;
+}
+.cabecario img{
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cabecario span:hover{
+  scale: 1.2;
+  transition: 0.3s;
+}
+
+/* Fim Cabeçario */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://t3.ftcdn.net/jpg/02/98/20/18/360_F_298201895_5bPjYW2qPWJ52Wg40H80d8hCAHsPIfpE.jpg') no-repeat center center/cover;
+    filter: blur(2px);
+    z-index: -1;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Popins', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(255, 255, 255, 0.8); /* fallback para contraste */
+    color: #333;
+  }
+
+  .content {
+    padding: 40px 100px;
+    max-width: auto;
+    margin: 30px auto;
+    background: #ffffffd9;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+    display: grid;
+    position: relative;
+  }
+  .content h2{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-size: 35px;
+    margin-bottom: 25px;
+  }
+  .content h3{
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: #6a1b9a;
+    border-radius: 15px;
+    padding: 10px;
+    width: 230px;
+    color: #efeac5;
+    display: grid;
+    justify-content: center;
+  }
+
+  .content i{
+    font-size: 80px;
+    color: rgb(9, 194, 9);
+    display: grid; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+  }
+  .content h4{
+    cursor: pointer;
+    color: #6a1b9a;
+    margin: 10px;
+    font-size: 20px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+  #voltar{
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    transform: translate(-50% -50%);
+    background-color: #d61c59;
+    color: #efeac5;
+    padding: 15px;
+    display: grid;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  form input, select {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  form i {
+    position: absolute;
+    top: 22%;
+    right: 0;
+    transform: translate(-50% -50%);
+    scale: 0.4;
+    padding: 5px;
+    border-radius: 15px;
+    color: #360745 !important;
+    cursor: pointer;
+  }
+
+  form input:focus {
+    border-color: #9c27b0;
+    box-shadow: 0 0 5px rgba(156, 39, 176, 0.4);
+    outline: none;
+  }
+
+  input[type="submit"] {
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #7b1fa2;
+  }
+
+.alternar-cadastro{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+.alternar-cadastro button{
+  font-size: 20px;
+  width: 150px;
+  border-radius: 15px;
+  background-color: #6a1b9a;
+  color: #efeac5;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 15px;
+  cursor: pointer;
+}
+.alternar-cadastro i{
+  font-size: 40px;
+}
+
+/* Rodape*/
+
+footer{
+  width: 100%;
+  height: 100%;
+  background-color: #efeac5;
+  position: relative;
+}
+
+.box_rodape{
+  display: block;
+  margin-left: 20px;
+  background-color: #efeac5;
+}
+
+.voltar_footer{
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  right: 15%;
+  top: 5%;
+}
+.voltar_footer a{
+  text-decoration: none;
+  color: #d61c59;
+}
+
+.voltar_footer i{
+  font-size: 30px;
+}
+
+.box_rodape span{
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.box_rodape h4{
+  display: flex;
+  font-size: 20px;
+  color: #d61c59;
+  border-bottom: 2px solid #d61c59;
+  padding: 5px 0;
+}
+
+.card_rodape{
+  float: left;
+  padding: 10px 40px;
+}
+
+/* Fim Rodape*/
