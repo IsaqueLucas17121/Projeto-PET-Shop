@@ -1,0 +1,38 @@
+<footer style="background-color: #f5f0d5; padding: 40px; font-family: Arial, sans-serif;">
+  <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1000px; margin: auto;">
+
+    <!-- Políticas -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h3 style="color: #b03060; border-bottom: 2px solid #b03060;">Políticas</h3>
+      <p><strong>Política de Privacidade:</strong> Saiba como seus dados são coletados, utilizados e protegidos. Garantimos sua privacidade com total transparência em nosso site.</p>
+      <p><strong>Política de Cookies:</strong> Entenda como utilizamos cookies para melhorar sua experiência de navegação e oferecer conteúdos personalizados.</p>
+      <p><strong>Política de Compras:</strong> Veja todos os detalhes sobre o processo de compra, formas de pagamento, cancelamentos e condições especiais.</p>
+      <p><strong>Política de Entregas:</strong> Confira como funciona nossa logística de entregas, prazos, regiões atendidas e condições para frete grátis.</p>
+    </div>
+
+    <!-- Suporte -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h3 style="color: #b03060; border-bottom: 2px solid #b03060;">Suporte</h3>
+      <p><strong>Central de Atendimento:</strong> Precisa de ajuda? Acesse nossa central de atendimento para tirar dúvidas, solucionar problemas ou fazer sugestões.</p>
+      <p><strong>WhatsApp:</strong> Fale conosco diretamente pelo WhatsApp! Atendimento rápido, prático e personalizado para você.</p>
+    </div>
+
+    <!-- Categorias -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h3 style="color: #b03060; border-bottom: 2px solid #b03060;">Categorias</h3>
+      <p><strong>Ração:</strong> Encontre a ração ideal para seu pet com opções para todas as idades, portes e necessidades nutricionais.</p>
+      <p><strong>Marcas:</strong> Conheça as principais marcas do mercado pet e escolha com confiança os produtos preferidos para seu animal.</p>
+      <p><strong>Utensílios:</strong> Tudo que você precisa para cuidar do seu pet: comedouros, brinquedos, coleiras e muito mais.</p>
+      <p><strong>Planos de Saúde Pet:</strong> Garanta o bem-estar do seu companheiro com planos acessíveis e completos para cuidar da saúde dele.</p>
+    </div>
+
+    <!-- Ofertas em Destaque -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h3 style="color: #b03060; border-bottom: 2px solid #b03060;">Ofertas em Destaque</h3>
+      <p><strong>Antipulgas e Carrapatos:</strong> Proteja seu pet com produtos eficazes contra pulgas e carrapatos. Descontos especiais por tempo limitado!</p>
+      <p><strong>Medicamentos:</strong> Medicamentos veterinários com qualidade e segurança. Cuidar da saúde do seu pet ficou ainda mais fácil.</p>
+      <p><strong>Antibióticos:</strong> Veja nossa linha de antibióticos com prescrição, ideal para o tratamento de infecções e cuidados veterinários.</p>
+    </div>
+
+  </div>
+</footer>
