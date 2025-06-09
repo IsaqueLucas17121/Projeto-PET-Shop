@@ -5,7 +5,7 @@
   <title>Rodapé com Modais</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       background-color: #f8f4d9;
     }
@@ -44,13 +44,14 @@
       margin: 8px 0;
       cursor: pointer;
       font-size: 16px;
+      transition: 0.2s;
     }
 
     button:hover {
-      text-decoration: underline;
+      color: #c62561;
     }
 
-    /* Modal */
+    /* Modal overlay */
     .modal {
       display: none;
       position: fixed;
@@ -59,35 +60,62 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s ease-in-out;
     }
 
+    /* Modal content */
     .modal-content {
-      background-color: #fff8e3;
-      margin: 10% auto;
-      padding: 20px;
-      border: 2px solid #c62561;
-      width: 80%;
+      background-color: #fff7e6;
+      margin: 7% auto;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
       max-width: 600px;
-      border-radius: 10px;
-      color: #000;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      animation: slideIn 0.4s ease-out;
       position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      color: #c62561;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .modal-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
     }
 
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 15px;
+      right: 20px;
       background-color: #c62561;
       color: white;
       border: none;
-      border-radius: 5px;
-      padding: 5px 10px;
+      border-radius: 50px;
+      padding: 6px 12px;
+      font-size: 14px;
       cursor: pointer;
+      transition: background-color 0.2s;
     }
 
     .close-btn:hover {
       background-color: #a91f50;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } 
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
@@ -98,31 +126,31 @@
 
     <div class="column">
       <h3>Políticas</h3>
-      <button onclick="openModal('privacidade')">Política de Privacidade</button>
-      <button onclick="openModal('cookies')">Política de Cookies</button>
-      <button onclick="openModal('compras')">Política de Compras</button>
-      <button onclick="openModal('entregas')">Política de Entregas</button>
+      <button onclick="openModal('Política de Privacidade', 'privacidade')">Política de Privacidade</button>
+      <button onclick="openModal('Política de Cookies', 'cookies')">Política de Cookies</button>
+      <button onclick="openModal('Política de Compras', 'compras')">Política de Compras</button>
+      <button onclick="openModal('Política de Entregas', 'entregas')">Política de Entregas</button>
     </div>
 
     <div class="column">
       <h3>Suporte</h3>
-      <button onclick="openModal('atendimento')">Central de Atendimento</button>
-      <button onclick="openModal('whatsapp')">WhatsApp</button>
+      <button onclick="openModal('Central de Atendimento', 'atendimento')">Central de Atendimento</button>
+      <button onclick="openModal('WhatsApp', 'whatsapp')">WhatsApp</button>
     </div>
 
     <div class="column">
       <h3>Categorias</h3>
-      <button onclick="openModal('racao')">Ração</button>
-      <button onclick="openModal('marcas')">Marcas</button>
-      <button onclick="openModal('utensilios')">Utensílios</button>
-      <button onclick="openModal('planos')">Planos de Saúde Pet</button>
+      <button onclick="openModal('Ração', 'racao')">Ração</button>
+      <button onclick="openModal('Marcas', 'marcas')">Marcas</button>
+      <button onclick="openModal('Utensílios', 'utensilios')">Utensílios</button>
+      <button onclick="openModal('Planos de Saúde Pet', 'planos')">Planos de Saúde Pet</button>
     </div>
 
     <div class="column">
       <h3>Ofertas em Destaque</h3>
-      <button onclick="openModal('antipulgas')">Antipulgas e Carrapatos</button>
-      <button onclick="openModal('medicamentos')">Medicamentos</button>
-      <button onclick="openModal('antibioticos')">Antibióticos</button>
+      <button onclick="openModal('Antipulgas e Carrapatos', 'antipulgas')">Antipulgas e Carrapatos</button>
+      <button onclick="openModal('Medicamentos', 'medicamentos')">Medicamentos</button>
+      <button onclick="openModal('Antibióticos', 'antibioticos')">Antibióticos</button>
     </div>
 
   </div>
@@ -131,8 +159,9 @@
 <!-- Modal -->
 <div id="modal" class="modal">
   <div class="modal-content">
-    <button class="close-btn" onclick="closeModal()">Fechar</button>
-    <div id="modal-text"></div>
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <h2 id="modal-title"></h2>
+    <p id="modal-text"></p>
   </div>
 </div>
 
@@ -156,7 +185,8 @@
     antibioticos: "Veja nossa linha de antibióticos com prescrição, ideal para o tratamento de infecções e cuidados veterinários."
   };
 
-  function openModal(tipo) {
+  function openModal(titulo, tipo) {
+    document.getElementById("modal-title").innerText = titulo;
     document.getElementById("modal-text").innerText = textos[tipo];
     document.getElementById("modal").style.display = "block";
   }
@@ -165,7 +195,6 @@
     document.getElementById("modal").style.display = "none";
   }
 
-  // Fecha o modal ao clicar fora
   window.onclick = function(event) {
     const modal = document.getElementById("modal");
     if (event.target === modal) {
