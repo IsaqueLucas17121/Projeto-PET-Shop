@@ -26,7 +26,9 @@ CREATE TABLE usuarios(
 );
 
 CREATE TABLE pets(
-    identidade VARCHAR(255) NOT NULL PRIMARY KEY,
+    idPet INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    consulta date,
+    hotel date,
     nome VARCHAR(255),
     tipo VARCHAR(255),
     raca VARCHAR(255),
@@ -68,6 +70,7 @@ CREATE TABLE produtos(
     descricao VARCHAR(255),
     preco VARCHAR(255),
     img VARCHAR(255),
+    tipo enum("Cachorro","Gato","Passarinho","Peixe","Outros"),
     idLoja INT,
     idFuncionario VARCHAR(255),
     CONSTRAINT fk_id_loja FOREIGN KEY (idLoja) REFERENCES lojas(idLoja),

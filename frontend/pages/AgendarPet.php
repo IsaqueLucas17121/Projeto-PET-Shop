@@ -66,7 +66,7 @@ else{
             <span>Sabado</span>
             <span>Domingo</span>
         </div>
-        <form action="cadastro.html" method="post" id="dia_cre">
+        <form action="AgendarPet.php" method="post" id="dia_cre">
             <div class="numero_calendario">
 
             </div>
@@ -84,7 +84,7 @@ else{
 
   for (let i = 1; i <= 31; i++) {
     numeros.innerHTML += `
-      <input type="checkbox" id="dia${i}" class="dia-checkbox">
+      <input type="checkbox" name="dias[]" value="${i}" id="dia${i}" class="dia-checkbox">
       <label style="cursor:pointer;" for="dia${i}">${i}</label>
     `;
   }
@@ -271,3 +271,24 @@ else{
     
 </body>
 </html>
+
+<?php
+
+    if (isset($_POST['dias'])) {
+        $diasSelecionados = $_POST['dias']; // array de dias: [3, 15, 22]
+
+        $ano = date('Y');
+        $mes = date('m');
+
+        foreach ($diasSelecionados as $dia) {
+            $dataCompleta = "$ano-$mes-" . str_pad($dia, 2, '0', STR_PAD_LEFT); // ex: 2025-06-03
+
+            // Agora insira essa $dataCompleta no banco
+            // Exemplo com PDO:
+            $stmt = $pdo->prepare("INSERT INTO pets (consulta) VALUES (:data)");
+            $stmt->execute(['data' => $dataCompleta]);
+        }
+    }
+  
+
+?>

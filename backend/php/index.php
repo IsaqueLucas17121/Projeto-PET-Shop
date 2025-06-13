@@ -15,7 +15,7 @@ if(isset($_SESSION['usuarios'])){
 
   $local = 'usuario';
 
-  $loja = "index.php";
+  $loja = "lojaUsu.php";
 
   $res = $conn->query($sql);
   $row = $res->fetch_object();

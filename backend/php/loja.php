@@ -4,9 +4,9 @@ include "conn.php";
 
 session_start();
 
-$chave = $_SESSION['vendedores']->idFuncionario;
-
 if(isset($_SESSION['vendedores'])){
+    $chave = $_SESSION['vendedores']->idFuncionario;
+
     $sql = "SELECT * FROM lojas WHERE idFuncionario = $chave";
 
     $res = $conn->query($sql);
@@ -17,6 +17,7 @@ if(isset($_SESSION['vendedores'])){
 
     $res2 = $conn->query($sql2);
     $row2 = $res2->fetch_object();
+
 
 }
 else{
@@ -68,7 +69,6 @@ else{
         </a>
     </header>
 
-
     <div class="magin_loja" style="width: 100%;
     display: flex;
     justify-content: center;
@@ -82,19 +82,19 @@ else{
                     <h3>Tipos de Animais</h3>
                     <i class="bi bi-filter" onclick="DesligarFiltro()"></i>
                     <div class="filtro_iten">
-                        <span>Cachorro</span><span class="quantidade_filtro" id="filtro1">0</span>
+                        <span id="filtro1">Cachorro</span><span class="quantidade_filtro">0</span>
                     </div>
                     <div class="filtro_iten">
-                        <span>Gato</span><span class="quantidade_filtro" id="filtro2">0</span>
+                        <span id="filtro2">Gato</span><span class="quantidade_filtro">0</span>
                     </div>
                     <div class="filtro_iten">
-                        <span>Passarinho</span><span class="quantidade_filtro" id="filtro3">0</span>
+                        <span id="filtro3">Passarinho</span><span class="quantidade_filtro">0</span>
                     </div>  
                     <div class="filtro_iten">
-                        <span>Peixe</span><span class="quantidade_filtro" id="filtro4">0</span>
+                        <span id="filtro4">Peixe</span><span class="quantidade_filtro">0</span>
                     </div>        
                     <div class="filtro_iten">
-                        <span>Outros</span><span class="quantidade_filtro" id="filtro5">0</span>
+                        <span id="filtro5">Outros</span><span class="quantidade_filtro">0</span>
                     </div>     
 
                     <h3>Marca</h3>
@@ -140,11 +140,27 @@ else{
             <div class="background_cards">
                 <?php
                     $sql3 = "SELECT * FROM produtos WHERE idFuncionario = $chave";
-                    $res3 = $conn->query($sql3);             
+                    $res3 = $conn->query($sql3);
+                    
+                    $qtd = $res3->num_rows;
 
                     while($row3 = $res3->fetch_object()){
 
-                        echo"<div class='box_cards' onclick=\"location.href='produto/atualizarPro.php?idPro=".$row3->idPro."';\">
+                        if($qtd > 1){
+                            echo"<div class='box_cards deligado' onclick=\"location.href='produto/atualizarPro.php?idPro=".$row3->idPro."';\">
+                                <div class='magin_imagemcard'>
+                                    <img src= 'produto$row3->img' alt='Foto do produto'>
+                                </div>
+                                <ul>
+                                    <li><span>$row3->nome</span></li>
+                                    <li><span>R$: $row3->preco,00</span></li>
+                                </ul>
+                            
+                            </div>";
+
+                        }
+                        else{
+                            echo"<div class='box_cards' onclick=\"location.href='produto/atualizarPro.php?idPro=".$row3->idPro."';\">
                                 <div class='magin_imagemcard'>
                                     <img src= 'produto$row3->img' alt='Foto do produto'>
                                 </div>
@@ -156,8 +172,9 @@ else{
                             </div>";
 
 
+                        }
                     }
-                    
+           
                 ?>
     
                 
@@ -253,6 +270,7 @@ else{
     <i class="bi bi-dash-lg"></i>
     <span>Diminuir Fonte</span>
 </div>
+
 
 </body>
 </html>

@@ -4,19 +4,12 @@ include "conn.php";
 
 session_start();
 
-if(isset($_SESSION['vendedores'])){
-    $chave = $_SESSION['vendedores']->idFuncionario;
-
-    $sql = "SELECT * FROM lojas WHERE idFuncionario = $chave";
+if(isset($_SESSION['usuarios'])){
+    $chave = $_SESSION['usuarios']->cpf;
+    $sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
 
     $res = $conn->query($sql);
     $row = $res->fetch_object();
-    $idloja = $row->idLoja;
-
-    $sql2 = "SELECT img FROM funcionarios WHERE idFuncionario = $chave";
-
-    $res2 = $conn->query($sql2);
-    $row2 = $res2->fetch_object();
 
 
 }
@@ -63,7 +56,7 @@ else{
         <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
         <a href="config.php">
           <div class="icone" style="cursor: pointer; display:grid; justify-content:center; justify-items:center;">
-            <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo 'vendedor' . $row2->img?>" alt="Imagem do usuario">
+            <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo 'usuario' . $row->img?>" alt="Imagem do usuario">
             <h4 style="font-size: 20px;">  Configurações</h4>
           </div>
         </a>
@@ -139,34 +132,34 @@ else{
 
             <div class="background_cards">
                 <?php
-                    $sql3 = "SELECT * FROM produtos WHERE idFuncionario = $chave";
-                    $res3 = $conn->query($sql3);
+                    $sql2 = "SELECT * FROM produtos";
+                    $res2 = $conn->query($sql2);
                     
-                    $qtd = $res3->num_rows;
+                    $qtd = $res2->num_rows;
 
-                    while($row3 = $res3->fetch_object()){
+                    while($row2 = $res2->fetch_object()){
 
                         if($qtd > 1){
-                            echo"<div class='box_cards deligado' onclick=\"location.href='produto/atualizarPro.php?idPro=".$row3->idPro."';\">
+                            echo"<div class='box_cards deligado' onclick=\"location.href='comprar.php?idPro=".$row2->idPro."';\">
                                 <div class='magin_imagemcard'>
-                                    <img src= 'produto$row3->img' alt='Foto do produto'>
+                                    <img src= 'produto$row2->img' alt='Foto do produto'>
                                 </div>
                                 <ul>
-                                    <li><span>$row3->nome</span></li>
-                                    <li><span>R$: $row3->preco,00</span></li>
+                                    <li><span>$row2->nome</span></li>
+                                    <li><span>R$: $row2->preco,00</span></li>
                                 </ul>
                             
                             </div>";
 
                         }
                         else{
-                            echo"<div class='box_cards' onclick=\"location.href='produto/atualizarPro.php?idPro=".$row3->idPro."';\">
+                            echo"<div class='box_cards' onclick=\"location.href='comprar.php?idPro=".$row2->idPro."';\">
                                 <div class='magin_imagemcard'>
-                                    <img src= 'produto$row3->img' alt='Foto do produto'>
+                                    <img src= 'produto$row2->img' alt='Foto do produto'>
                                 </div>
                                 <ul>
-                                    <li><span>$row3->nome</span></li>
-                                    <li><span>R$: $row3->preco,00</span></li>
+                                    <li><span>$row2->nome</span></li>
+                                    <li><span>R$: $row2->preco,00</span></li>
                                 </ul>
                             
                             </div>";
@@ -177,18 +170,6 @@ else{
            
                 ?>
     
-                
-                <div class="box_cards" id="adicionarPro">
-                    <a href="produto/cadastroPro.html">
-                        <div class="magin_imagemcard">
-                            <img src="https://icones.pro/wp-content/uploads/2021/06/icone-d-image-bleue.png" alt="Foto do produto">
-                        </div>
-                        <ul>
-                            <li><span>Adiciona Nome do produto</span></li>
-                            <li><span>Adicionar Preço do produto</span></li>
-                        </ul>
-                    </a>
-                </div>
                 
                 <div class="proxima_pag" style="display: flex;width: 100%; justify-content: center;position: initial;">
                     <i class="bi bi-arrow-left"></i>

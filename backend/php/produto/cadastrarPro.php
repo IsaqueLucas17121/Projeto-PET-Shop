@@ -7,6 +7,7 @@ session_start();
 $produto = $_POST['produto'];
 $descricao = $_POST['descricao'];
 $preco = $_POST['preco'];
+$tipoPet = $_POST['tipoPet'];
 $idLoja = $_SESSION['idLoja'];
 $idFuncionario = $_SESSION['vendedores']->idFuncionario;
 
@@ -18,8 +19,8 @@ else{
     $img ="./img/imagemProdutoOFF.png";
 }
 
-$sql = "INSERT INTO produtos (nome,descricao,preco,img,idLoja,idFuncionario) VALUES 
-('$produto','$descricao','$preco','$img','$idLoja','$idFuncionario')";
+$sql = "INSERT INTO produtos (nome,descricao,preco,img,idLoja,idFuncionario,tipo) VALUES 
+('$produto','$descricao','$preco','$img','$idLoja','$idFuncionario','$tipoPet')";
 
 if($conn->query($sql)){
     echo "<script>alert('Produto Cadatrado');</script>";

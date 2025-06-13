@@ -33,6 +33,10 @@
             cursor: pointer;
             border-radius: 15px;
         }
+
+        .radio_tipo{
+            display: inline;
+          }
     </style>
 </head>
 <body>
@@ -56,6 +60,24 @@
 
                 <label for="preco" class="form-label">Preço</label>
                 <input type="number" name="preco" class="form-control" id="preco" step="0.01" required>
+
+                <div class="radio_tipo">
+                    <label for="Cachorro">Cachorro</label>
+                    <input type="radio" name="tipoPet" value="Cachorro" id="Cachorro">
+
+                    <label for="Gato">Gato</label>
+                    <input type="radio" name="tipoPet" value="Gato" id="Gato">
+
+                    <label for="Passarinho">Passarinho</label>
+                    <input type="radio" name="tipoPet" value="Passarinho" id="Passarinho">
+
+                    <label for="Peixe">Peixe</label>
+                    <input type="radio" name="tipoPet" value="Peixe" id="Peixe">
+
+                    <label for="Outros">Outros</label>
+                    <input type="radio" name="tipoPet" value="Outros" id="Outros">
+
+                </div>
 
 
                 <label for="imagem" class="form-label">Imagem do Produto</label>
