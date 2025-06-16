@@ -4,6 +4,9 @@ include "conn.php";
 
 session_start();
 
+$ligado = FALSE;
+$local = "../../index.html";
+
 if(isset($_SESSION['usuarios'])){
     $chave = $_SESSION['usuarios']->cpf;
     $sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
@@ -11,11 +14,10 @@ if(isset($_SESSION['usuarios'])){
     $res = $conn->query($sql);
     $row = $res->fetch_object();
 
+    $ligado = TRUE;
+    $local = "index.php";
+}
 
-}
-else{
-    header("Location: ../../frontend/pages/index.html");
-}
 
 ?>
 
@@ -50,11 +52,12 @@ else{
 </head>
 <body>
     <header class="cabecario" id="cabecario">
-        <a href="index.php"><img src="../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
-        <span><a href="loja.php"><i class="bi bi-cart"></i>  Loja</a></span>
+        <a href="<?php echo $local?>"><img src="../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
+        <span><a href="lojaUsu.php"><i class="bi bi-cart"></i>  Loja</a></span>
         <span><a href="AgendarPet.html"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
         <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
-        <a href="config.php">
+        <span style="<?php if($ligado == TRUE){ echo "display: none;";} else{ echo "display: block;";} ?>"><a href="../../frontend/pages/cadastro.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
+        <a href="config.php" style="<?php if($ligado == TRUE){ echo "display: block;";} else{ echo "display: none;";} ?>">
           <div class="icone" style="cursor: pointer; display:grid; justify-content:center; justify-items:center;">
             <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo 'usuario' . $row->img?>" alt="Imagem do usuario">
             <h4 style="font-size: 20px;">  Configurações</h4>
