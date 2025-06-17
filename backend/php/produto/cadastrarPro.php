@@ -24,9 +24,9 @@ $sql = "INSERT INTO produtos (nome,descricao,preco,img,idLoja,idFuncionario,tipo
 
 if($conn->query($sql)){
     echo "<script>alert('Produto Cadatrado');</script>";
-    echo "<script>location.href='cadastroPro.html';</script>";
+    echo "<script>location.href='cadastroPro.php';</script>";
 }
 else{
     echo "<script>alert('Falha ao cadastrar o produto');</script>";
-    header("Location: cadastroPro.html");
+    header("Location: cadastroPro.php");
 }

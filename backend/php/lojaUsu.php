@@ -51,24 +51,77 @@ if(isset($_SESSION['usuarios'])){
     </style>
 </head>
 <body>
-    <header class="cabecario" id="cabecario">
-        <a href="<?php echo $local?>"><img src="../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
-        <span><a href="lojaUsu.php"><i class="bi bi-cart"></i>  Loja</a></span>
-        <span><a href="AgendarPet.html"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
-        <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
-        <span style="<?php if($ligado == TRUE){ echo "display: none;";} else{ echo "display: block;";} ?>"><a href="../../frontend/pages/cadastro.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
-        <a href="config.php" style="<?php if($ligado == TRUE){ echo "display: block;";} else{ echo "display: none;";} ?>">
-          <div class="icone" style="cursor: pointer; display:grid; justify-content:center; justify-items:center;">
-            <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo 'usuario' . $row->img?>" alt="Imagem do usuario">
-            <h4 style="font-size: 20px;">  Configurações</h4>
-          </div>
-        </a>
-    </header>
+    
+<header>
+    <div class="logo">
+        <img src="../../frontend/src/assets/Foto site.png" alt="Logo PetShop"> <!-- Substitua pelo caminho da sua logo -->
+        <h1>PetShop Amor & Cuidado</h1>
+    </div>
 
-    <div class="magin_loja" style="width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;">
+    <nav>
+        <ul>
+            <li><a href="<?php echo $local?>">Home</a></li>
+            <li><a href="lojaUsu.php">Loja</a></li>
+            <li><a onclick="MostrarSer()" style="cursor: pointer;">Serviços</a></li>
+            <div class="desligado" id="MostrarSer">
+              <li><a href="../../frontend/pages/AgendarPet.php">Banho/Tosa</a></li>
+              <li><a href="#">Creche</a></li>
+            </div>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+
+    <a style="<?php if($ligado == TRUE){ echo "display: none;";} else{ echo "display: block;";} ?>" href="../../frontend/pages/cadastro.html" class="btn-login">Login / Cadastro</a>
+    <a href="config.php" style="<?php if($ligado == TRUE){ echo "display: block;";} else{ echo "display: none;";} ?>">
+        <div class="icone">
+        <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo 'usuario' . $row->img?>" alt="Imagem do usuario">
+        <h4 style="font-size: 20px;">  Configurações</h4>
+        </div>
+    </a>
+
+</header>
+
+    <section class="slider">
+
+        <div class="slider-content">
+
+            <input type="radio" name="btn-radio" id="radio1">
+            <input type="radio" name="btn-radio" id="radio2">
+            <input type="radio" name="btn-radio" id="radio3">
+
+            <div class="slide-box primeiro" id="primeiro">
+                <img class="img-Pc" src="../../frontend/src/assets/promocao1.jpg" alt="Imagem da propaganda 1">
+                <img class="img-Mobile" src="../../frontend/src/assets/promocao1.jpg" alt="Imagem da propaganda 1">
+            </div>
+            <div class="slide-box">
+                <img class="img-Pc" src="../../frontend/src/assets/promocao2.jpg" alt="Imagem da propaganda 2">
+                <img class="img-Mobile" src="../../frontend/src/assets/promocao2.jpg" alt="Imagem da propaganda 2">
+            </div>
+            <div class="slide-box">
+                <img class="img-Pc" src="../../frontend/src/assets/promocao3.jpg" alt="Imagem da propaganda 3">
+                <img class="img-Mobile" src="../../frontend/src/assets/promocao3.jpg" alt="Imagem da propaganda 3">
+            </div>
+            
+            <button onclick="slide_arrow(1)" class="botaoS" id="botaoS" ><span>‹</span></button>
+            <button onclick="slide_arrow(2)" class="botaoS2" id="botaoS2" ><span>›</span></button>
+
+            <div class="nav-auto"> 
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+            </div>
+
+            <div class="nav-manual"> 
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="magin_loja">
 
         <div class="background_loja">
 
@@ -188,63 +241,72 @@ if(isset($_SESSION['usuarios'])){
         
     </div>
 
-    <footer>
-        <div class="box_rodape">
-
-            <div class="card_rodape">
-                <h4>Políticas</h4>
-                <span>Política de Privacidade</span>
-                <span>Política de Cookies</span>
-                <span>Política de Compras</span>
-                <span>política de Entregas</span>
-            </div>
-            
-            <div class="card_rodape">
-                <h4>Suporte</h4>
-                <span>Central de Atendimento</span>
-                <span><i class="bi bi-whatsapp"></i>  WhatsApp</span>
-            </div>
-            
-            <div class="card_rodape">
-                <h4>Categorias</h4>
-                <span>Ração</span>
-                <span>Marcas</span>
-                <span>Utensílios</span>
-                <span>Planos de Sáude Pet</span>
-            </div>
-
-            <div class="card_rodape">
-                <h4>Ofertas em Destaque</h4>
-                <span>Antipulgas e Carrapatos</span>
-                <span>Medicamentos</span>
-                <span>Antibióticos</span>
-            </div>
-
-            <span class="voltar_footer"><a href="#cabecario"><i class="bi bi-arrow-bar-up"></i>  Voltar ao Início</a></span>
-            
-        </div>
-        
-    </footer>
-
-    <!-- VLibras Widget -->
-<div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-        <div class="vw-plugin-top-wrapper"></div>
+<footer>
+  <div class="footer-section">
+    <div class="column">
+      <h3>Políticas</h3>
+      <button onclick="openModal('Política de Privacidade', 'privacidade')">Política de Privacidade</button>
+      <button onclick="openModal('Política de Cookies', 'cookies')">Política de Cookies</button>
+      <button onclick="openModal('Política de Compras', 'compras')">Política de Compras</button>
+      <button onclick="openModal('Política de Entregas', 'entregas')">Política de Entregas</button>
     </div>
+
+    <div class="column">
+      <h3>Suporte</h3>
+      <button onclick="openModal('Central de Atendimento', 'atendimento')">Central de Atendimento</button>
+      <button onclick="openModal('WhatsApp', 'whatsapp')">WhatsApp</button>
+    </div>
+
+    <div class="column">
+      <h3>Categorias</h3>
+      <button onclick="openModal('Ração', 'racao')">Ração</button>
+      <button onclick="openModal('Marcas', 'marcas')">Marcas</button>
+      <button onclick="openModal('Utensílios', 'utensilios')">Utensílios</button>
+      <button onclick="openModal('Planos de Saúde Pet', 'planos')">Planos de Saúde Pet</button>
+    </div>
+
+    <div class="column">
+      <h3>Ofertas em Destaque</h3>
+      <button onclick="openModal('Antipulgas e Carrapatos', 'antipulgas')">Antipulgas e Carrapatos</button>
+      <button onclick="openModal('Medicamentos', 'medicamentos')">Medicamentos</button>
+      <button onclick="openModal('Antibióticos', 'antibioticos')">Antibióticos</button>
+    </div>
+  </div>
+</footer>
+
+<div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" tabindex="-1">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()" aria-label="Fechar modal">×</button>
+    <h2 id="modal-title"></h2>
+    <p id="modal-text"></p>
+  </div>
 </div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
-<!-- Fim VLibras Widget -->
+
+      <!-- VLibras Widget -->
+  <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+      </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+  <!-- Fim VLibras Widget -->
 
 <div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
     <i class="bi bi-universal-access"></i>
 </div>
+
 <div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
-        <i class="bi bi-eye"></i>
+    <i class="bi bi-eye"></i>
 </div>
+
+<div class="botao_visualizacao desligado" id="botao_tema" onclick="toggleTheme()">
+    <i class="bi bi-moon"></i>
+</div>
+
 <div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
     <i class="bi bi-plus-lg"></i>
     <span>Aumentar Fonte</span>

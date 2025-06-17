@@ -18,16 +18,30 @@
     <link rel="shortcut icon" href="frontend/src/assets/Foto site.png" type="image/x-icon">
 
     <script src="frontend/src/js/script.js" defer></script>
-
 </head>
 <body>
-    <header class="cabecario" id="cabecario">
-        <a href="index.html"><img src="frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
-        <span><a href="backend/php/lojaUsu.php"><i class="bi bi-cart"></i>  Loja</a></span>
-        <span><a href="AgendarPet.html"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
-        <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
-        <span><a href="cadastro.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
-    </header>
+
+<header>
+    <div class="logo">
+        <img src="frontend/src/assets/Foto site.png" alt="Logo PetShop"> <!-- Substitua pelo caminho da sua logo -->
+        <h1>PetShop Amor & Cuidado</h1>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="backend/php/lojaUsu.php">Loja</a></li>
+            <li><a onclick="MostrarSer()" style="cursor: pointer;">Serviços</a></li>
+            <div class="desligado" id="MostrarSer">
+              <li><a href="frontend/pages/AgendarPet.php">Banho/Tosa</a></li>
+              <li><a href="#">Creche</a></li>
+            </div>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+
+    <a href="frontend/pages/cadastro.html" class="btn-login">Login / Cadastro</a>
+</header>
 
     <div class="primeira_box">
         <div class="magin_roll" id="roll1">
@@ -40,7 +54,7 @@
             <h2>BANHO E TOSA</h2>
             <span>PARA SEU PET FICAR <span class="destaque_roll">CHEIROSO</span> E <span class="destaque_roll">LIMPINHO</span></span>
             <h1>AGENDE AGORA</h1>
-            <h3>Clique Aqui</h3>
+            <a href="frontend/pages/AgendarPet.php"><h3>Clique Aqui</h3></a>
         </div>
 
     </div>
@@ -176,24 +190,29 @@
   </script>
   <!-- Fim VLibras Widget -->
 
-  <div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
-      <i class="bi bi-universal-access"></i>
-  </div>
-  <div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
-      <i class="bi bi-eye"></i>
-  </div>
-  <div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
-      <button class="theme-toggle" onclick="toggleTheme()">🌙 Modo Escuro</button>
-  </div>
-  <div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
-      <i class="bi bi-plus-lg"></i>
-      <span>Aumentar Fonte</span>
-  </div>
+<div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
+    <i class="bi bi-universal-access"></i>
+</div>
 
-  <div class="botoes_acessibilidade desligado" id="acessibilidade3" onclick="mudar_fonte(2)">
-      <i class="bi bi-dash-lg"></i>
-      <span>Diminuir Fonte</span>
-  </div>
+<div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
+    <i class="bi bi-eye"></i>
+</div>
+
+<div class="botao_visualizacao desligado" id="botao_tema" onclick="toggleTheme()">
+    <i class="bi bi-moon"></i>
+</div>
+
+<div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
+    <i class="bi bi-plus-lg"></i>
+    <span>Aumentar Fonte</span>
+</div>
+
+<div class="botoes_acessibilidade desligado" id="acessibilidade3" onclick="mudar_fonte(2)">
+    <i class="bi bi-dash-lg"></i>
+    <span>Diminuir Fonte</span>
+</div>
+
+
 
     <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -225,6 +244,7 @@
     // Roda a cada 7 segundos
     setInterval(slidePGI, 7000);
   });
+
 </script>
 
 </body>

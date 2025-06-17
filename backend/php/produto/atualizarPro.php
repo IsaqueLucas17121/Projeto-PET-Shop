@@ -4,12 +4,22 @@ include "../conn.php";
 
 session_start();
 
+if(isset($_SESSION['vendedores'])){
 $sql = "SELECT * FROM produtos WHERE idPro=".$_REQUEST['idPro'];
 $res = $conn->query($sql);
 $row = $res->fetch_object();
 
 $_SESSION['idPro'] = $_REQUEST['idPro'];
 
+$chave = $_SESSION['vendedores']->idFuncionario;
+$sql2 = "SELECT img FROM funcionarios WHERE idFuncionario = $chave";
+
+$res2 = $conn->query($sql2);
+$row2 = $res2->fetch_object();
+}
+else{
+    header("Location: ../../../index.html");
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,13 +46,29 @@ $_SESSION['idPro'] = $_REQUEST['idPro'];
 
 </head>
 <body>
-  <header class="cabecario" id="cabecario">
-        <a href="../index.php"><img src="../../../frontend/src/assets/Foto site.png" alt="Imagem do site"></a>
-        <span><a href="../loja.php"><i class="bi bi-cart"></i>  Loja</a></span>
-        <span><a href="AgendarPet.html"><i class="bi bi-droplet"></i>  Banho/Tosa</a></span>
-        <span><a href="cadastroCre.html"><i class="bi bi-house-heart"></i>  Creche</a></span>
-        <span><a href="cadastro.html"><i class="bi bi-person-circle"></i>  Entrar</a></span>
-  </header>
+  <header>
+    <div class="logo">
+        <img src="../../../frontend/src/assets/Foto site.png" alt="Logo PetShop"> <!-- Substitua pelo caminho da sua logo -->
+        <h1>PetShop Amor & Cuidado</h1>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../loja.php">Loja</a></li>
+            <li><a href="cadastroPro.php">Produto</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+
+    <a href="../config.php">
+        <div class="icone">
+        <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo '../vendedor' . $row2->img?>" alt="Imagem do usuario">
+        <h4 style="font-size: 20px;">  Configurações</h4>
+        </div>
+    </a>
+
+</header>
 
     <section class="margin_container">
         <div class="container">
@@ -64,47 +90,51 @@ $_SESSION['idPro'] = $_REQUEST['idPro'];
 
                 <input style="background-color: green" type="submit" value="Editar Produto">
             </form>
-            <button onclick="location.href='deletarPro.php'" style="background-color: red; color: #efeac5; width: 100%; border: none; border-radius: 8px; padding: 14px; font-weight: bold; font-size: 1.1em; cursor: pointer;">Excluir</button>
+            <button id="excluir" onclick="location.href='deletarPro.php'">Excluir</button>
         </div>
 
     </section>
 
     <footer>
-      <div class="box_rodape">
+  <div class="footer-section">
+    <div class="column">
+      <h3>Políticas</h3>
+      <button onclick="openModal('Política de Privacidade', 'privacidade')">Política de Privacidade</button>
+      <button onclick="openModal('Política de Cookies', 'cookies')">Política de Cookies</button>
+      <button onclick="openModal('Política de Compras', 'compras')">Política de Compras</button>
+      <button onclick="openModal('Política de Entregas', 'entregas')">Política de Entregas</button>
+    </div>
 
-          <div class="card_rodape">
-              <h4>Políticas</h4>
-              <span>Política de Privacidade</span>
-              <span>Política de Cookies</span>
-              <span>Política de Compras</span>
-              <span>política de Entregas</span>
-          </div>
-          
-          <div class="card_rodape">
-              <h4>Suporte</h4>
-              <span>Central de Atendimento</span>
-              <span><i class="bi bi-whatsapp"></i>  WhatsApp</span>
-          </div>
-          
-          <div class="card_rodape">
-              <h4>Categorias</h4>
-              <span>Ração</span>
-              <span>Marcas</span>
-              <span>Utensílios</span>
-              <span>Planos de Sáude Pet</span>
-          </div>
+    <div class="column">
+      <h3>Suporte</h3>
+      <button onclick="openModal('Central de Atendimento', 'atendimento')">Central de Atendimento</button>
+      <button onclick="openModal('WhatsApp', 'whatsapp')">WhatsApp</button>
+    </div>
 
-          <div class="card_rodape">
-              <h4>Ofertas em Destaque</h4>
-              <span>Antipulgas e Carrapatos</span>
-              <span>Medicamentos</span>
-              <span>Antibióticos</span>
-          </div>
+    <div class="column">
+      <h3>Categorias</h3>
+      <button onclick="openModal('Ração', 'racao')">Ração</button>
+      <button onclick="openModal('Marcas', 'marcas')">Marcas</button>
+      <button onclick="openModal('Utensílios', 'utensilios')">Utensílios</button>
+      <button onclick="openModal('Planos de Saúde Pet', 'planos')">Planos de Saúde Pet</button>
+    </div>
 
-          <span class="voltar_footer"><a href="#cabecario"><i class="bi bi-arrow-bar-up"></i>  Voltar ao Início</a></span>          
-      </div>
-        
-    </footer>
+    <div class="column">
+      <h3>Ofertas em Destaque</h3>
+      <button onclick="openModal('Antipulgas e Carrapatos', 'antipulgas')">Antipulgas e Carrapatos</button>
+      <button onclick="openModal('Medicamentos', 'medicamentos')">Medicamentos</button>
+      <button onclick="openModal('Antibióticos', 'antibioticos')">Antibióticos</button>
+    </div>
+  </div>
+</footer>
+
+<div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" tabindex="-1">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()" aria-label="Fechar modal">×</button>
+    <h2 id="modal-title"></h2>
+    <p id="modal-text"></p>
+  </div>
+</div>
 
       <!-- VLibras Widget -->
   <div vw class="enabled">
@@ -119,22 +149,27 @@ $_SESSION['idPro'] = $_REQUEST['idPro'];
   </script>
   <!-- Fim VLibras Widget -->
 
-  <div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
-      <i class="bi bi-universal-access"></i>
-  </div>
-  <div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
-          <i class="bi bi-eye"></i>
-  </div>
-  <div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
-      <i class="bi bi-plus-lg"></i>
-      <span>Aumentar Fonte</span>
-  </div>
+<div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
+    <i class="bi bi-universal-access"></i>
+</div>
 
-  <div class="botoes_acessibilidade desligado" id="acessibilidade3" onclick="mudar_fonte(2)">
-      <i class="bi bi-dash-lg"></i>
-      <span>Diminuir Fonte</span>
-  </div>
+<div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
+    <i class="bi bi-eye"></i>
+</div>
 
+<div class="botao_visualizacao desligado" id="botao_tema" onclick="toggleTheme()">
+    <i class="bi bi-moon"></i>
+</div>
+
+<div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
+    <i class="bi bi-plus-lg"></i>
+    <span>Aumentar Fonte</span>
+</div>
+
+<div class="botoes_acessibilidade desligado" id="acessibilidade3" onclick="mudar_fonte(2)">
+    <i class="bi bi-dash-lg"></i>
+    <span>Diminuir Fonte</span>
+</div>
   <script>
     document.getElementById('imagem').addEventListener('change', function(event) {
             const file = event.target.files[0];

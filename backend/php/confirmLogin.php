@@ -48,7 +48,7 @@ else if ($resFuncionario && $resFuncionario->num_rows > 0) {
 }
 else {
     echo "<script>alert('Email ou Senha Errrados');</script>";
-    echo "<script>location.href='../../frontend/pages/index.html';</script>";
+    echo "<script>location.href='../../index.html';</script>";
 }
 
 ?>

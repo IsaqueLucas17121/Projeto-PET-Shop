@@ -5,7 +5,7 @@
         session_start();
 
         if(!isset($_SESSION['usuarios']) && !isset($_SESSION['vendedores'])){
-            print "<script>location.href='../../frontend/pages/index.html';</script>";
+            print "<script>location.href='../../index.html';</script>";
         }
         
         if(isset($_SESSION['usuarios'])){
@@ -247,7 +247,7 @@
         </div>
     </div>
 
-        <!-- VLibras Widget -->
+      <!-- VLibras Widget -->
   <div vw class="enabled">
       <div vw-access-button class="active"></div>
       <div vw-plugin-wrapper>
@@ -260,21 +260,27 @@
   </script>
   <!-- Fim VLibras Widget -->
 
-  <div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
-      <i class="bi bi-universal-access"></i>
-  </div>
-  <div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
-          <i class="bi bi-eye"></i>
-  </div>
-  <div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
-      <i class="bi bi-plus-lg"></i>
-      <span>Aumentar Fonte</span>
-  </div>
+<div class="botao_acessibilidade" onclick="abrir_acessibilidade(1)">
+    <i class="bi bi-universal-access"></i>
+</div>
 
-  <div class="botoes_acessibilidade desligado" id="acessibilidade3" onclick="mudar_fonte(2)">
-      <i class="bi bi-dash-lg"></i>
-      <span>Diminuir Fonte</span>
-  </div>
+<div class="botao_visualizacao desligado" id="botao_acesso" onclick="abrir_acessibilidade(2)">
+    <i class="bi bi-eye"></i>
+</div>
+
+<div class="botao_visualizacao desligado" id="botao_tema" onclick="toggleTheme()">
+    <i class="bi bi-moon"></i>
+</div>
+
+<div class="botoes_acessibilidade desligado" id="acessibilidade2" onclick="mudar_fonte(1)">
+    <i class="bi bi-plus-lg"></i>
+    <span>Aumentar Fonte</span>
+</div>
+
+<div class="botoes_acessibilidade desligado" id="acessibilidade3" onclick="mudar_fonte(2)">
+    <i class="bi bi-dash-lg"></i>
+    <span>Diminuir Fonte</span>
+</div>
 
     <script>
 

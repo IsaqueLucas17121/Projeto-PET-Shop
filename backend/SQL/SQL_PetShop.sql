@@ -2,6 +2,7 @@ CREATE DATABASE PetShop;
 
 USE PetShop;
 
+
 CREATE TABLE enderecos(
     cep VARCHAR(255) NOT NULL PRIMARY KEY,
     rua VARCHAR(255),
@@ -27,6 +28,7 @@ CREATE TABLE usuarios(
 
 CREATE TABLE pets(
     idPet INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    idade varchar(255),
     consulta date,
     hotel date,
     nome VARCHAR(255),

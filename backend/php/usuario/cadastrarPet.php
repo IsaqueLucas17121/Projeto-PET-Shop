@@ -2,11 +2,6 @@
 include "../conn.php";
 session_start();
 
-// Verifica se o usuário está logado
-if (!isset($_SESSION['usuarios'])) {
-    die("Acesso negado.");
-}
-
 $idUsuario = $_SESSION['usuarios']->cpf;
 
 // Verifica se os dados foram enviados

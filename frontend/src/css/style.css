@@ -15,7 +15,8 @@ body {
   font-family: "Poppins", sans-serif;  
   font-size: 1rem;
   font-weight: 400;
-  display: grid;
+  margin: 0;
+  padding-top: 90px; 
 }
 
 body::-webkit-scrollbar {
@@ -36,39 +37,118 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: #d61c5aa8;
 }
 
-.cabecario{
-    width: 100%;
-    height: 130px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: #efeac5;
-    color: #360745;
+/* Cabeçario*/
+
+header {
+  background-color: #360745;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-.cabecario span{
-    font-size: 22px;
-    cursor: pointer;
-    color: #360745;
-    font-weight: bold;
+#MostrarSer{
+  position: absolute;
+  bottom: -50%;
+  left: 60%;
+  transform: translateX(-50%);
+  background-color: #360745;
+  padding: 10px;
+  border-radius: 10px;
 }
-.cabecario i{
-  font-size: 30px;
-}
-.cabecario a{
-  color: #360745;
-}
-.cabecario img{
-    width: 80px;
-    height: 80px;
-    border-radius: 5px;
-    cursor: pointer;
+#MostrarSer li:first-child{
+  margin-bottom: 10px;
 }
 
-.cabecario span:hover{
-    scale: 1.2;
-    transition: 0.3s;
-}
+  /* Logo */
+  .logo {
+      display: flex;
+      align-items: center;
+  }
+
+  .logo img {
+      height: 60px;
+      margin-right: 15px;
+  }
+
+  .logo h1 {
+      color: #efeac5;
+      font-size: 26px;
+      margin: 0;
+  }
+
+  /* Menu de navegação */
+  nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+  }
+
+  nav ul li a {
+      color: #efeac5;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s, border-bottom 0.3s;
+      padding-bottom: 5px;
+  }
+
+  nav ul li a:hover {
+      color: #d61c59;
+      border-bottom: 2px solid #d61c59;
+  }
+
+  /* Botão de login/cadastro */
+  .btn-login {
+      background-color: #d61c59;
+      color: #efeac5;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      transition: background-color 0.3s, color 0.3s;
+  }
+
+  .btn-login:hover {
+      background-color: #efeac5;
+      color: #360745;
+      border: 2px solid #d61c59;
+  }
+
+  /* Responsivo: Menu empilha em telas menores */
+  @media (max-width: 768px) {
+      header {
+          flex-direction: column;
+          align-items: flex-start;
+      }
+
+      nav ul {
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 10px;
+      }
+
+      .btn-login {
+          margin-top: 10px;
+          align-self: flex-end;
+      }
+  }
+
+  .icone{
+    cursor: pointer;
+    display:grid;
+    justify-content:center;
+    justify-items:center;
+  }
 
 /* Fim Cabeçario */
 
@@ -295,57 +375,6 @@ body::-webkit-scrollbar-thumb:hover {
 /* Fim Quarta box */
 
 /* Rodape*/
-
-footer{
-  width: 100%;
-  height: 100%;
-  background-color: #efeac5;
-  position: relative;
-}
-
-.box_rodape{
-  display: block;
-  margin-left: 20px;
-  background-color: #efeac5;
-}
-
-.voltar_footer{
-  display: flex;
-  padding: 10px;
-  position: absolute;
-  right: 15%;
-  top: 5%;
-}
-.voltar_footer a{
-  text-decoration: none;
-  color: #d61c59;
-}
-
-.voltar_footer i{
-  font-size: 30px;
-}
-
-.box_rodape span{
-  font-size: 18px;
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-  margin-top: 10px;
-}
-.box_rodape h4{
-  display: flex;
-  font-size: 20px;
-  color: #d61c59;
-  border-bottom: 2px solid #d61c59;
-  padding: 5px 0;
-}
-
-.card_rodape{
-  float: left;
-  padding: 10px 40px;
-}
-
-
     .dark-mode {
       background-color: #1e1e1e;
       color: #f0f0f0;
@@ -512,9 +541,13 @@ footer{
   right: 5px;
   top: 55%;
 }
-.botao_visualizacao{
+#botao_acesso{
   top: 63%;
   right: 5px;
+}
+#botao_tema{
+  top: 63%;
+  right: 4%;
 }
 .botao_acessibilidade i{
   font-size: 20px;
