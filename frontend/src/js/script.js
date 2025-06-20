@@ -80,7 +80,7 @@ function MudarPagina(index) {
 
 function mudar_fonte(index) {
 
-    let body = document.body;
+    let body = document.documentElement;
 
     if(index === 1 && tamanhotxt < 30 ) {
         tamanhotxt += 1;
