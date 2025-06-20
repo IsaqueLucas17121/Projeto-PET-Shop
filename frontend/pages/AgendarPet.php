@@ -70,26 +70,59 @@ if(isset($_SESSION['usuarios'])){
 
 </header>
 
-    <div class="background_calendario">
-        
-        <div class="cabecario_calendario">
-            <h1 id="dataAgora"></h1>
-            <span>Segunda</span>
-            <span>Terça</span>
-            <span>Quarta</span>
-            <span>Quinta</span>
-            <span>Sexta</span>
-            <span>Sabado</span>
-            <span>Domingo</span>
-        </div>
-        <form action="AgendarPet.php" method="post" id="dia_cre">
-            <div class="numero_calendario">
+<div class="background_des">
+  <h1>Como funciona o banho e tosa?</h1>
 
-            </div>
-            <input type="submit" class="botao_marcar" value="Marcar dia"></h2>
-        </form>
-              
+  <article>
+    O banho e tosa para pets é um serviço especializado que garante a higiene, saúde e bem-estar dos animais.
+    O processo começa com um banho usando shampoos adequados ao tipo de pele e pelo do pet, seguido de secagem com equipamentos próprios.
+    Depois, é feita a tosa, que pode ser higiênica, estética ou conforme a raça. O serviço geralmente inclui ainda limpeza das orelhas, corte das unhas e, em alguns casos, escovação dos dentes.
+    Tudo é feito por profissionais treinados para garantir conforto e segurança ao animal.
+  </article>
+</div>
+
+<div class="img_des">
+  <img src="https://foxvet.com.br/wp-content/uploads/2022/07/banner-banho-tosa-perguntas-frequentes-1200x675.jpg" alt="">
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const elementos = document.querySelectorAll('.img_des');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        observer.unobserve(entry.target); // Só anima uma vez
+      }
+    });
+  });
+
+  elementos.forEach(el => observer.observe(el));
+});
+</script>
+
+
+<div class="background_calendario">
+    
+    <div class="cabecario_calendario">
+        <h1 id="dataAgora"></h1>
+        <span>Segunda</span>
+        <span>Terça</span>
+        <span>Quarta</span>
+        <span>Quinta</span>
+        <span>Sexta</span>
+        <span>Sabado</span>
+        <span>Domingo</span>
     </div>
+    <form action="AgendarPet.php" method="post" id="dia_cre">
+        <div class="numero_calendario">
+
+        </div>
+        <input type="submit" class="botao_marcar" value="Marcar dia"></h2>
+    </form>
+          
+</div>
 
     <div class="numero_calendario"></div>
 <div id="dataAgora"></div>
