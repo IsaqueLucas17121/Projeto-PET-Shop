@@ -63,8 +63,8 @@ else{
 
     <a href="../config.php">
         <div class="icone">
-        <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo '../vendedor' . $row2->img?>" alt="Imagem do usuario">
-        <h4 style="font-size: 20px;">  Configurações</h4>
+        <img  src="<?php echo '../vendedor' . $row2->img?>" alt="Imagem do usuario">
+        <h4 >  Configurações</h4>
         </div>
     </a>
 

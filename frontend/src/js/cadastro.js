@@ -9,7 +9,6 @@ const racasPorTipo = {
 function mudarCadastro(i) {
     let login = document.getElementById('login');
     let cliente = document.getElementById('cliente');
-    let pet = document.getElementById('pet');
     let vendedor = document.getElementById('vendedor');
 
     if (i === 1) {
@@ -18,7 +17,6 @@ function mudarCadastro(i) {
     } else {
         login.classList.remove('desligado');
         cliente.classList.add('desligado');
-        pet.classList.add('desligado');
         vendedor.classList.add('desligado'); 
     }
 }
@@ -62,13 +60,16 @@ function atualizarRacas() {
     }
 }
 
-function alternarCadastro(tipo) {
-    document.getElementById('cliente').classList.add('desligado');
-    document.getElementById('vendedor').classList.add('desligado');
-    document.getElementById('pet').classList.add('desligado');
-    document.getElementById('confirmacao').classList.add('desligado');
+function alternarCadastro(i) {
+    if(i == 1){
+        document.getElementById('cliente').classList.add('desligado');
+        document.getElementById('vendedor').classList.remove('desligado');
+    }
+    else{
+        document.getElementById('cliente').classList.remove('desligado');
+        document.getElementById('vendedor').classList.add('desligado');
+    }
     
-    document.getElementById(tipo).classList.remove('desligado');
 }
 
 function cadastrarCliente(event) {

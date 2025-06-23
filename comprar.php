@@ -67,8 +67,8 @@ $sql2 = "SELECT img FROM usuarios WHERE cpf = '$chave'";
     <a style="<?php if($ligado == TRUE){ echo "display: none;";} else{ echo "display: block;";} ?>" href="../../frontend/pages/cadastro.html" class="btn-login">Login / Cadastro</a>
     <a href="config.php" style="<?php if($ligado == TRUE){ echo "display: block;";} else{ echo "display: none;";} ?>">
         <div class="icone">
-        <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo 'usuario' . $row->img?>" alt="Imagem do usuario">
-        <h4 style="font-size: 20px;">  Configurações</h4>
+        <img  src="<?php echo 'usuario' . $row->img?>" alt="Imagem do usuario">
+        <h4 >  Configurações</h4>
         </div>
     </a>
 

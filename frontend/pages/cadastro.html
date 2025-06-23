@@ -8,6 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../src/css/login.css">
     <link rel="stylesheet" href="../src/css/loja.css">
+    <link rel="stylesheet" href="../src/css/style.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../src/assets/Foto site.png" type="image/x-icon">
+    <link rel="shortcut icon" href="frontend/src/assets/Foto site.png" type="image/x-icon">
 
     <!-- JavaScript -->
     <script src="../src/js/script.js" defer></script>
@@ -27,25 +28,33 @@
 <body>
 <header>
     <div class="logo">
-        <img src="../../frontend/src/assets/Foto site.png" alt="Logo PetShop"> <!-- Substitua pelo caminho da sua logo -->
+        <img src="../src/assets/Foto site.png" alt="Logo PetShop">
         <h1>PetShop Amor & Cuidado</h1>
     </div>
 
-    <nav>
+    <!-- Botão do menu mobile -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <nav class="nav-menu" id="nav-menu">
         <ul>
             <li><a href="../../index.html">Home</a></li>
             <li><a href="../../lojaUsu.php">Loja</a></li>
-            <li><a onclick="MostrarSer()" style="cursor: pointer;">Serviços</a></li>
-            <div class="desligado" id="MostrarSer">
-              <li><a href="../../AgendarPet.php">Banho/Tosa</a></li>
-              <li><a href="#">Creche</a></li>
-            </div>
+            <li class="dropdown">
+                <a href="#" onclick="toggleDropdown()" style="cursor: pointer;">Serviços</a>
+                <div class="dropdown-content" id="dropdown-servicos">
+                    <a href="../../AgendarPet.php">Banho/Tosa</a>
+                    <a href="#">Creche</a>
+                </div>
+            </li>
             <li><a href="#">Contato</a></li>
         </ul>
     </nav>
 
     <a href="cadastro.html" class="btn-login">Login / Cadastro</a>
-
 </header>
 
     <section id="login" class="content">
@@ -64,11 +73,8 @@
         <h5 id="voltar" onclick="mudarCadastro(2)">Voltar</h5>
         <h2>Cadastro de Cliente</h2>
         <div class="alternar-cadastro">
-            <button onclick="alternarCadastro('vendedor')" class="btn-alternar">
+            <button onclick="alternarCadastro(1)" class="btn-alternar">
                 <i class="bi bi-person-gear"></i> Cadastrar Vendedor
-            </button>
-            <button onclick="alternarCadastro('pet')" class="btn-alternar">
-                <i class="bi bi-heart-pulse"></i> Cadastrar Pet
             </button>
         </div>
         <form id="form-cliente" action="../../cadastarUsu.php" method="POST">
@@ -119,11 +125,8 @@
         </form>
         
         <div class="alternar-cadastro">
-            <button onclick="alternarCadastro('vendedor')" class="btn-alternar">
+            <button onclick="alternarCadastro(1)" class="btn-alternar">
                 <i class="bi bi-person-gear"></i> Cadastrar Vendedor
-            </button>
-            <button onclick="alternarCadastro('pet')" class="btn-alternar">
-                <i class="bi bi-heart-pulse"></i> Cadastrar Pet
             </button>
         </div>
     </section>
@@ -133,14 +136,11 @@
         <h5 id="voltar" onclick="mudarCadastro(2)">Voltar</h5>
         <h2>Cadastro de Vendedor</h2>
         <div class="alternar-cadastro">
-            <button onclick="alternarCadastro('cliente')" class="btn-alternar">
+            <button onclick="alternarCadastro(2)" class="btn-alternar">
                 <i class="bi bi-person"></i> Cadastrar Cliente
             </button>
-            <button onclick="alternarCadastro('pet')" class="btn-alternar">
-                <i class="bi bi-heart-pulse"></i> Cadastrar Pet
-            </button>
         </div>    
-        <form id="form-vendedor" action="../../backend/php/vendedor/cadastrarVen.php" method="POST">
+        <form id="form-vendedor" action="../../cadastrarVen.php" method="POST">
             <label for="vendedor-nome">Nome:</label>
             <input type="text" name="vendedor-nome" id="vendedor-nome" required />
 
@@ -188,64 +188,10 @@
         </form>
         
         <div class="alternar-cadastro">
-            <button onclick="alternarCadastro('cliente')" class="btn-alternar">
+            <button onclick="alternarCadastro(2)" class="btn-alternar">
                 <i class="bi bi-person"></i> Cadastrar Cliente
             </button>
-            <button onclick="alternarCadastro('pet')" class="btn-alternar">
-                <i class="bi bi-heart-pulse"></i> Cadastrar Pet
-            </button>
         </div>
-    </section>
-
-    <!-- Seção de Cadastro de Pet -->
-    <section class="content desligado" id="pet">
-        <h5 id="voltar" onclick="mudarCadastro(2)">Voltar</h5>
-        <h2>Cadastrar Pet</h2>
-        <div class="alternar-cadastro">
-            <button onclick="alternarCadastro('cliente')" class="btn-alternar">
-                <i class="bi bi-person"></i> Cadastrar Cliente
-            </button>
-            <button onclick="alternarCadastro('vendedor')" class="btn-alternar">
-                <i class="bi bi-person-gear"></i> Cadastrar Vendedor
-            </button>
-        </div>
-        <form id="form-pet" onsubmit="cadastrarPet(event)" method="POST">
-            <div class="form-group">
-                <label for="pet-identidade">Identidade do Pet:</label>
-                <input type="text" id="pet-identidade" required oninput="verificarIdentidade()">
-            </div>
-
-            <div class="form-group">
-                <label for="cliente-cpf">CPF (Tutor):</label>
-                <input type="text" id="cliente-cpf" required oninput="verificarIdentidade()">
-            </div>
-            
-            <div class="form-group">
-                <label for="pet-nome">Nome do Pet:</label>
-                <input type="text" id="pet-nome" required disabled>
-            </div>
-            
-            <div class="form-group">
-                <label for="pet-tipo">Tipo de Pet:</label>
-                <select id="pet-tipo" required onchange="atualizarRacas()">
-                    <option value="">Selecione um tipo</option>
-                    <option value="cachorro">Cachorro</option>
-                    <option value="gato">Gato</option>
-                    <option value="ave">Pássaro</option>
-                    <option value="reptil">Réptil</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="pet-raca">Raça do Pet:</label>
-                <select id="pet-raca" required disabled>
-                    <option value="">Selecione primeiro o tipo</option>
-                </select>
-            </div>
-
-            <input type="submit" value="Cadastrar Pet" class="btn-submit" />
-        </form>
-        
     </section>
 
     <!-- Seção de Confirmação -->

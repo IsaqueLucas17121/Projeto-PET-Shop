@@ -1,6 +1,6 @@
 <?php
 
-include '../conn.php';
+include 'conn.php';
 
 $logado = '0';
 $cnpjSujo = $_POST['vendedor-cnpj'];
@@ -41,7 +41,7 @@ $imgLoja = "/img/imagemLojaOFF.png";
 
 if ($result->num_rows > 0) {
         echo "<script>alert('Vendedor já existe com o CNPJ fornecido.');</script>";
-        print "<script>location.href='../../../frontend/pages/cadastro.html';</script>";
+        print "<script>location.href='frontend/pages/cadastro.html';</script>";
     }
 else if($result2->num_rows > 0 && $conn->query($sql) === TRUE){
         $sql3 = "INSERT INTO lojas (nome,img,cep,numero,complemento,idFuncionario) VALUES 
@@ -49,7 +49,7 @@ else if($result2->num_rows > 0 && $conn->query($sql) === TRUE){
         $conn->query($sql3);
 
         echo "<script>alert('Vendedor Cadatrado');</script>";
-        print "<script>location.href='../../../frontend/pages/cadastro.html';</script>";
+        print "<script>location.href='frontend/pages/cadastro.html';</script>";
     }
 else if($conn->query($sql2) === TRUE &&  $conn->query($sql) === TRUE ){
         $sql3 = "INSERT INTO lojas (nome,img,cep,numero,complemento,idFuncionario) VALUES 
@@ -57,9 +57,9 @@ else if($conn->query($sql2) === TRUE &&  $conn->query($sql) === TRUE ){
         $conn->query($sql3);
 
         echo "<script>alert('Vendedor Cadatrado');</script>";
-        print "<script>location.href='../../../frontend/pages/cadastro.html';</script>";
+        print "<script>location.href='frontend/pages/cadastro.html';</script>";
     }
 else{
         echo "<script>alert('Falha ao cadastrar vendedor: {$conn->error}');</script>";
-        print "<script>location.href='../../../frontend/pages/cadastro.html'</script>";
+        print "<script>location.href='frontend/pages/cadastro.html'</script>";
     }

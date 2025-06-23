@@ -3,18 +3,19 @@
 include "conn.php";
 
 session_start();
-$local = "index.html";
-$ligado = FALSE;
+
+if( !isset($_SESSION['usuarios'])){
+  print "<script>location.href='index.html';</script>";
+}
 
 if(isset($_SESSION['usuarios'])){
-    $local = "index.php";
     $chave = $_SESSION['usuarios']->cpf;
     $sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
     $res = $conn->query($sql);
     $row = $res->fetch_object();
-    $ligado = TRUE;
 
 }
+
 
 ?>
 
@@ -26,7 +27,6 @@ if(isset($_SESSION['usuarios'])){
     <title>Agendar Pet - Nome do site</title>
     <link rel="stylesheet" href="frontend/src/css/agendarPet.css">
     <link rel="stylesheet" href="frontend/src/css/style.css">
-
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +40,18 @@ if(isset($_SESSION['usuarios'])){
     <link rel="shortcut icon" href="frontend/src/assets/Foto site.png" type="image/x-icon">
 
     <script src="frontend/src/js/script.js" defer></script>
+
+    <style>
+        #enviar{
+        cursor: pointer;
+        transition: 0.3s ease-out;
+        }
+        #enviar:hover{
+        background-color: #360745;
+        color: #efeac5;
+
+        }
+    </style>
 </head>
 <body>
 
@@ -69,9 +81,8 @@ if(isset($_SESSION['usuarios'])){
             <li><a href="#">Contato</a></li>
         </ul>
     </nav>
-
-    <a style="<?php if($ligado == TRUE){ echo "display: none;";} else{ echo "display: block;";} ?>" href="frontend/pages/cadastro.html" class="btn-login">Login / Cadastro</a>
-    <a href="config.php" style="<?php if($ligado == TRUE){ echo "display: block;";} else{ echo "display: none;";} ?>">
+    
+    <a href="config.php" >
         <div class="icone">
         <img src="<?php echo 'backend/php/usuario' . $row->img?>" alt="Imagem do usuario">
         <h1 >  Configurações</h4>
@@ -79,117 +90,23 @@ if(isset($_SESSION['usuarios'])){
     </a>
 
 </header>
-<div class="background_des">
-  <h1>Como funciona o banho e tosa?</h1>
-
-  <article>
-    O banho e tosa para pets é um serviço especializado que garante a higiene, saúde e bem-estar dos animais.
-    O processo começa com um banho usando shampoos adequados ao tipo de pele e pelo do pet, seguido de secagem com equipamentos próprios.
-    Depois, é feita a tosa, que pode ser higiênica, estética ou conforme a raça. O serviço geralmente inclui ainda limpeza das orelhas, corte das unhas e, em alguns casos, escovação dos dentes.
-    Tudo é feito por profissionais treinados para garantir conforto e segurança ao animal.
-  </article>
-</div>
-
-<div class="img_des">
-  <img src="https://foxvet.com.br/wp-content/uploads/2022/07/banner-banho-tosa-perguntas-frequentes-1200x675.jpg" alt="">
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const elementos = document.querySelectorAll('.img_des');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animated');
-        observer.unobserve(entry.target); // Só anima uma vez
-      }
-    });
-  });
-
-  elementos.forEach(el => observer.observe(el));
-});
-</script>
-
-
-<div class="background_calendario">
     
-    <div class="cabecario_calendario">
-        <h1 id="dataAgora"></h1>
-        <span>Segunda</span>
-        <span>Terça</span>
-        <span>Quarta</span>
-        <span>Quinta</span>
-        <span>Sexta</span>
-        <span>Sabado</span>
-        <span>Domingo</span>
-    </div>
-    <form action="AgendarPet.php" method="post" id="dia_cre">
-        <div class="numero_calendario">
-
-        </div>
-        <input type="submit" class="botao_marcar" value="Marcar dia"></h2>
-    </form>
-          
-</div>
-
-    <div class="numero_calendario"></div>
-<div id="dataAgora"></div>
-
-<script>
-  let numeros = document.querySelector(".numero_calendario");
-  let dia = document.getElementById("dataAgora");
-
-  for (let i = 1; i <= 31; i++) {
-    numeros.innerHTML += `
-      <input type="checkbox" name="dias[]" value="${i}" id="dia${i}" class="dia-checkbox">
-      <label style="cursor:pointer;" for="dia${i}">${i}</label>
-    `;
-  }
-
-  // Seleciona todos os inputs tipo checkbox criados
-  let checkboxes = document.querySelectorAll(".dia-checkbox");
-
-  checkboxes.forEach(input => {
-    input.addEventListener('change', () => {
-      // Atualiza os labels com classe "selecionado"
-      checkboxes.forEach(cb => {
-        let label = document.querySelector(`label[for="${cb.id}"]`);
-        if (cb.checked) {
-          label.classList.add("selecionado");
-        } else {
-          label.classList.remove("selecionado");
-        }
-      });
-
-      // Pega os dias selecionados com base nos labels
-      let selecionados = Array.from(document.querySelectorAll("label.selecionado"))
-        .map(label => label.textContent);
-
-      // Atualiza o conteúdo do elemento com id "dataAgora"
-      dia.innerHTML = selecionados.length
-        ? "Marcar Dia: " + selecionados.join(', ')
-        : "";
-    });
-  });
-</script>
-
-    <div class="background_pet desligado">
+  
+    <div class="background_pet">
         <h1>Cadastre seu Pet</h1>
 
         <section class="form_pet">
 
-            <form id="tipoPet" action="#">
-                
-                <div class="margin_nomePet">
-                <!-- Se a identidade estiver cadastrada o o nome do pet aparece -->
-                    <label for="identidade" class="titulo_form">Indentidade do Pet:</label>
-                    <input type="text" id="identidade" required>
-                </div>
+            <form id="tipoPet" action="cadastrarPet.php" method="post">
 
                 <div class="margin_nomePet">
                     <label for="nomePet" class="titulo_form">Nome do Pet</label>
-                    <input type="text" id="nomePet" readonly required>
+                    <input type="text" name="nomePet" id="nomePet" minlength='3' required>
+                </div>
+
+                <div class="margin_nomePet">
+                    <label for="idadePet" class="titulo_form">Idade do Pet</label>
+                    <input type="number" name="idadePet" id="idadePet" required>
                 </div>
                 
                 <label for="tipoPet" class="titulo_form">Tipo do Pet:</label>
@@ -253,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 
 
-                <input type="submit" value="salvar">
+                <input id="enviar" type="submit" value="Cadastrar Pet">
             </form>
 
             

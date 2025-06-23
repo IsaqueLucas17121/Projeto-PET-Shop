@@ -1,6 +1,6 @@
 <?php
 
-include "../conn.php";
+include "conn.php";
 
 session_start();
 
@@ -15,7 +15,7 @@ if(isset($_SESSION['vendedores'])){
 
 }
 else{
-    header("Location: ../../../index.html");
+    header("Location: index.html");
 }
 
 ?>
@@ -26,7 +26,8 @@ else{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja - Nome da loja</title>
-    <link rel="stylesheet" href="../../../frontend/src/css/adicionar.css">
+    <link rel="stylesheet" href="frontend/src/css/adicionar.css">
+    <link rel="stylesheet" href="frontend/src/css/style.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,9 +39,9 @@ else{
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- FIM BOOTSTRAP ICONS -->
 
-    <link rel="shortcut icon" href="../../../frontend/src/assets/Foto site.png" type="image/x-icon">
+    <link rel="shortcut icon" href="frontend/src/assets/Foto site.png" type="image/x-icon">
 
-    <script src="../../../frontend/src/js/script.js" defer></script>
+    <script src="frontend/src/js/script.js" defer></script>
 
     <style>
         #voltar{
@@ -64,26 +65,33 @@ else{
 <body>
   <header>
     <div class="logo">
-        <img src="../../../frontend/src/assets/Foto site.png" alt="Logo PetShop"> <!-- Substitua pelo caminho da sua logo -->
+        <img src="frontend/src/assets/Foto site.png" alt="Logo PetShop">
         <h1>PetShop Amor & Cuidado</h1>
     </div>
 
-    <nav>
+    <!-- Botão do menu mobile -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <nav class="nav-menu" id="nav-menu">
         <ul>
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="../loja.php">Loja</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="loja.php">Loja</a></li>
             <li><a href="cadastroPro.php">Produto</a></li>
             <li><a href="#">Contato</a></li>
         </ul>
     </nav>
 
-    <a href="../config.php">
+    <a href="config.php">
         <div class="icone">
-        <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo '../vendedor' . $row->img?>" alt="Imagem do usuario">
-        <h4 style="font-size: 20px;">  Configurações</h4>
+        <img src="<?php echo 'backend/php/vendedor' . $row->img?>" alt="Imagem do usuario">
+        <h1>  Configurações</h4>
         </div>
     </a>
-
+    
 </header>
 
     <section class="margin_container" style="position: relative;">
@@ -126,7 +134,7 @@ else{
             </form>
         </div>
 
-        <button id="voltar" onclick="location='../loja.php'">Voltar</button>
+        <button id="voltar" onclick="location='loja.php'">Voltar</button>
 
     </section>
 

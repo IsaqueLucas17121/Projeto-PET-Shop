@@ -9,11 +9,11 @@
         }
         
         if(isset($_SESSION['usuarios'])){
-            $trocarImg = "usuario/attImagem.php";
+            $trocarImg = "attImagemUsu.php";
             $nomePagi = "Usuario";
         }
         else if(isset($_SESSION['vendedores'])){
-            $trocarImg = "vendedor/attImagem.php";
+            $trocarImg = "attImagemVen.php";
             $nomePagi = "Vendedores";
         }
 
@@ -55,6 +55,11 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .container{
+            background-color: #333;
+            color: #f0f0f0;
         }
 
         h1 {
@@ -211,7 +216,7 @@
 
         <div id="contentCadastrarPet" class="content">
             <h3>Cadastre seu Pet</h3>
-            <button onclick="location.href='cadastrarPet.php'">Entrar</button>
+            <button onclick="location.href='cadastroPet.php'">Entrar</button>
         </div>
 
         <div id="contentMasterProfile" class="content">

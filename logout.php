@@ -13,7 +13,7 @@ if(isset($_SESSION['usuarios'])){
 
     unset($_SESSION['usuarios']);
 
-    header("Location: ../../index.html");
+    header("Location: index.html");
 }
 else if(isset($_SESSION['vendedores'])){
     $chave = $_SESSION['vendedores']->idFuncionario;
@@ -24,7 +24,7 @@ else if(isset($_SESSION['vendedores'])){
 
     unset($_SESSION['vendedores']);
 
-    header("Location: ../../index.html");
+    header("Location: index.html");
 }
 else{
     echo "<script>alert('falaha ao deslogar: {$conn->error}');</script>";

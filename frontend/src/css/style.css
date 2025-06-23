@@ -24,6 +24,7 @@
 
         /* ===== HEADER RESPONSIVO ===== */
         header {
+            flex-direction: row;
             background-color: #360745;
             display: flex;
             justify-content: space-between;
@@ -61,8 +62,13 @@
         .logo img:hover {
             transform: scale(1.05);
         }
-
-        .logo h1 {
+        .icone{
+            color: #efeac5;
+            font-size: 1.2rem;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .logo h1{
             color: #efeac5;
             font-size: 1.4rem;
             margin: 0;

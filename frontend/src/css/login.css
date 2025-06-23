@@ -569,7 +569,9 @@ body::before {
         padding-top: 140px;
         font-size: 0.9rem;
     }
-    
+    .content{
+        padding: 40px 50px;
+    }
     /* Header responsivo */
     header {
         flex-direction: column;

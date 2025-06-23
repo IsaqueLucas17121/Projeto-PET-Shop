@@ -5,13 +5,13 @@ include 'conn.php';
 session_start();
 
 if( !isset($_SESSION['usuarios']) && !isset($_SESSION['vendedores'])){
-    print "<script>location.href='../../frontend/pages/cadastro.html';</script>";
+    print "<script>location.href='cadastro.html';</script>";
 }
 if(isset($_SESSION['usuarios'])){
 
     $chave = $_SESSION['usuarios']->cpf;
 
-    $local = 'usuario/';
+    $local = 'backend/php/usuario/';
 
     $sql1 = "SELECT * FROM usuarios WHERE cpf = '$chave'";
     $res = $conn->query($sql1);
@@ -26,7 +26,7 @@ if(isset($_SESSION['vendedores'])){
 
     $chave = $_SESSION['vendedores']->idFuncionario;
 
-    $local = 'vendedor/';
+    $local = 'backend/php/vendedor/';
 
     $sql1 = "SELECT * FROM funcionarios WHERE idFuncionario = '$chave'";
     $res = $conn->query($sql1);
@@ -48,8 +48,9 @@ if(isset($_SESSION['vendedores'])){
     <title>Cadastro - PetShop</title>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="../../frontend/src/css/login.css">
-    <link rel="stylesheet" href="../../frontend/src/css/loja.css">
+    <link rel="stylesheet" href="frontend/src/css/login.css">
+    <link rel="stylesheet" href="frontend/src/css/loja.css">
+    <link rel="stylesheet" href="frontend/src/css/style.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,11 +61,11 @@ if(isset($_SESSION['vendedores'])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../frontend/src/assets/Foto site.png" type="image/x-icon">
+    <link rel="shortcut icon" href="frontend/src/assets/Foto site.png" type="image/x-icon">
 
     <!-- JavaScript -->
-    <script src="../../frontend/src/js/script.js" defer></script>
-    <script src="../../frontend/src/js/cadastro.js" defer></script>
+    <script src="frontend/src/js/script.js" defer></script>
+    <script src="frontend/src/js/cadastro.js" defer></script>
 
     <style>
         #cliente{
@@ -91,32 +92,42 @@ if(isset($_SESSION['vendedores'])){
     </style>
 </head>
 <body>
-    <header>
+<header>
     <div class="logo">
-        <img src="../../frontend/src/assets/Foto site.png" alt="Logo PetShop"> <!-- Substitua pelo caminho da sua logo -->
+        <img src="frontend/src/assets/Foto site.png" alt="Logo PetShop">
         <h1>PetShop Amor & Cuidado</h1>
     </div>
 
-    <nav>
+    <!-- Botão do menu mobile -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <nav class="nav-menu" id="nav-menu">
         <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="lojaUsu.php">Loja</a></li>
-            <li><a onclick="MostrarSer()" style="cursor: pointer;">Serviços</a></li>
-            <div class="desligado" id="MostrarSer">
-              <li><a href="../../frontend/pages/AgendarPet.php">Banho/Tosa</a></li>
-              <li><a href="#">Creche</a></li>
-            </div>
+            <li><a href="<?php echo $loja?>">Loja</a></li>
+            <li style="display: none; <?php if($vendedor == TRUE){echo 'display: block;';}?>"><a href="cadastroPro.php">Produto</a></li>
+            <li class="dropdown">
+                <a href="#" onclick="toggleDropdown()" style="<?php if($vendedor == TRUE){echo 'display: none;';}?> cursor: pointer;">Serviços</a>
+                <div class="dropdown-content" id="dropdown-servicos">
+                    <a href="AgendarPet.php">Banho/Tosa</a>
+                    <a href="#">Creche</a>
+                </div>
+            </li>
             <li><a href="#">Contato</a></li>
         </ul>
     </nav>
 
     <a href="config.php">
         <div class="icone">
-        <img style="width: 60px; height: 60px; border-radius: 50%;" src="<?php echo $local . $row->img?>" alt="Imagem do usuario">
-        <h4 style="font-size: 20px;">  Configurações</h4>
+        <img  src="<?php echo $local . $row->img?>" alt="Imagem do usuario">
+        <h1 >  Configurações</h4>
         </div>
     </a>
-
+    
 </header>
 
 
@@ -125,7 +136,7 @@ if(isset($_SESSION['vendedores'])){
         <a href="config.php"><h5 id="voltar"> Voltar</h5></a>
         <h2>Atualizar Cliente</h2>
 
-        <form id="form-cliente" action="usuario/atualizarUsu.php" method="POST">
+        <form id="form-cliente" action="atualizarUsu.php" method="POST">
             <label for="cliente-nome">Nome:</label>
             <input value="<?php echo $row->nome?>" type="text" name="cliente-nome" id="cliente-nome" required />
 
