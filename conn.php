@@ -1,8 +1,8 @@
 <?php
 
-$DbHost = "localhost";
+$DbHost = "44.201.115.177";
 $DbUsername = "root";
-$DbPassword = "";
+$DbPassword = "rootPassword";
 $DbName = "PetShop";
 
 $conn = new mysqli($DbHost,$DbUsername,$DbPassword,$DbName);
