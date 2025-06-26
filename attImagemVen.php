@@ -15,9 +15,9 @@ use Aws\Exception\AwsException;
 $bucket = 'awspetshop';
 $region = 'us-east-1';
 
-$accessKey = 'valor da chave aqui';
-$secretKey = 'valor da chave secreta aqui';
-$sessionToken = 'valor do token aqui';
+$accessKey = '';
+$secretKey = '';
+$sessionToken = '';
 // Criação do cliente S3
 $s3 = new S3Client([
     'version'     => 'latest',
