@@ -5,7 +5,7 @@
         session_start();
 
         if(!isset($_SESSION['usuarios']) && !isset($_SESSION['vendedores'])){
-            print "<script>location.href='index.html';</script>";
+            echo "<script>location.href='index.html';</script>";
         }
         
         if(isset($_SESSION['usuarios'])){
