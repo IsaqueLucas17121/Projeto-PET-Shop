@@ -2,7 +2,6 @@ CREATE DATABASE PetShop;
 
 USE PetShop;
 
-
 CREATE TABLE enderecos(
     cep VARCHAR(255) NOT NULL PRIMARY KEY,
     rua VARCHAR(255),
@@ -72,6 +71,7 @@ CREATE TABLE produtos(
     descricao VARCHAR(255),
     preco VARCHAR(255),
     img VARCHAR(255),
+    marca varchar(255),
     tipo enum("Cachorro","Gato","Passarinho","Peixe","Outros"),
     idLoja INT,
     idFuncionario VARCHAR(255),
