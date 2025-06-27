@@ -2,8 +2,6 @@ CREATE DATABASE PetShop;
 
 USE PetShop;
 
-select * from funcionarios;
-
 CREATE TABLE enderecos(
     cep VARCHAR(255) NOT NULL PRIMARY KEY,
     rua VARCHAR(255),
