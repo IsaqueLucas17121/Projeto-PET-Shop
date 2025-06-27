@@ -177,9 +177,87 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
-        }      
+        }
         
-    </style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+        }
+
+        .dark-mode table *{
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .dark-mode th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .dark-mode td:nth-child(even) {
+            background-color: #626262;
+        }
+
+        .btn-editar,
+        .btn-apagar {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 5px;
+            transition: 0.3s ease;
+        }
+
+        .btn-editar {
+            background-color: #2196F3;
+            color: white;
+        }
+        .dark-mode .btn-editar {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .btn-editar:hover {
+            background-color: #1976D2;
+        }
+        .dark-mode .btn-editar:hover {
+            background-color: #1976D2;
+        }
+
+        .btn-apagar {
+            background-color: #f44336;
+            color: white;
+        }
+        .dark-mode .btn-apagar {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-apagar:hover {
+            background-color: #d32f2f;
+        }
+        .dark-mode .btn-apagar:hover {
+            background-color: #d32f2f;
+        }
+        
+</style>
+
 </head>
 
 <body>
@@ -217,6 +295,39 @@
         <div id="contentCadastrarPet" class="content">
             <h3>Cadastre seu Pet</h3>
             <button onclick="location.href='cadastroPet.php'">Entrar</button>
+
+                <?php
+                if(isset($_SESSION['usuarios'])){
+                    $sql = "SELECT * FROM pets WHERE idUsuario=" . $_SESSION['usuarios']->cpf;
+                    $res = $conn->query($sql);
+
+                    if($conn->query($sql)){
+                       echo "<table>";
+                        echo "<tr>";
+                        echo "<th>Nome</th>";
+                        echo "<th>idade</th>";
+                        echo "<th>Tipo</th>";
+                        echo "<th>Raça</th>";
+                        echo "<th>Editar/Apagar</th>";
+                        echo "</tr>";
+
+                        while($row = $res->fetch_object()){
+                            echo "<tr>";
+                            echo "<td>{$row->nome}</td>";
+                            echo "<td>{$row->idade}</td>";
+                            echo "<td>{$row->tipo}</td>";
+                            echo "<td>{$row->raca}</td>";
+                            echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
+                            echo "</tr>";
+                        } 
+
+                        echo "</table>";
+                    }else{
+                        exit;
+                    }
+                }
+                    
+                ?>
         </div>
 
         <div id="contentMasterProfile" class="content">

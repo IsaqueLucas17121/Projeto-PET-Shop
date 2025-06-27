@@ -1,8 +1,19 @@
 <?php
-include '../conn.php';
+include 'conn.php';
+
 session_start();
 
-$chave = $_SESSION['vendedores']->idFuncionario;
+$chave = null;
+
+if (isset($_REQUEST['idFuncionario'])) {
+    $chave = intval($_REQUEST['idFuncionario']);
+    session_write_close();
+} elseif (isset($_SESSION['vendedores'])) {
+    $chave = $_SESSION['vendedores']->idFuncionario;
+}
+
+
+
 
 // Dados do formulário
 $nome = $_POST['vendedor-nome'];
@@ -32,7 +43,7 @@ if ($result2->num_rows == 0) {
     $sql2->bind_param('sssss', $cep, $rua, $bairro, $cidade, $estado);
     if (!$sql2->execute()) {
         echo "<script>alert('Falha ao inserir endereço: {$conn->error}');</script>";
-        echo "<script>location.href='../atualizar.php';</script>";
+        echo "<script>location.href='atualizar.php';</script>";
         exit;
     }
 }
@@ -43,9 +54,9 @@ $sql->bind_param('ssssssssi', $nome, $sobrenome, $email, $senha, $telefone, $num
 
 if ($sql->execute()) {
     echo "<script>alert('Vendedor Editado com sucesso');</script>";
-    echo "<script>location.href='../index.php';</script>";
+    echo "<script>location.href='index.php';</script>";
 } else {
     echo "<script>alert('Falha ao editar vendedor: {$conn->error}');</script>";
-    echo "<script>location.href='../atualizar.php';</script>";
+    echo "<script>location.href='atualizar.php';</script>";
 }
 ?>

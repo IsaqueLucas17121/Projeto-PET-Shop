@@ -1,5 +1,12 @@
 <?php
 
+    include "conn.php";
+    session_start();
+
+    if (!isset($_SESSION['usuarios'])) {
+        die("Acesso negado.");
+    }
+
     if (isset($_POST['dias'])) {
         $diasSelecionados = $_POST['dias']; // array de dias: [3, 15, 22]
 
@@ -16,9 +23,6 @@
         }
     }
 
-// Verifica se o usuário está logado
-if (!isset($_SESSION['usuarios'])) {
-    die("Acesso negado.");
-}
+
 
 ?>

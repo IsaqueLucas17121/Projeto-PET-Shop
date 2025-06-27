@@ -53,7 +53,7 @@ if(isset($_SESSION['usuarios'])){
         }
     </style>
 </head>
-<body>
+<body style="margin-top: 100px;">
 
 <header>
     <div class="logo">

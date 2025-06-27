@@ -244,7 +244,8 @@ if ($result->num_rows === 1) {
                     echo "<td>{$row3->complemento}</td>";
                     echo "<td><img style='height: 50px;width: 50px;' src='backend/php/vendedor{$img}' alt='icone do funcionario {$row3->nome}'></td>";
                     echo "<td>" . ($row3->logado ? 'Logado ✅' : 'Deslogado') . "</td>";
-                    echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
+                    echo "<td><button onclick=\"location.href='atualizar.php?idFuncionario=".$row3->idFuncionario."';\" class='btn-editar'>Editar</button>
+                              <button onclick=\"location.href='deletarVen.php?idFuncionario=".$row3->idFuncionario."';\" class='btn-apagar'>Apagar</button></td>";
                     echo "</tr>";
                 }
         ?>

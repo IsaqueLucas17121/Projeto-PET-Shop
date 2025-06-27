@@ -5,6 +5,7 @@ include "conn.php";
 session_start();
 $local = "index.html";
 $ligado = FALSE;
+$agendar = "frontend/pages/cadastro.html";
 
 if(isset($_SESSION['usuarios'])){
     $local = "index.php";
@@ -13,6 +14,7 @@ if(isset($_SESSION['usuarios'])){
     $res = $conn->query($sql);
     $row = $res->fetch_object();
     $ligado = TRUE;
+    $agendar = "agendar.php";
 
 }
 
@@ -40,6 +42,68 @@ if(isset($_SESSION['usuarios'])){
     <link rel="shortcut icon" href="frontend/src/assets/Foto site.png" type="image/x-icon">
 
     <script src="frontend/src/js/script.js" defer></script>
+    <style>
+      /* Centralizar o calendário na tela */
+.calendario-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+/* Aumentar o tamanho geral do calendário */
+.flatpickr-calendar {
+  font-size: 18px !important;
+  width: 450px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo dos quadrados dos dias */
+.flatpickr-day {
+  width: 50px !important;
+  height: 50px !important;
+  line-height: 50px !important;
+  font-size: 18px !important;
+  border-radius: 6px;
+}
+
+/* Cabeçalho (mês/ano) */
+.flatpickr-months {
+  font-size: 15px;
+}
+
+/* Botões de navegação */
+.flatpickr-prev-month,
+.flatpickr-next-month {
+  font-size: 22px;
+}
+
+.flatpickr-days{
+  justify-content: center;
+  width: 100%;
+}
+.flatpickr-innerContainer{
+  justify-content: center;
+}
+.dayContainer{
+  justify-content: space-between
+}
+
+/* Responsivo para mobile */
+@media (max-width: 600px) {
+  .flatpickr-calendar {
+    width: 100% !important;
+    font-size: 22px !important;
+  }
+
+  .flatpickr-day {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 18px !important;
+  }
+}
+
+    </style>
 </head>
 <body>
 
@@ -111,68 +175,24 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-
-<div class="background_calendario">
-    
-    <div class="cabecario_calendario">
-        <h1 id="dataAgora"></h1>
-        <span>Segunda</span>
-        <span>Terça</span>
-        <span>Quarta</span>
-        <span>Quinta</span>
-        <span>Sexta</span>
-        <span>Sabado</span>
-        <span>Domingo</span>
-    </div>
-    <form action="AgendarPet.php" method="post" id="dia_cre">
-        <div class="numero_calendario">
-
-        </div>
-        <input type="submit" class="botao_marcar" value="Marcar dia"></h2>
-    </form>
-          
+<form action="agendar" method="post">
+  <div class="calendario-container">
+  <div id="calendario"></div>
 </div>
 
-    <div class="numero_calendario"></div>
-<div id="dataAgora"></div>
+<!-- Flatpickr: CSS + JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
-  let numeros = document.querySelector(".numero_calendario");
-  let dia = document.getElementById("dataAgora");
-
-  for (let i = 1; i <= 31; i++) {
-    numeros.innerHTML += `
-      <input type="checkbox" name="dias[]" value="${i}" id="dia${i}" class="dia-checkbox">
-      <label style="cursor:pointer;" for="dia${i}">${i}</label>
-    `;
-  }
-
-  // Seleciona todos os inputs tipo checkbox criados
-  let checkboxes = document.querySelectorAll(".dia-checkbox");
-
-  checkboxes.forEach(input => {
-    input.addEventListener('change', () => {
-      // Atualiza os labels com classe "selecionado"
-      checkboxes.forEach(cb => {
-        let label = document.querySelector(`label[for="${cb.id}"]`);
-        if (cb.checked) {
-          label.classList.add("selecionado");
-        } else {
-          label.classList.remove("selecionado");
-        }
-      });
-
-      // Pega os dias selecionados com base nos labels
-      let selecionados = Array.from(document.querySelectorAll("label.selecionado"))
-        .map(label => label.textContent);
-
-      // Atualiza o conteúdo do elemento com id "dataAgora"
-      dia.innerHTML = selecionados.length
-        ? "Marcar Dia: " + selecionados.join(', ')
-        : "";
-    });
+  flatpickr("#calendario", {
+    inline: true,
+    dateFormat: "Y-m-d",
+    defaultDate: "today"
   });
 </script>
+<input type="submit" class="botao_marcar" value="Marcar dia"></h2>
+</form>
 
     <div class="background_pet desligado">
         <h1>Cadastre seu Pet</h1>

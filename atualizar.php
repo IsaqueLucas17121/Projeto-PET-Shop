@@ -35,8 +35,26 @@ if(isset($_SESSION['vendedores'])){
     $sql2 = "SELECT * FROM enderecos WHERE cep = '$row->cep'";
     $res2 = $conn->query($sql2);
     $row2 = $res2->fetch_object();
+
+    $salvarVen = "atualizarVen.php";
 }
 
+if(isset($_REQUEST['idFuncionario'])){
+
+    $chave = $_REQUEST['idFuncionario'];
+
+    $sql1 = "SELECT * FROM funcionarios WHERE idFuncionario = '$chave'";
+    $res = $conn->query($sql1);
+    $row = $res->fetch_object();
+
+    $sql2 = "SELECT * FROM enderecos WHERE cep = '$row->cep'";
+    $res2 = $conn->query($sql2);
+    $row2 = $res2->fetch_object();
+
+    $salvarVen = "atualizarVen.php?idFuncionario=$chave";
+
+    session_abort();
+}
 
 ?>
 
@@ -202,7 +220,7 @@ if(isset($_SESSION['vendedores'])){
         <a href="config.php"><h5 id="voltar"> Voltar</h5></a>
         <h2>Atualizar Vendedor</h2>
   
-        <form id="form-vendedor" action="vendedor/atualizarVen.php" method="POST">
+        <form id="form-vendedor" action="<?php echo $salvarVen?>" method="POST">
             <label for="vendedor-nome">Nome:</label>
             <input value="<?php echo $row->nome?>" type="text" name="vendedor-nome" id="vendedor-nome" required />
 
