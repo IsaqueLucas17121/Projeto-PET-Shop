@@ -57,12 +57,45 @@ else{
             border-radius: 15px;
         }
 
-        .radio_tipo{
-            display: inline;
-          }
+    .radio_tipo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    }
+
+    .radio_tipo input[type="radio"] {
+    display: none; /* Esconde os botões */
+    }
+
+    .radio_tipo label {
+    padding: 10px 20px;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: Arial, sans-serif;
+    }
+
+    /* Estilo quando selecionado */
+    .radio_tipo input[type="radio"]:checked + label {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+    }
+    #radio_tipo2  input[type="radio"]:checked + label {
+        background-color:rgb(74, 17, 207);
+        color: white;
+        border-color: rgb(74, 17, 207);
+    }
+
+    .radio_tipo label:hover {
+    background-color: #e0e0e0;
+    }
+
     </style>
 </head>
-<body>
+<body style="margin-top: 60px;">
   <header>
     <div class="logo">
         <img src="frontend/src/assets/Foto site.png" alt="Logo PetShop">
@@ -100,6 +133,26 @@ else{
                 <label for="produto" class="form-label">Nome do Produto</label>
                 <input type="text" name="produto" class="form-control" id="produto" required>
 
+                <label for="marca" class="form-label">Escolha a Marca</label>
+                <div class="radio_tipo">
+                    <input type="radio" name="marca" value="Pedigree" id="Pedigree" required>
+                    <label for="Pedigree">Pedigree</label>
+
+                    <input type="radio" name="marca" value="Golden" id="Golden">
+                    <label for="Golden">Golden</label>
+
+                    <input type="radio" name="marca" value="Whiskas" id="Whiskas">
+                    <label for="Whiskas">Whiskas</label>
+
+                    <input type="radio" name="marca" value="Aleon" id="Aleon">
+                    <label for="Aleon">Aleon</label>
+
+                    <input type="radio" name="marca" value="Outra" id="Outra">
+                    <label for="Outra">Outra</label>
+                </div>
+
+
+
                 <label for="descricao" class="form-label">Descrição</label>
                 <input type="text" name="descricao" class="form-control" id="descricao" required>
 
@@ -107,22 +160,22 @@ else{
                 <label for="preco" class="form-label">Preço</label>
                 <input type="number" name="preco" class="form-control" id="preco" step="0.01" required>
 
-                <div class="radio_tipo">
-                    <label for="Cachorro">Cachorro</label>
+                <label for="tipoPet" class="form-label">Escolha o Tipo de Animal</label>
+                <div class="radio_tipo" id="radio_tipo2">
                     <input type="radio" name="tipoPet" value="Cachorro" id="Cachorro" required>
+                    <label for="Cachorro">Cachorro</label>
 
-                    <label for="Gato">Gato</label>
                     <input type="radio" name="tipoPet" value="Gato" id="Gato">
+                    <label for="Gato">Gato</label>
 
-                    <label for="Passarinho">Passarinho</label>
                     <input type="radio" name="tipoPet" value="Passarinho" id="Passarinho">
+                    <label for="Passarinho">Passarinho</label>
 
-                    <label for="Peixe">Peixe</label>
                     <input type="radio" name="tipoPet" value="Peixe" id="Peixe">
+                    <label for="Peixe">Peixe</label>
 
-                    <label for="Outros">Outros</label>
-                    <input type="radio" name="tipoPet" value="Outros" id="Outros">
-
+                    <input type="radio" name="tipoPet" value="Outro" id="Outro">
+                    <label for="Outro">Outro</label>
                 </div>
 
 

@@ -18,6 +18,8 @@ if(isset($_SESSION['usuarios'])){
     $local = "index.php";
 }
 
+$marcas = ['Pedigree', 'Golden', 'Whiskas', 'Aleon', 'Outra'];
+$racas = ['Cachorro', 'Gato', 'Passarinho', 'Peixe', 'Outro'];
 
 ?>
 
@@ -51,7 +53,7 @@ if(isset($_SESSION['usuarios'])){
         }
     </style>
 </head>
-<body>
+<body style="margin-top: 60px;">
     
 <header>
     <div class="logo">
@@ -140,43 +142,37 @@ if(isset($_SESSION['usuarios'])){
                 <div class="box_filtro">
                     <h3>Tipos de Animais</h3>
                     <i class="bi bi-filter" onclick="DesligarFiltro()"></i>
-                    <div class="filtro_iten">
-                        <span id="filtro1">Cachorro</span><span class="quantidade_filtro">0</span>
-                    </div>
-                    <div class="filtro_iten">
-                        <span id="filtro2">Gato</span><span class="quantidade_filtro">0</span>
-                    </div>
-                    <div class="filtro_iten">
-                        <span id="filtro3">Passarinho</span><span class="quantidade_filtro">0</span>
-                    </div>  
-                    <div class="filtro_iten">
-                        <span id="filtro4">Peixe</span><span class="quantidade_filtro">0</span>
-                    </div>        
-                    <div class="filtro_iten">
-                        <span id="filtro5">Outros</span><span class="quantidade_filtro">0</span>
-                    </div>     
+                    <?php
+                        foreach ($racas as $tipo) {
+                            $sql = "SELECT COUNT(*) as total FROM produtos WHERE tipo = ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $tipo);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            $row = $result->fetch_object();
 
-                    <h3>Marca</h3>
-                    <div class="filtro_iten">
-                        <span>Golden</span><span class="quantidade_filtro" id="filtro6">0</span>
-                    </div>
-                    <div class="filtro_iten">
-                        <span>Pedigree</span><span class="quantidade_filtro" id="filtro7">0</span>
-                    </div>
-                    <div class="filtro_iten">
-                        <span>PremieR</span><span class="quantidade_filtro" id="filtro8">0</span>
-                    </div>
+                            echo "<div onclick=\"selecionado('$tipo')\" class='filtro_iten'>";
+                            echo "<span class='filtro-nome'>{$tipo}</span>";
+                            echo "<span class='quantidade_filtro'>{$row->total}</span>";
+                            echo "</div>";
+                    }
+                    ?>
+                    <h3>Marcas Populares</h3> 
+                    <?php
+                        foreach ($marcas as $marca) {
+                            $sql = "SELECT COUNT(*) as total FROM produtos WHERE marca = ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $marca);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            $row = $result->fetch_object();
 
-                    <h3>Idade</h3>
-                    <div class="filtro_iten">
-                        <span>Adulto</span><span class="quantidade_filtro" id="filtro9">0</span>
-                    </div>
-                    <div class="filtro_iten">
-                        <span>Filhote</span><span class="quantidade_filtro" id="filtro10">0</span>
-                    </div>
-                    <div class="filtro_iten">
-                        <span>Idoso</span><span class="quantidade_filtro" id="filtro11">0</span>
-                    </div>
+                            echo "<div onclick=\"selecionado('$marca')\" class='filtro_iten'>";
+                            echo "<span class='filtro-nome'>{$marca}</span>";
+                            echo "<span class='quantidade_filtro'>{$row->total}</span>";
+                            echo "</div>";
+                    }
+                    ?>
 
                     <h3>Sabor da Ração</h3>
                     <div class="filtro_iten">
@@ -221,7 +217,7 @@ if(isset($_SESSION['usuarios'])){
                         else{
                             echo"<div class='box_cards' onclick=\"location.href='comprar.php?idPro=".$row2->idPro."';\">
                                 <div class='magin_imagemcard'>
-                                    <img src= 'produto$row2->img' alt='Foto do produto'>
+                                    <img src= '$row2->img' alt='Foto do produto'>
                                 </div>
                                 <ul>
                                     <li><span>$row2->nome</span></li>
@@ -386,6 +382,10 @@ function slide_arrow(direction) {
     }
 
     document.getElementById("radio" + count).checked = true;
+}
+
+function selecionado(valor){
+    console.log(valor)
 }
 </script>
 

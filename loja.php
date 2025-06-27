@@ -56,7 +56,7 @@ else{
         }
     </style>
 </head>
-<body>
+<body style="margin-top: 60px;">
 <header>
     <div class="logo">
         <img src="frontend/src/assets/Foto site.png" alt="Logo PetShop">
@@ -166,9 +166,9 @@ else{
                     while($row3 = $res3->fetch_object()){
 
                         if($qtd > 1){
-                            echo"<div class='box_cards deligado' onclick=\"location.href='produto/atualizarPro.php?idPro=".$row3->idPro."';\">
+                            echo"<div class='box_cards deligado' onclick=\"location.href='atualizarPro.php?idPro=".$row3->idPro."';\">
                                 <div class='magin_imagemcard'>
-                                    <img src= 'produto$row3->img' alt='Foto do produto'>
+                                    <img src= 'backend/php/produto/$row3->img' alt='Foto do produto'>
                                 </div>
                                 <ul>
                                     <li><span>$row3->nome</span></li>
@@ -179,9 +179,9 @@ else{
 
                         }
                         else{
-                            echo"<div class='box_cards' onclick=\"location.href='produto/atualizarPro.php?idPro=".$row3->idPro."';\">
+                            echo"<div class='box_cards' onclick=\"location.href='atualizarPro.php?idPro=".$row3->idPro."';\">
                                 <div class='magin_imagemcard'>
-                                    <img src= 'produto$row3->img' alt='Foto do produto'>
+                                    <img src= '$row3->img' alt='Foto do produto'>
                                 </div>
                                 <ul>
                                     <li><span>$row3->nome</span></li>
@@ -198,7 +198,7 @@ else{
     
                 
                 <div class="box_cards" id="adicionarPro">
-                    <a href="produto/cadastroPro.php">
+                    <a href="cadastroPro.php">
                         <div class="magin_imagemcard">
                             <img src="https://icones.pro/wp-content/uploads/2021/06/icone-d-image-bleue.png" alt="Foto do produto">
                         </div>

@@ -95,7 +95,7 @@ else if(isset($_SESSION['vendedores'])){
     <a href="config.php">
         <div class="icone">
         <img src="<?php echo $local . $row->img?>" alt="Imagem do usuario">
-        <h1>  Configurações</h4>
+        <h1>  Configurações</h1>
         </div>
     </a>
     

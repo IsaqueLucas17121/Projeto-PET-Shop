@@ -1,6 +1,6 @@
 <?php
 
-include "../conn.php";
+include "conn.php";
 
 session_start();
 
@@ -23,7 +23,7 @@ else if($qtd>0){
     $img = "$row->img";
 }
 else{
-    $img ="./img/imagemProdutoOFF.png";
+    $img ="backend/php/produto/img/imagemProdutoOFF.png";
 }
 
 $sql= "UPDATE produtos SET nome='{$produto}',descricao='{$descricao}',preco='{$preco}',img='{$img}'
@@ -32,9 +32,9 @@ WHERE idPro = $chave";
 
 if($conn->query($sql) ){
     echo "<script>alert('Produto Atualizado');</script>";
-    echo "<script>location.href='../loja.php';</script>";
+    echo "<script>location.href='loja.php';</script>";
 }
 else{
     echo "<script>alert('Falha ao atualizar Produto');</script>";
-    echo "<script>location.href='../loja.php';</script>";
+    echo "<script>location.href='loja.php';</script>";
 }

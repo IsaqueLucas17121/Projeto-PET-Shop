@@ -91,7 +91,7 @@ if(isset($_SESSION['vendedores'])){
         
     </style>
 </head>
-<body>
+<body style="margin-top: 100px;">
 <header>
     <div class="logo">
         <img src="frontend/src/assets/Foto site.png" alt="Logo PetShop">
@@ -198,7 +198,7 @@ if(isset($_SESSION['vendedores'])){
         
     </section>
 
-    <section class="content desligado" id="vendedor">
+    <section class="content" id="vendedor">
         <a href="config.php"><h5 id="voltar"> Voltar</h5></a>
         <h2>Atualizar Vendedor</h2>
   

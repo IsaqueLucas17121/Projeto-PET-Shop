@@ -17,8 +17,12 @@ if ($result->num_rows === 1) {
         $result = $conn->query($sql);
         $sql2 = "SELECT * FROM enderecos";
         $result2 = $conn->query($sql2);
-        $slq3 = "SELECT * FROM funcionarios";
-        $result3 = $conn->query($slq3); 
+        $sql3 = "SELECT * FROM funcionarios";
+        $result3 = $conn->query($sql3); 
+        $sql4 = "SELECT * FROM pets";
+        $result4 = $conn->query($sql4);
+        $sql5 = "SELECT * FROM produtos";
+        $result5 = $conn->query($sql5);
 
 } else {
     echo "<script>alert('Email ou Senha errados')</script>";
@@ -125,6 +129,33 @@ if ($result->num_rows === 1) {
             top: 0;
         }
 
+        .btn-editar {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-apagar {
+            background-color: #f44336; /* Vermelho */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-editar:hover {
+            background-color: #45a049;
+        }
+
+        .btn-apagar:hover {
+            background-color: #d32f2f;
+        }
+
     </style>
 </head>
 <body>
@@ -132,8 +163,7 @@ if ($result->num_rows === 1) {
         <h2 onclick="trocarLista(1)">Lista de Usuarios</h2>
         <h2 onclick="trocarLista(2)">Lista de Funcionarios</h2>
         <h2 onclick="trocarLista(3)">Lista de Pets</h2>
-        <h2 onclick="trocarLista(4)">Lista de Lojas</h2>
-        <h2 onclick="trocarLista(5)">Lista de Produtos</h2>   
+        <h2 onclick="trocarLista(4)">Lista de Produtos</h2>   
         <a href="config.php"><button id="voltar">Voltar</button></a>   
     </div>
 
@@ -170,9 +200,9 @@ if ($result->num_rows === 1) {
                     echo "<td>{$row->cep}</td>";
                     echo "<td>{$row->numero}</td>";
                     echo "<td>{$row->complemento}</td>";
-                    echo "<td><img style='height: 50px;width: 50px;' src='usuario{$img}' alt='icone do usuario'></td>";
+                    echo "<td><img style='height: 50px;width: 50px;' src='backend/php/usuario{$img}' alt='icone do usuario'></td>";
                     echo "<td>" . ($row->logado ? 'Logado ✅' : 'Deslogado') . "</td>";
-                    echo "<td><button>Editar</button> <button>Apagar</button></td>";
+                    echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
                     echo "</tr>";
                 }
         ?>
@@ -212,9 +242,82 @@ if ($result->num_rows === 1) {
                     echo "<td>{$row3->cep}</td>";
                     echo "<td>{$row3->numero}</td>";
                     echo "<td>{$row3->complemento}</td>";
-                    echo "<td><img style='height: 50px;width: 50px;' src='vendedor{$img}' alt='icone do funcionario {$row3->nome}'></td>";
-                    echo "<td>" . ($row3->logado ? 'Logado' : 'Deslogado') . "</td>";
-                    echo "<td><button>Editar</button> <button>Apagar</button></td>";
+                    echo "<td><img style='height: 50px;width: 50px;' src='backend/php/vendedor{$img}' alt='icone do funcionario {$row3->nome}'></td>";
+                    echo "<td>" . ($row3->logado ? 'Logado ✅' : 'Deslogado') . "</td>";
+                    echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
+                    echo "</tr>";
+                }
+        ?>
+    </table>
+
+    <table id="tabela3" class="desligado">  
+   
+        <tr>
+            <caption><h1>Listar Pets</h1><button onclick="voltar()">Voltar</button></caption>
+            <th>Id Pet</th>
+            <th>Idade</th>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Raça</th>
+            <th>Hotel</th>
+            <th>Consulta</th>
+            <th>Dono</th>
+            <th>Editar/Apagar</th>
+        </tr>
+        <?php
+            while ($row4 = $result4->fetch_object()){
+
+                $donoId = $row4->idUsuario;
+                $donoQuery = "SELECT nome FROM usuarios WHERE cpf=$donoId";
+                $donoResult = $conn->query($donoQuery);
+                $donoNome = ($donoResult && $donoResult->num_rows > 0) ? $donoResult->fetch_object()->nome : "Desconhecido";
+
+
+                    echo "<tr>";
+                    echo "<td>{$row4->idPet}</td>";
+                    echo "<td>{$row4->idade}</td>";
+                    echo "<td>{$row4->nome}</td>";
+                    echo "<td>{$row4->tipo}</td>";
+                    echo "<td>{$row4->raca}</td>";
+                    echo "<td>{$row4->hotel}</td>";
+                    echo "<td>{$row4->consulta}</td>";
+                    echo "<td>{$donoNome}</td>";
+                    echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
+                    echo "</tr>";
+                }
+        ?>
+    </table>
+
+    <table id="tabela4" class="desligado">  
+   
+        <tr>
+            <caption><h1>Listar Produtos</h1><button onclick="voltar()">Voltar</button></caption>
+            <th>Id Produto</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Tipo</th>
+            <th>Vendedor</th>
+            <th>Imagem</th>
+            <th>Editar/Apagar</th>
+        </tr>
+        <?php
+            while ($row5 = $result5->fetch_object()){
+
+                $vendedorId = $row5->idFuncionario;
+                $vendedorQuery = "SELECT nome FROM funcionarios WHERE idFuncionario=$vendedorId";
+                $vendedorResult = $conn->query($vendedorQuery);
+                $vendedorNome = ($vendedorResult && $vendedorResult->num_rows > 0) ? $vendedorResult->fetch_object()->nome : "Desconhecido";
+
+                    echo "<tr>";
+                    echo "<td>{$row5->idPro}</td>";
+                    echo "<td>{$row5->nome}</td>";
+                    echo "<td>{$row5->descricao}</td>";
+                    echo "<td>R$ {$row5->preco},00</td>";
+                    echo "<td>{$row5->tipo}</td>";
+                    echo "<td>$vendedorNome</td>";
+                    echo "<td><img style='height: 50px;width: 50px;' src='backend/php/produto{$row5->img}' alt='Imagem do Produto'></td>";
+                    echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
                     echo "</tr>";
                 }
         ?>
@@ -244,7 +347,7 @@ if ($result->num_rows === 1) {
     </table>
 <script>
  function trocarLista(num) {
-    for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 4; i++) {
         document.getElementById('tabela' + i).classList.add('desligado');
     }
     document.getElementById('box_card').style.display= "none";
@@ -252,7 +355,7 @@ if ($result->num_rows === 1) {
 }
 
 function voltar() {
-    for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 4; i++) {
         document.getElementById('tabela' + i).classList.add('desligado');
     }
     document.getElementById('box_card').style.display= "grid";

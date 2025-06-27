@@ -1,6 +1,6 @@
 <?php
 
-include "../conn.php";
+include "conn.php";
 
 session_start();
 $chave = $_SESSION['idPro'];
@@ -21,10 +21,10 @@ if ($img !== $protegidos && file_exists($img)) {
 
 if($conn->query($sql)){
     echo "<script>alert('Produto Deletado');</script>";
-    echo "<script>location.href='../loja.php';</script>";
+    echo "<script>location.href='loja.php';</script>";
     unset($_SESSION['idPro']);
 }
 else{
     echo "<script>alert('Falha ao deletar produto');</script>";
-    echo "<script>location.href='../loja.php';</script>";
+    echo "<script>location.href='loja.php';</script>";
 }

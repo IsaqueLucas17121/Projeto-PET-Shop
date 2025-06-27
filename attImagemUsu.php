@@ -6,7 +6,7 @@ session_start();
 
 $chave = $_SESSION['usuarios']->cpf;
 
-require 'vendor/autoload.php';
+require 'usuario/autoload.php';
 
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
