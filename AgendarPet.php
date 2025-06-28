@@ -42,66 +42,75 @@ if(isset($_SESSION['usuarios'])){
     <link rel="shortcut icon" href="frontend/src/assets/Foto site.png" type="image/x-icon">
 
     <script src="frontend/src/js/script.js" defer></script>
+
     <style>
+
+      .radioSelecionar{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       /* Centralizar o calendário na tela */
-.calendario-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-}
+      .calendario-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+      }
 
-/* Aumentar o tamanho geral do calendário */
-.flatpickr-calendar {
-  font-size: 18px !important;
-  width: 450px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
+      /* Aumentar o tamanho geral do calendário */
+      .flatpickr-calendar {
+        font-size: 18px !important;
+        width: 450px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
 
-/* Estilo dos quadrados dos dias */
-.flatpickr-day {
-  width: 50px !important;
-  height: 50px !important;
-  line-height: 50px !important;
-  font-size: 18px !important;
-  border-radius: 6px;
-}
+      /* Estilo dos quadrados dos dias */
+      .flatpickr-day {
+        width: 50px !important;
+        height: 50px !important;
+        line-height: 50px !important;
+        font-size: 18px !important;
+        border-radius: 6px;
+      }
 
-/* Cabeçalho (mês/ano) */
-.flatpickr-months {
-  font-size: 15px;
-}
+      /* Cabeçalho (mês/ano) */
+      .flatpickr-months {
+        font-size: 15px;
+      }
 
-/* Botões de navegação */
-.flatpickr-prev-month,
-.flatpickr-next-month {
-  font-size: 22px;
-}
+      /* Botões de navegação */
+      .flatpickr-prev-month,
+      .flatpickr-next-month {
+        font-size: 22px;
+      }
 
-.flatpickr-days{
-  justify-content: center;
-  width: 100%;
-}
-.flatpickr-innerContainer{
-  justify-content: center;
-}
-.dayContainer{
-  justify-content: space-between
-}
+      .flatpickr-days{
+        justify-content: center;
+        width: 100%;
+      }
+      .flatpickr-innerContainer{
+        justify-content: center;
+      }
+      .dayContainer{
+        justify-content: space-between
+      }
 
-/* Responsivo para mobile */
-@media (max-width: 600px) {
-  .flatpickr-calendar {
-    width: 100% !important;
-    font-size: 22px !important;
-  }
+      /* Responsivo para mobile */
+      @media (max-width: 600px) {
+        .flatpickr-calendar {
+          width: 100% !important;
+          font-size: 22px !important;
+        }
 
-  .flatpickr-day {
-    width: 48px !important;
-    height: 48px !important;
-    font-size: 18px !important;
-  }
-}
+        .flatpickr-day {
+          width: 48px !important;
+          height: 48px !important;
+          font-size: 18px !important;
+        }
+      }
 
     </style>
 </head>
@@ -175,111 +184,78 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<form action="agendar" method="post">
+<form class="background_calendario" action="agendar.php" method="post">
+
   <div class="calendario-container">
-  <div id="calendario"></div>
-</div>
+    <div id="calendario"></div>
+  </div>
 
-<!-- Flatpickr: CSS + JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <input type="hidden" name="dataSelecionada" id="dataSelecionada">
 
-<script>
-  flatpickr("#calendario", {
-    inline: true,
-    dateFormat: "Y-m-d",
-    defaultDate: "today"
-  });
-</script>
-<input type="submit" class="botao_marcar" value="Marcar dia"></h2>
+  <!-- Flatpickr: CSS + JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <script>
+      flatpickr("#calendario", {
+      inline: true,
+      dateFormat: "Y-m-d",
+      defaultDate: "today",
+      onChange: function(selectedDates, dateStr, instance) {
+        // Atualiza o input hidden com a data
+        document.getElementById("dataSelecionada").value = dateStr;
+      }
+    });
+
+    // Define valor inicial (caso o usuário não clique no calendário)
+    window.onload = () => {
+      const hoje = new Date().toISOString().split("T")[0];
+      document.getElementById("dataSelecionada").value = hoje;
+    };
+
+  </script>
+
+  <?php
+    if(isset($_SESSION['usuarios'])){
+        $sql = "SELECT * FROM pets WHERE idUsuario=" . $_SESSION['usuarios']->cpf;
+        $res = $conn->query($sql);
+
+        if($conn->query($sql)){
+            echo "<table>";
+            echo "<tr>";
+            echo "<th>Nome</th>";
+            echo "<th>idade</th>";
+            echo "<th>Tipo</th>";
+            echo "<th>Raça</th>";
+            echo "<th>Selecionar</th>";
+            echo "</tr>";
+
+            while($row = $res->fetch_object()){
+                echo "<tr>";
+                echo "<td>{$row->nome}</td>";
+                echo "<td>{$row->idade}</td>";
+                echo "<td>{$row->tipo}</td>";
+                echo "<td>{$row->raca}</td>";
+                echo "
+              <td>
+                <input class='radioSelecionar' type='radio' name='petCadastro' id='{$row->nome}' value='{$row->nome}' required>              
+              </td>";
+
+                echo "</tr>";
+            } 
+
+            echo "</table>";
+            echo "<input type='submit' class='botao_marcar' value='Marcar dia'></h2>";
+        }
+        else{
+            echo "<input type='submit' onclick=location.href='cadastroPet.php' class='botao_marcar' value='Cadastrar Pet'></h2>";
+        }
+    }
+        
+    ?>
+    
 </form>
 
-    <div class="background_pet desligado">
-        <h1>Cadastre seu Pet</h1>
-
-        <section class="form_pet">
-
-            <form id="tipoPet" action="#">
-                
-                <div class="margin_nomePet">
-                <!-- Se a identidade estiver cadastrada o o nome do pet aparece -->
-                    <label for="identidade" class="titulo_form">Indentidade do Pet:</label>
-                    <input type="text" id="identidade" required>
-                </div>
-
-                <div class="margin_nomePet">
-                    <label for="nomePet" class="titulo_form">Nome do Pet</label>
-                    <input type="text" id="nomePet" readonly required>
-                </div>
-                
-                <label for="tipoPet" class="titulo_form">Tipo do Pet:</label>
-                <div class="magin_radio">         
-                    <div class="radio_btn">
-                        <label for="cachorro">Cachorro</label>
-                        <input type="radio" name="tipoPet" id="cachorro">
-                        <label for="cachorro" class="radio_manual" id="radio1"></label>  
-                        <select id="racaCachorro" name="racaCachorro">
-                            <option value="Beagle">Beagle</option>
-                            <option value="PastorAlemao">Pastor Alemão</option>   
-                            <option value="Poodle">Poodle</option>
-                            <option value="ShihTzu">Shih Tzu</option>
-                            <option value="YorkshireTerrier">Yorkshire Terrier</option>
-                            <option value="Outro">Não Sei</option>     
-                        </select>
-                        
-                    </div>
-                    <div class="radio_btn">
-                        <label for="gato">Gato</label>
-                        <input type="radio" name="tipoPet" id="gato">
-                        <label for="gato" class="radio_manual" id="radio2"></label>
-                        <select id="racaGato" name="racaGato">
-                            <option value="Siames">Siames</option>
-                            <option value="Persa">Persa</option>   
-                            <option value="ScottishFold">Scottish Fold</option>
-                            <option value="Sphynx">Sphynx</option>
-                            <option value="MaineCoon">Maine Coon</option>
-                            <option value="Outro">Não Sei</option>
-                        </select>  
-
-                    </div>
-                    <div class="radio_btn">
-                        <label for="ave">Passaro</label>
-                        <input type="radio" name="tipoPet" id="ave">
-                        <label for="ave" class="radio_manual" id="radio3"></label>
-                        <select id="racaAve" name="racaAve">
-                            <option value="canario">Canário</option>
-                            <option value="calopsita">Calopsita</option>   
-                            <option value="Cacatua">Cacatua</option>
-                            <option value="Arara">Arara</option>
-                            <option value="PapagaioCinzento">Papagaio Cinzento</option>
-                            <option value="Outro">Não Sei</option>
-                        </select>          
-
-                    </div>
-                    <div class="radio_btn">
-                        <label for="reptil">Reptil</label>
-                        <input type="radio" name="tipoPet" id="reptil">
-                        <label for="reptil" class="radio_manual" id="radio4"></label>
-                        <select id="racaReptil" name="racaReptil">
-                            <option value="Iguana">Iguana Verde</option>
-                            <option value="Jabuti">Jabuti</option>   
-                            <option value="Teiú">Teiú</option>
-                            <option value="Sphynx">Sphynx</option>
-                            <option value="Jiboia">Jiboia Arco-íris</option>
-                            <option value="Outro">Não Sei</option>
-                        </select> 
-
-                    </div>
-                </div>
-                
-
-                <input type="submit" value="salvar">
-            </form>
-
-            
-        </section>
-        
-    </div>
 
     <footer>
   <div class="footer-section">

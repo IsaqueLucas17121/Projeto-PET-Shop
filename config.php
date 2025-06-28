@@ -317,7 +317,7 @@
                             echo "<td>{$row->idade}</td>";
                             echo "<td>{$row->tipo}</td>";
                             echo "<td>{$row->raca}</td>";
-                            echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
+                            echo "<td><button class='btn-editar'>Editar</button> <button onclick=\"location.href='deletarPet.php?idPet=".$row->idPet."';\"  class='btn-apagar'>Apagar</button></td>";
                             echo "</tr>";
                         } 
 
