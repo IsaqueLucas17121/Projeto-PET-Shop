@@ -113,7 +113,7 @@ if(isset($_SESSION['usuarios'])){
                 <div class="magin_radio">         
                     <div class="radio_btn">
                         <label for="cachorro">Cachorro</label>
-                        <input type="radio" name="tipoPet" id="cachorro">
+                        <input type="radio" name="tipoPet" id="cachorro" required>
                         <label for="cachorro" class="radio_manual" id="radio1"></label>  
                         <select id="racaCachorro" name="racaCachorro">
                             <option value="Beagle">Beagle</option>

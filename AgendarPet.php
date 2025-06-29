@@ -16,7 +16,14 @@ if(isset($_SESSION['usuarios'])){
     $ligado = TRUE;
     $agendar = "agendar.php";
 
+    $sql2 = "SELECT nome FROM pets WHERE idUsuario = '$chave'";
+    $res2 = $conn->query($sql2);
+    
+    if($res2->num_rows < 1){
+    $agendar = "cadastroPet.php";
+  }
 }
+
 
 ?>
 
@@ -184,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<form class="background_calendario" action="agendar.php" method="post">
+<form class="background_calendario" action="<?php echo $agendar?>" method="post">
 
   <div class="calendario-container">
     <div id="calendario"></div>
@@ -220,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $sql = "SELECT * FROM pets WHERE idUsuario=" . $_SESSION['usuarios']->cpf;
         $res = $conn->query($sql);
 
-        if($conn->query($sql)){
+        if($res->num_rows >= 1){
             echo "<table>";
             echo "<tr>";
             echo "<th>Nome</th>";
@@ -251,6 +258,10 @@ document.addEventListener('DOMContentLoaded', function() {
             echo "<input type='submit' onclick=location.href='cadastroPet.php' class='botao_marcar' value='Cadastrar Pet'></h2>";
         }
     }
+    else{
+      echo "<input type='submit' class='botao_marcar' value='Cadastre-se'></input>";
+    }
+      
         
     ?>
     

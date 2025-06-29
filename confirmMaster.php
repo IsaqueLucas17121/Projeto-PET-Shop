@@ -202,7 +202,7 @@ if ($result->num_rows === 1) {
                     echo "<td>{$row->complemento}</td>";
                     echo "<td><img style='height: 50px;width: 50px;' src='backend/php/usuario{$img}' alt='icone do usuario'></td>";
                     echo "<td>" . ($row->logado ? 'Logado ✅' : 'Deslogado') . "</td>";
-                    echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
+                    echo "<td><button onclick=\"location.href='atualizar.php?cpf=".$row->cpf."';\" class='btn-editar'>Editar</button> <button onclick=\"location.href='deletarUsu.php?cpf=".$row->cpf."';\" class='btn-apagar'>Apagar</button></td>";
                     echo "</tr>";
                 }
         ?>
@@ -283,7 +283,7 @@ if ($result->num_rows === 1) {
                     echo "<td>{$row4->hotel}</td>";
                     echo "<td>{$row4->consulta}</td>";
                     echo "<td>{$donoNome}</td>";
-                    echo "<td><button class='btn-editar'>Editar</button> <button class='btn-apagar'>Apagar</button></td>";
+                    echo "<td><button class='btn-editar'>Editar</button> <button onclick=\"location.href='deletarPet.php?idPet=".$row4->idPet."';\" class='btn-apagar'>Apagar</button></td>";
                     echo "</tr>";
                 }
         ?>

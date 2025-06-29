@@ -5,7 +5,7 @@ include 'conn.php';
 session_start();
 
 if( !isset($_SESSION['usuarios']) && !isset($_SESSION['vendedores'])){
-    print "<script>location.href='cadastro.html';</script>";
+    print "<script>location.href='frontend/pages/cadastro.html';</script>";
 }
 if(isset($_SESSION['usuarios'])){
 
@@ -16,27 +16,29 @@ if(isset($_SESSION['usuarios'])){
     $sql1 = "SELECT * FROM usuarios WHERE cpf = '$chave'";
     $res = $conn->query($sql1);
     $row = $res->fetch_object();
-    
 
     $sql2 = "SELECT * FROM enderecos WHERE cep = '$row->cep'";
     $res2 = $conn->query($sql2);
     $row2 = $res2->fetch_object();
+    $loja = "lojaUsu.php";
 }
+
 if(isset($_SESSION['vendedores'])){
 
     $chave = $_SESSION['vendedores']->idFuncionario;
 
     $local = 'backend/php/vendedor/';
 
-    $sql1 = "SELECT * FROM funcionarios WHERE idFuncionario = '$chave'";
-    $res = $conn->query($sql1);
-    $row = $res->fetch_object();
+    $sql3 = "SELECT * FROM funcionarios WHERE idFuncionario = '$chave'";
+    $res3 = $conn->query($sql3);
+    $row3 = $res3->fetch_object();
 
-    $sql2 = "SELECT * FROM enderecos WHERE cep = '$row->cep'";
-    $res2 = $conn->query($sql2);
-    $row2 = $res2->fetch_object();
+    $sql4 = "SELECT * FROM enderecos WHERE cep='$row3->cep'";
+    $res4 = $conn->query($sql4);
+    $row4 = $res4->fetch_object();
 
     $salvarVen = "atualizarVen.php";
+    $loja = "loja.php";
 }
 
 if(isset($_REQUEST['idFuncionario'])){
@@ -53,7 +55,6 @@ if(isset($_REQUEST['idFuncionario'])){
 
     $salvarVen = "atualizarVen.php?idFuncionario=$chave";
 
-    session_abort();
 }
 
 ?>
@@ -63,7 +64,7 @@ if(isset($_REQUEST['idFuncionario'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - PetShop</title>
+    <title>Atualizar Cadastro - PetShop</title>
     
     <!-- CSS -->
     <link rel="stylesheet" href="frontend/src/css/login.css">
@@ -222,46 +223,43 @@ if(isset($_REQUEST['idFuncionario'])){
   
         <form id="form-vendedor" action="<?php echo $salvarVen?>" method="POST">
             <label for="vendedor-nome">Nome:</label>
-            <input value="<?php echo $row->nome?>" type="text" name="vendedor-nome" id="vendedor-nome" required />
+            <input value="<?php echo $row3->nome?>" type="text" name="vendedor-nome" id="vendedor-nome" required />
 
             <label for="vendedor-sobrenome">Sobrenome:</label>
-            <input value="<?php echo $row->sobrenome?>" type="text" name="vendedor-sobrenome" id="vendedor-sobrenome" required />
+            <input value="<?php echo $row3->sobrenome?>" type="text" name="vendedor-sobrenome" id="vendedor-sobrenome" required />
 
             <label for="vendedor-email">Email:</label>
-            <input value="<?php echo $row->email?>" type="email" name="vendedor-email" id="vendedor-email" required />
+            <input value="<?php echo $row3->email?>" type="email" name="vendedor-email" id="vendedor-email" required />
 
             
             <label for="vendedor-senha">Senha:</label>
-            <input value="<?php echo $row->senha?>" type="password" name="vendedor-senha" id='vendedor-senha' required />
+            <input value="<?php echo $row3->senha?>" type="password" name="vendedor-senha" id='vendedor-senha' required />
             <i class="bi bi-eye" id="olho3" onclick="trocarSenha(3)"></i>
             <i class="bi bi-eye-slash" id="olho4" onclick="trocarSenha(4)"></i>
 
             <label for="vendedor-telefone">Telefone (com DDD):</label>
-            <input value="<?php echo $row->telefone?>" oninput="formatarCelular(this)" type="text" name="vendedor-telefone" id="vendedor-telefone" placeholder="(11) 91234-5678" maxlength="15" minlength="15" required />
-
-            <label for="vendedor-cnpj">CNPJ:</label>
-            <input value="<?php echo $row->idFuncionario?>" oninput="formatarCNPJ(this)" type="text" name="vendedor-cnpj" id="vendedor-cnpj" placeholder="00.000.000/0000-00" maxlength="18" minlength="18" required />
+            <input value="<?php echo $row3->telefone?>" oninput="formatarCelular(this)" type="text" name="vendedor-telefone" id="vendedor-telefone" placeholder="(11) 91234-5678" maxlength="15" minlength="15" required />
 
             <label for="vendedor-cep">CEP:</label>
-            <input value="<?php echo $row->cep?>" oninput="formatarCEP(this)" type="text" name="vendedor-cep" id="vendedor-cep" required maxlength="9" />
+            <input value="<?php echo $row3->cep?>" oninput="formatarCEP(this)" type="text" name="vendedor-cep" id="vendedor-cep" required maxlength="9" />
 
             <label for="vendedor-rua">Rua:</label>
-            <input value="<?php echo $row2->rua?>" type="text" name="vendedor-rua" id="vendedor-rua" required readonly maxlength="100" />
+            <input value="<?php echo $row4->rua?>" type="text" name="vendedor-rua" id="vendedor-rua" required readonly maxlength="100" />
 
             <label for="vendedor-bairro">Bairro:</label>
-            <input value="<?php echo $row2->bairro?>" type="text" name="vendedor-bairro" id="vendedor-bairro" required readonly maxlength="50" />
+            <input value="<?php echo $row4->bairro?>" type="text" name="vendedor-bairro" id="vendedor-bairro" required readonly maxlength="50" />
             
             <label for="vendedor-cidade">Cidade:</label>
-            <input value="<?php echo $row2->cidade?>" type="text" name="vendedor-cidade" id="vendedor-cidade" required readonly maxlength="50" />
+            <input value="<?php echo $row4->cidade?>" type="text" name="vendedor-cidade" id="vendedor-cidade" required readonly maxlength="50" />
 
             <label for="vendedor-estado">Estado:</label>
-            <input value="<?php echo $row2->estado?>" type="text" name="vendedor-estado" id="vendedor-estado" required readonly maxlength="2" />
+            <input value="<?php echo $row4->estado?>" type="text" name="vendedor-estado" id="vendedor-estado" required readonly maxlength="2" />
 
             <label for="vendedor-numero">Número:</label>
-            <input value="<?php echo $row->numero?>" type="text" name="vendedor-numero" id="vendedor-numero" required maxlength="100" />
+            <input value="<?php echo $row3->numero?>" type="text" name="vendedor-numero" id="vendedor-numero" required maxlength="100" />
             
             <label for="vendedor-complemento">Complemento:</label>
-            <input value="<?php echo $row->complemento?>" type="text" name="vendedor-complemento" id="vendedor-complemento" required maxlength="100" />
+            <input value="<?php echo $row3->complemento?>" type="text" name="vendedor-complemento" id="vendedor-complemento" required maxlength="100" />
 
             
             <input type="submit" value="Atualizar Vendedor" class="btn-submit" />
