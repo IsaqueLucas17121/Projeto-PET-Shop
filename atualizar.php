@@ -142,7 +142,7 @@ if(isset($_REQUEST['idFuncionario'])){
 
     <a href="config.php">
         <div class="icone">
-        <img  src="<?php echo $local . $row->img?>" alt="Imagem do usuario">
+        <img  src="<?php echo $row->img?>" alt="Imagem do usuario">
         <h1 >  Configurações</h4>
         </div>
     </a>

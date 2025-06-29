@@ -36,7 +36,7 @@ $sql_check2->execute();
 $result2 = $sql_check2->get_result();
 
 $nomeLoja = "Sem Nome";
-$imgLoja = "/img/imagemLojaOFF.png";
+$imgLoja = "backend/php/vendedor/img/imagemLojaOFF.png";
 
 
 if ($result->num_rows > 0) {

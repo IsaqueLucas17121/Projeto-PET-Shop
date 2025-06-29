@@ -153,7 +153,7 @@ if(isset($_SESSION['usuarios'])){
     <a style="<?php if($ligado == TRUE){ echo "display: none;";} else{ echo "display: block;";} ?>" href="frontend/pages/cadastro.html" class="btn-login">Login / Cadastro</a>
     <a href="config.php" style="<?php if($ligado == TRUE){ echo "display: block;";} else{ echo "display: none;";} ?>">
         <div class="icone">
-        <img src="<?php echo 'backend/php/usuario' . $row->img?>" alt="Imagem do usuario">
+        <img src="<?php echo $row->img?>" alt="Imagem do usuario">
         <h1 >  Configurações</h4>
         </div>
     </a>

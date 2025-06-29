@@ -13,8 +13,6 @@ if(isset($_SESSION['usuarios'])){
 
   $sql = "SELECT * FROM usuarios WHERE cpf = '$chave'";
 
-  $local = 'backend/php/usuario';
-
   $loja = "lojaUsu.php";
 
   $res = $conn->query($sql);
@@ -25,8 +23,6 @@ else if(isset($_SESSION['vendedores'])){
   $chave = $_SESSION['vendedores']->idFuncionario;
 
   $sql = "SELECT * FROM funcionarios WHERE idFuncionario = '$chave'";
-
-  $local = 'backend/php/vendedor';
 
   $loja = "loja.php";
 
@@ -94,7 +90,7 @@ else if(isset($_SESSION['vendedores'])){
 
     <a href="config.php">
         <div class="icone">
-        <img src="<?php echo $local . $row->img?>" alt="Imagem do usuario">
+        <img src="<?php echo $row->img?>" alt="Imagem do usuario">
         <h1>  Configurações</h1>
         </div>
     </a>

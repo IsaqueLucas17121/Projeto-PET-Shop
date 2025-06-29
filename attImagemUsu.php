@@ -15,9 +15,10 @@ use Aws\Exception\AwsException;
 $bucket = 'awspetshop';
 $region = 'us-east-1';
 
-// $accessKey = '';
-// $secretKey = '';
-// $sessionToken = '';
+$accessKey = '';
+$secretKey = '';
+$sessionToken = '';
+
 // Criação do cliente S3
 $s3 = new S3Client([
     'version'     => 'latest',
@@ -48,10 +49,10 @@ if (isset($_FILES['icone']) && !empty($_FILES['icone']['tmp_name'])) {
         $img = $resultado['ObjectURL'];
     } catch (AwsException $e) {
         echo "Erro ao enviar para o S3: " . $e->getMessage();
-        $img = "/img/UsuarioOFF.png";
+        $img = "backend/php/usuario/img/UsuarioOFF.png";
     }
 } else {
-    $img = "/img/UsuarioOFF.png";
+    $img = "backend/php/usuario/img/UsuarioOFF.png";
 }
 
 // Exemplo: atualizar no banco de dados

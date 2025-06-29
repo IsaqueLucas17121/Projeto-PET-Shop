@@ -16,7 +16,7 @@ $cidade = $_POST['cliente-cidade'];
 $estado = $_POST['cliente-estado'];
 $numero = $_POST['cliente-numero'];
 $complemento = $_POST['cliente-complemento'];
-$img = '/img/UsuarioOFF.png';
+$img = 'backend/php/usuario/img/UsuarioOFF.png';
 
 $cpf = str_replace(['.','-'],'',$cpfSujo);
 

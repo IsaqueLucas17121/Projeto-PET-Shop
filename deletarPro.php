@@ -12,9 +12,9 @@ $row = $res->fetch_object();
 
 $img = $row->img;
 
-$protegidos = './img/imagemProdutoOFF.png';
+$protegidos = ['backend/php/usuario/img/imagemProdutoOFF.png','backend/php/vrndedor/img/imagemProdutoOFF.png'];
 
-if ($img !== $protegidos && file_exists($img)) {
+if (!in_array($img, $protegidos) && file_exists($img)) {
     unlink($img); // Só apaga se não for protegido
 }
 
