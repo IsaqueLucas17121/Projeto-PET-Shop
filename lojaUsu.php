@@ -288,7 +288,8 @@ $racas = ['Cachorro', 'Gato', 'Passarinho', 'Peixe', 'Outro'];
   </div>
 </div>
 
-      <!-- VLibras Widget -->
+
+<!-- VLibras Widget -->
   <div vw class="enabled">
       <div vw-access-button class="active"></div>
       <div vw-plugin-wrapper>
